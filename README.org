@@ -2,9 +2,9 @@
 Ce dossier contient les présentations, les images et les notes issues l'atelier.
 
 
-- Les sources des présentation sont au format org-mode de [[https://www.gnu.org/software/emacs/][GNU emacs]].  Si vous n'en avez pas entendu parlé regardez la très bonne vidéo de System crafters "[[https://www.youtube.com/watch?v=PNE-mgkZ6HM&t=1s][Emacs From Scratch #6 - Organisez votre vie avec le mode Org]]".
+- Les sources des présentations sont au format org-mode de [[https://www.gnu.org/software/emacs/][GNU emacs]].  Si vous n'en avez pas entendu parlé regardez la très bonne vidéo de System crafters "[[https://www.youtube.com/watch?v=PNE-mgkZ6HM&t=1s][Emacs From Scratch #6 - Organisez votre vie avec le mode Org]]".
 
-  J'utilise ensuite `org-beamer-export-to-latex` pour convertir le `.org` en '`.tex`  et je compile le `LaTeX` pour obtenir un fichier pdf présentable.
+  J'utilise ensuite `org-beamer-export-to-latex` pour convertir le `.org` en `.tex`  et je compile le `LaTeX` pour obtenir un fichier pdf présentable.
 
   Les pages de garde sont faites avec [[https://inkscape.org/fr/][inkscape]].
 
