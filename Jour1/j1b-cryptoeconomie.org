@@ -1,0 +1,316 @@
+#+SETUPFILE: setup_diapos.org
+#+TITLE: Cryptoéconomie
+
+# voir ~/Crypto/Communications/2021-02-23_ESATIC/postnotes.org
+
+#+BEGIN_SRC latex  -i
+{
+  \usebackgroundtemplate{\includegraphics[height=\paperheight]{./page_de_garde_wadaci_j1b}}
+  \frame[plain]{
+  }
+}
+#+END_SRC
+
+* Introduction 
+** Notions de départ
+*** Notions de départ   
+   #+ATTR_LaTeX: :width \textwidth
+   [[file:./Pictures/cryptographics/anatomy-of-a-chain-1.png]]
+
+**** Blockchain
+     :PROPERTIES:
+     :BEAMER_COL: 0.54
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <1->
+     :END:
+     - <0>Décentralisation
+     - <0>Consensus
+     - <0>Cryptographie
+     - <0>Applications décentralisées (dApp)
+**** Cryptoéconomie 
+     :PROPERTIES:
+     :BEAMER_COL: 0.46
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <1->
+     :END:
+     - <2>Tokens ou jetons
+     - <2>Marchés financiers
+     - <2>Porte-monnaie de crypto ([[https://yoroi-wallet.com][Yoroi-wallet]])
+
+** La monnaie
+*** 
+   #+BEGIN_VERSE
+Fiduciare, Scripturale, deviendrait-elle *Crypturale* ?
+   #+END_VERSE
+*** La monnaie
+**** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.44
+     :BEAMER_ENV: block
+     :END:
+***** Qu'est ce ?
+      @@latex:\only<1-6>{@@
+      - <1-5>Unité de valeur, de change et de compte
+      - <5-6>Un jeu d'écriture
+      @@latex:}@@
+
+      # d'hier à aujourd'hui
+
+***** Une histoire de confiance 
+      @@latex:\only<8->{@@
+      - <8>L'obligation (autorité)
+      - <8>La confiance (éthique)
+      - <9-10>L'habitude (méthodique)
+      @@latex:}@@
+**** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.55
+     :BEAMER_ENV: block
+     :END:
+     @@latex:\only<1>{@@
+     #+CAPTION: poids Akan
+     #+ATTR_LaTeX: :width .6\textwidth 
+     [[file:./Pictures/Cours2/poids_akan2.png]]
+     @@latex:}@@
+
+     @@latex:\only<2>{@@
+     #+CAPTION:  pecu
+     #+ATTR_LATEX: :width .9\textwidth 
+     [[file:./Pictures/Cours2/pecu.jpeg]]
+     @@latex:}@@
+
+       @@latex:\only<3>{@@
+       #+CAPTION:  barres de sel
+       #+ATTR_LATEX: :width .9\textwidth 
+       [[file:./Pictures/Cours2/sel.jpg]]
+       @@latex:}@@
+
+     @@latex:\only<4>{@@
+     #+CAPTION:  épices et pièces
+     #+ATTR_LATEX: :width .9\textwidth 
+     [[file:./Pictures/Cours2/epices_or.png]]
+     @@latex:}@@
+
+     @@latex:\only<5>{@@
+     #+CAPTION:  billet de 1778
+     #+ATTR_LaTeX: :width .9\textwidth 
+     [[file:./Pictures/continental_note.png]]
+     @@latex:}@@
+
+     @@latex:\only<6>{@@
+     #+CAPTION:  tally-stick, stocks & foil
+     #+ATTR_LATEX: :width .9\textwidth 
+   [[file:./Pictures/Cours2/tallystick3.png]]
+ @@latex:}@@    
+
+     @@latex:\only<7>{@@
+     #+CAPTION: Wall-street ou le /stock-exchange/
+     #+ATTR_LATEX: :width .9\textwidth
+     [[file:./Pictures/Cours2/wallstreet_stock.jpeg]]
+ \begin{itemize}
+      \item valeur légale
+      \item presque entièrement digitalisée
+ \end{itemize}
+     @@latex:}@@
+
+     @@latex:\only<8>{@@
+     #+CAPTION:  M. Jean-Claude Kassi Brou
+     #+ATTR_LaTeX: :width .9\textwidth 
+     file:./Pictures/GouverneurBCEAO_Jean_Claude_BROU.jpg
+     @@latex:}@@
+     @@latex:\only<9>{@@
+     #+ATTR_LaTeX: :width .9\textwidth
+     [[file:./Pictures/piece.jpg]]
+     @@latex:}@@
+   @@latex:\only<10>{@@
+   #+CAPTION:  sur les îles de Yap
+     #+ATTR_LaTeX: :width .9\textwidth 
+     [[file:./Pictures/yap_Stone_Money.jpg]]
+     @@latex:}@@
+    
+* Token ou cryptoéconomie 
+** Que sont les  cryptomonnaies ?
+*** C'est comme des jetons de baby-foot, des unités téléphoniques ou des points de fidélité
+**** 
+     :PROPERTIES:
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :BEAMER_Col: 0.38
+     :END:
+@@latex:\only<1-2>{@@
+*Mais* : 
+- <2> pas de faussaires
+- <2> pas d'intermédiaires
+- <2> pas d'obligation d'usage
+@@latex:}@@
+**** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :BEAMER_Col: 0.38
+     :BEAMER_ACT: <1-2>
+     :END:
+     #+ATTR_LaTeX: :width \textwidth 
+     [[file:./Pictures/arcade_token.png]]
+
+*** Leurs usages
+     :PROPERTIES:
+     :BEAMER_ACT: <3-5>
+     :END:
+
+**** 
+     :properties:
+          :BEAMER_COL: 0.43
+     :BEAMER_ENV: block
+:end:
+- <3->protocolaire
+- <4->applicatifs (dont NFT)
+- <5->gouvernance
+**** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.43
+     :BEAMER_ACT: <2-5>
+     :BEAMER_ENV: block
+     :END:
+     @@latex:\only<3>{@@
+     #+ATTR_LaTeX: :width .9\textwidth 
+     [[file:./Pictures/logos/tokens_protocolaires.png]]
+     @@latex:}@@
+     @@latex:\only<4>{@@
+     #+ATTR_LaTeX: :width .8\textwidth
+     #+CAPTION: /Non Fongible Token/ (NFT)
+     [[file:./Pictures/logos/tokens_applicatifs.png]]
+     @@latex:}@@
+     @@latex:\only<5>{@@
+     #+ATTR_LaTeX: :width .9\textwidth 
+     [[file:./Pictures/logos/gouv_token.png]]
+     @@latex:}@@
+
+*** Leur fonctions
+     :PROPERTIES:
+     :BEAMER_ACT: <6>
+     :END:
+**** 
+:properties:
+     :BEAMER_ENV: block
+     :end:
+
+Unités de compte, réserves de valeur, intermédiaires dans les échanges
+**** 
+     :PROPERTIES:
+     :BEAMER_ACT: <6>
+     :BEAMER_ENV: block
+     :END:
+     #+ATTR_LaTeX: :width .5\textwidth 
+     [[file:./Pictures/logos/tokens_tous.png]]
+
+
+** Cryptomonnaie par la pratique
+*** Comment obtenir des crytpomonnaies Aujourd'hui?
+**** 
+  - [[https://bitcoin.fr/acheter-bitcoin/][Marchés en ligne]] 
+  - Parainnages et programmes d’affiliations
+  - Miner des bitcoins
+  - Vendre de biens ou des services en Bitcoin (voir la [[https://coinmap.org/view/#/world/32.99023556/10.98632813/4][carte]])
+**** Attention
+ *Si c'est gratuit*, /c'est probablement vous la marchandise/
+
+*** Qu'est-ce qu'un porte-monnaie de Bitcoins
+**** voir la  [[https://www.youtube.com/watch?v=oTfOfqmb5tU&feature=emb_err_woyt][Vidéo]]
+    #+ATTR_LATEX: :width .9\textwidth
+    [[file:./Pictures/Cours2/wallet.png]]
+
+*** Comment conserver ses cryptomonnaies ?
+**** *Au frais / Cold Wallets*
+***** noeud complet
+      :PROPERTIES:
+      :BEAMER_COL: 0.50
+      :BEAMER_ENV: block
+      :END:
+      #+ATTR_LaTeX: :width .25\linewidth 
+        [[file:./Pictures/cardano/node.png]]
+
+***** porte-monnaie matériel
+      :PROPERTIES:
+      :BEAMER_COL: 0.50
+      :BEAMER_ENV: block
+      :END:
+
+      #+ATTR_LaTeX: :width .25\linewidth 
+      [[file:./Pictures/wallet_trezor.png]]
+      
+**** *Au chaud / hot Wallets*
+***** porte-monnaie léger (Yoroi)
+      :PROPERTIES:
+      :BEAMER_COL: 0.50
+      :BEAMER_ENV: block
+      :END:
+
+      #+ATTR_LaTeX: :width .25\linewidth 
+      [[file:./Pictures/cardano/yoroi-small.png]]
+   
+***** Coinbase, Kraken, Binance
+      :PROPERTIES:
+      :BEAMER_COL: 0.50
+      :BEAMER_ENV: block
+      :END:
+
+      #+ATTR_LaTeX: :width .3\linewidth 
+      [[file:./Pictures/logos/logos_exchanges.png]]
+
+*** Exemple d'un achat en Bitcoin
+   [[Https://youtu.be/hsuwxrB6c-M?t=82][Paiement au El-Salvador en un éclair]] (avec le réseau /lighting/)
+   #+ATTR_latex: :width .9\linewidth
+   [[file:./Pictures/achat_lightning.png]]
+  
+** Le marché des cryptomonnaies
+*** Le marché des cryptomonnaies
+    #+ATTR_latex: :width .9\linewidth
+    [[file:./Pictures/logos/cryptos.jpeg]]
+
+**** Dizaines de milliers de /coins/*
+     :PROPERTIES:
+     :BEAMER_COL: 0.4
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <2->
+     :END:
+     - <2>memes coins 
+     - <2>stable coins
+     - <2>shit coins
+
+@@latex:\only<3>{\tiny{@@
+ref. [[https://coingecko.com][coingecko]] et [[https://coinmarketcap.com][coinmarketcap]]
+@@latex:}}@@
+
+**** Marchés des cryptomonnaies
+     :PROPERTIES:
+     :BEAMER_COL: 0.6
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <3->
+     :END:
+     -  les crédits: $ 250 billions
+     -  Les actions: $ 80 billions
+     -  l'or: $ 7 billions
+     -  *les cryptos: $ 1 billion* 
+
+* Perspectives
+** Perspectives  
+*** Ceci n'est pas un cours de trading ?
+**** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.57
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <1>
+     :END:
+     #+ATTR_LaTeX: :width \linewidth
+     #+CAPTION: Des experts et ...
+     [[file:./Pictures/trading_team.png]]
+
+**** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.42
+     :BEAMER_ENV: block
+     :END:
+      #+ATTR_LaTeX: :width \linewidth
+      #+CAPTION: des bots, des IA, *de guerre*
+      [[file:./Pictures/pro_bot.jpeg]]
+*** Mais vous pourrez vous défendre (voir passer à l'attaque ?)

@@ -1,0 +1,490 @@
+#+SETUPFILE: setup_diapos.org
+#+TITLE: Blockchain Bitcoin
+
+#+BEGIN_SRC latex  -i
+{
+  \usebackgroundtemplate{\includegraphics[height=\paperheight]{./page_de_garde_wadaci_j1a}}
+  \frame[plain]{
+  }
+}
+#+END_SRC
+
+* Introduction
+** Notions de départ
+*** Notions de départ   
+   #+ATTR_LaTeX: :width \textwidth
+   [[file:Pictures/cryptographics/anatomy-of-a-chain-1.png]]
+
+**** Blockchain
+     :PROPERTIES:
+     :BEAMER_COL: 0.54
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <1->
+     :END:
+     - <2> Décentralisation
+     - <2> Consensus
+     - <2> Cryptographie
+     - <2> Applications décentralisées (dApp)
+**** Cryptoéconomie 
+     :PROPERTIES:
+     :BEAMER_COL: 0.46
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <1->
+     :END:
+     - <0>Tokens ou jetons
+     - <0>Marchés financiers
+     - <0>Porte-monnaie de crypto ([[https://yoroi-wallet.com][Yoroi-wallet]])
+
+** Les types d'utilisateurs des Blockchain
+*** Les rôles sur la blockchain
+**** 
+    :PROPERTIES:
+     :BEAMER_COL: 0.39
+     :BEAMER_ENV: block
+     :END:
+ - <1>Les empereurs
+ - <2>les élus
+ - <3>les mineurs
+ - <4>les utilisateurs
+**** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.6
+     :BEAMER_ENV: block
+     :END:
+     #+BEGIN_SRC latex  -i
+\begin{figure}[ht]
+  \centering
+  \includegraphics<1>[width=\textwidth]{Pictures/user_empereur}
+  \includegraphics<2>[width=\textwidth]{Pictures/user_elu}
+  \includegraphics<3>[width=\textwidth]{Pictures/user_mineur2}    
+  \includegraphics<4>[width=\textwidth]{Pictures/user_user2}
+\end{figure}
+     #+END_SRC
+
+* Bitcoin : Blockchain de 1\iere{} génération
+** La Naissance du Bitcoin
+*** 
+    #+BEGIN_VERSE
+ Toute action engendre une réaction (3\ieme{} loi de Newton)
+    #+END_VERSE
+*** La Naissance du Bitcoin
+**** From: Satoshi Nakamoto satoshi@vistomail.com
+      :PROPERTIES:
+      :BEAMER_COL: 0.70
+      :BEAMER_ENV: block
+      :END:
+
+      #+BEGIN_verbatiminput
+      SSubject: Bitcoin P2P e-cashe paper\\
+      Newsgroups: gmane.comp.encryption.general\\
+      Date: Friday 31st October 2008 18:10:00 UTC\\
+       \\
+      I've been working on a new electronic cash system that's fully peer-to-peer, with no trusted third party.
+      #+END_verbatiminput
+**** Cyber-Anarchisme
+      :PROPERTIES:
+      :BEAMER_COL: 0.30
+      :BEAMER_ENV: block
+      :END:
+
+      #+ATTR_latex: :width .7\linewidth
+      [[file:Pictures/assange.jpg]]
+
+*** La Naissance du Bitcoin
+**** Cypherpunk (Hal Finney)
+      #+ATTR_latex: :width \linewidth
+      [[file:Pictures/cryonics_hal_finney.png]]
+
+** Que vaut la blockchain ?
+*** Que vaut la blockchain ?
+      #+ATTR_LATEX: :width .8\linewidth
+      [[file:Pictures/layers_btc.png]]
+**** Cela dépendera de son utilité
+    
+** Historique du cours du Bitcoin
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+    #+ATTR_LATEX: :width .95\textwidth
+    [[file:./Pictures/Timeline/00debut0.png]]
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+    #+ATTR_LATEX: :width .95\textwidth
+    [[file:./Pictures/Timeline/01debut_prix_crea.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+   [[file:./Pictures/Timeline/02debut_prix_1.png]]
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+   [[file:./Pictures/Timeline/03debut_prix_1000.png]]
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+   [[file:./Pictures/Timeline/04debut_pizza.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/05debut_mtdox.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/06debut_silk.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/07debut_wiki.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/10debut_BCE.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/11debut_ICO.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/12debut_FED.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/13debut_realite.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/20adoption.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/21adoption_blockchain_privee.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/21adoption_japon.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/22adoption_prix.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/23adoption_univ.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/23adoption_voyage.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/24adoption_network.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/25adoption_enchere.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/26adoption_train.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width 1\textwidth
+  [[file:./Pictures/Timeline/30hal_finney.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width 1\textwidth
+  [[file:./Pictures/Timeline/31hal_finney.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/40emballement.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/41emballement_20000.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/42emballement_crash3.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/43emballement_rebond.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/44emballement_crash4.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/45emballement_aujourdhui.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/50emballement_banque.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/51emballement_senat.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/60emballement_halving.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/61emballement_halving2.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width 1.05\textwidth
+  [[file:./Pictures/Timeline/62emballement_halvings.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/70emballement_segwit.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/71emballement_lightning.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/72emballement_phoenix.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/80emballement_pizza.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/81emballement_magasin.png]]
+
+*** 
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :END:
+   #+ATTR_LATEX: :width .95\textwidth
+  [[file:./Pictures/Timeline/90emballement_trump.png]]
+
+*** et aujourd'hui ?
+   [[https://www.coingecko.com/en/coins/bitcoin/usd?chart=7_days#panel][Regardons le graphique des prix du Bitcoin jusqu'à ce jour]]
+
+** Quel est le problème résolu
+*** La double dépense
+      #+ATTR_LaTeX: :width .8\textwidth
+      [[file:Pictures/double_depense.png]]
+
+*** Comment le problème est-il résolu ?
+     #+ATTR_LaTeX: :width \textwidth
+     [[file:Pictures/cryptographics/anatomy-of-a-chain-1.png]]
+**** avec un journal comptable électronique
+      :PROPERTIES:
+      :BEAMER_ENV: block
+      :BEAMER_ACT: <1-4>
+      :END:
+     
+      - <1>organisés en blocks *infalsifiables* : [[https://andersbrownworth.com/blockchain/hash][SHA256 HASH]]
+      - <2>de façon unique : [[https://andersbrownworth.com/blockchain/block][block]]
+      - <3>qui s'*enchainent* les uns aux autres : [[https://andersbrownworth.com/blockchain/blockchain][chain]]
+      - <4>dans un réseau *publique et décentralisé* : [[https://andersbrownworth.com/blockchain/distributed][pairs]]
+
+**** Un exemple de block
+      :PROPERTIES:
+      :BEAMER_ENV: block
+      :BEAMER_ACT: <5>
+      :END:
+     
+
+
+*** Plus techniquement comment cela fonctionne ?
+     #+BEGIN_SRC latex  -i
+ \begin{figure}[ht]
+   \centering
+   \includegraphics<1>[width=.6\textwidth]{Pictures/cryptographics/tx}
+   \includegraphics<2>[width=.6\textwidth]{Pictures/cryptographics/block}
+   \includegraphics<3>[width=\textwidth]{Pictures/cryptographics/Anatomy-of-a-block2}    
+   \includegraphics<4>[width=\textwidth]{Pictures/cryptographics/anatomy-of-a-chain-1}
+ \end{figure}
+     #+END_SRC
+     @@latex:\only<1>{@@
+     [[https://andersbrownworth.com/blockchain/tokens][Tx]]:  ".00012300 BTC pour Binta, signé Amadou"
+     @@latex:}@@
+     @@latex:\only<2>{@@
+     Les mineurs inclu la [[https://andersbrownworth.com/blockchain/tokens][tx dans un bloc]] et cherchent un *bon* /nonce/
+     @@latex:}@@
+     @@latex:\only<3>{@@
+     Le 1\ier{} mineur à trouver un *bon* /nonce/, publie le bloc
+     - il contient une récompense ([[https://andersbrownworth.com/blockchain/coinbase][coinbase]])
+     @@latex:}@@
+     @@latex:\only<4>{@@
+     Les autres mineurs:
+     - Vérifient le nonce
+     - Ajoutent le nouveau block à la chaine
+     - Recommencent la course pour  obtenir une récompense
+
+     @@latex:}@@      
+     # @@latex:}\tiny{@@
+     # Réf: [[https://andersbrownworth.com/blockchain/blockchain][Liens vers les démos]]
+     # @@latex:}@@
+
+
+*** Et, ça marche depuis 2009 !
+     #+ATTR_latex: :width .7\linewidth
+     [[file:Pictures/pizza_1millions.jpg]]
+     - 18/05/2010, [[https://bitcointalk.org/index.php?topic=137.msg1195][les Pizza à 10000 BTC de Laslo (bitcointalk.org)]]
+
+** Les limites
+*** Des problèmes de taille
+**** Puissance nécessaire
+   - [[https://www.blockchain.com/fr/charts/hash-rate][Hash Rate]]  (TeraHash/s, Tera = 1000 milliards)
+**** Vitesse de confirmation
+  - [[https://www.blockchain.com/explorer/charts/median-confirmation-time][Attente pour les transactions]]
+**** Coût
+  - [[https://www.blockchain.com/explorer/charts/fees-usd-per-transaction][Frais de transaction relativement important]]
+
+**** Simplicité
+**** Manque d'adaptabilité
+     
+*** Coût énergétique
+      #+ATTR_LaTeX: :width \textwidth
+     [[file:Pictures/mining-farm-bitcoin.jpg]]
+
+*** [[https://www.blockchain.com/charts/pools][Concentration du hashrate]] (janv 2023)
+      #+ATTR_LaTeX: :width .6\textwidth
+     [[file:Pictures/hashrate_distrib_jan23.png]]
+
+*** [[https://www.blockchain.com/explorer/charts/transactions-per-second][Vitesse de traitement des transactions]]
+     #+ATTR_latex: :width \textwidth
+      [[file:Pictures/cryptographics/the-scaling-issue.png]]
+*** Jeux d'instructions limités
+     #+ATTR_LaTeX: :width .9\textwidth
+      [[file:Pictures/automate_simple.jpeg]]
+*** Hard-forks
+      #+ATTR_LaTeX: :width .9\textwidth
+     file:Pictures/cryptographics/blockchain-hard-fork.png
+
+* Perspectives
+** Perspectives
+***   
+**** Naissance d'une techno
+**** qui réunie
+**** mais qui pourrait être plus efficace
+
+
+ #    #+BEGIN_VERSE
+ # Toute action engendre une réaction (3\ieme{} loi de Newton)
+ #    #+END_VERSE
+
