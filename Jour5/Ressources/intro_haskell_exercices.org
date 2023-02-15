@@ -1,0 +1,96 @@
+* Deuxième jeu d'exercices
+** Exercice 1
+
+ Écrire un programme qui prend deux nombres en entrée et renvoie le plus grand.
+#+BEGIN_SRC haskell
+  --  première solution
+  le_plus_grand1 x y
+      | x < y = y
+      | otherwise = x
+  
+  --  seconde solution
+  le_plus_grand2 x y =
+      if x < y
+      then y
+      else x
+  
+  --  troisième solution
+  le_plus_grand3 x y = max x y
+#+END_SRC
+
+** Exercice 2
+  Écrire un programme qui prend un nombre en entrée et qui renvoie la chaîne de charactère "pair" si le nombre est pair et "impair" sinon
+
+** Exercice 3
+  Écrire un programme qui prend en entrée un nombre positif représentant le matricule d'un étudiant  et qui renvoie en sortie la couleur de sa carte d'étudiant.  cette couleur dépend  du reste de la division euclidienne du matricule par 3.   Elle est bleue si le reste est nul, rouge si le reste est 1 et verte si le reste est 2.
+
+** Exercice 4
+  Écrire un programme qui prend en entrée une note comprise entre zéro et vingt et qui renvoie en sortie une appréciation.   les appréciations sont les suivantes insuffisant passable assez bien bien très bien excellent pour des notes qui sont respectivement comprises entre 0 et 10 , 10 et 12 , 12 et 14, 14 et 16, 16 et 18, 18 et 20.  la borne supérieure de l'intervalle est exclue.
+
+** Exercice 5
+  écrire un programme qui prend en entrée trois coefficient a b c et qui renvoie en sortie  les racines du polynôme du second degré associés si elles sont réelles le programme renvoi la chaîne de caractères pas de solution autrement.
+
+** Exerice 6
+  écrire un programme qui prend en entrée une année et qui renvoie en sortie la chaîne de caractères " bissextile"  si l'année est bissextile.
+
+** exercice 7
+  écrire un programme qui prend en entrée une liste dentier et qui renvoie en sortie la moyenne de cette liste.
+
+** exercice 8
+  écrire un programme qui prend en entrée une liste dentier et qui renvoie en sortie une liste avec tout d'abord les nombres pairs dans l'ordre de la liste d'origine et les nombres impairs en ordre inverse.  Par exemple : entrée 8 1 3 2 8 6 5, sortie 8 2 8 6 5 3 1
+
+**  exercice 9
+  écrire un programme qui prend en entrée une liste dentier et qui renvoie en sortie la moyenne mobile  de taille trois.  le programme doit vérifier que la taille de la liste est au moins égale à trois si ce n'est pas le cas il doit renvoyer une erreur indiquant "liste trop petite"
+
+**  exercice 10
+  ecrire un programme qui prend en entrée une liste meuble et qui renvoi  le nombre qui est répété le plus de fois successivement ainsi que le  nombre de répétitions.
+
+**  exercice 11
+  écrire un programme qui prend en entrée une matrice dentier et qui renvoie le maximum le minimum la somme et la moyenne de ses valeurs
+
+**  exercice 12
+  écrire un programme qui prend en entrée une matrice dentier écrit renvoie  le nombre de valeurs père et un père
+
+**  exercice 13 (15)
+  écrire un programme qui prend en entrée de matrice d'entrée qui renvoie leur produit.   si les matrices n'ont pas la bonne taille le programme doit renvoyer une erreur.
+
+**  exercice 14
+  écrit un programme qui effectue une division à l'aide de la soustraction
+
+**  exercice 15
+  ecrire un programme qui est la seule liste de nombres de façon récursive
+
+**  exercice 16
+  écrire un programme qui multiplie deux nombres  a l'aide d'une addition et de façon récursive
+
+**  exercice 17
+  écrire un programme qui prend en entier de chaînes de caractères et qui renvoie la plus longue.  il rend moi la première si elles ont la même taille.
+
+**  exercice 18
+  écrire un programme qui prend en entrée de chaîne de caractères et qui renvoieà la plus grande
+
+**   exercice 19
+  écrire un programme qui prend en entier une chaîne de caractères et qui renvoie le nombre des caractères
+
+**  exercice 20
+  ecrire un programme qui prend en entrée une chaîne de caractères et qui renvoie ces mêmes caractères en majuscules
+
+**  exercice 21
+  écrire un programme qui prend en entrée une chaîne de caractères et qui renvoie vrai si cette chaîne contient le caractère 'A'
+
+**  exercice 22
+  écrire un programme qui prend en entrée une chaîne de caractères et qui renvoie le nombre de chiffres et cette chaîne contient
+
+**  exercice 23
+  écrire un programme qui prend en entrée une chaîne de caractères et qui renvoie en sortie le nombre de caractères majuscules minuscules les chiffres et les autres.
+
+**  exercice 24
+  écrire un programme qui prend en entrée de chaîne de caractères et qui indique si le plus long tiens le plus petit  une seule fois
+
+**  exercice 25
+  écrire un programme qui prend en entrée une chaîne de caractères et qui renvoie vrai si celui-ci est un palin drome
+
+**  exercice 26 (32)
+
+**  exercice 27 (34)
+

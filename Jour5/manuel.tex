@@ -1,0 +1,1918 @@
+% Created 2023-02-11 sam. 10:13
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[labelformat=empty]{caption}
+\usepackage{verbatim}
+\usepackage{hyperref}
+\author{Doc. Malik Koné}
+\date{\today}
+\title{Introduction à Haskell}
+\hypersetup{
+ pdfauthor={Doc. Malik Koné},
+ pdftitle={Introduction à Haskell},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 28.2 (Org mode 9.4.6)}, 
+ pdflang={French}}
+\begin{document}
+
+\maketitle
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+
+
+\section{Qu'est-ce que Haskell}
+\label{sec:org3cf5073}
+\subsection{Préambule}
+\label{sec:org61fb428}
+Ce document n'aurait pas été possible sans le livre de Graham Hutton "Programming in Haskell (Cambridge, 2018)" ainsi que du \href{https://www.futurelearn.com/courses/functional-programming-haskell}{cours de futurLearn} "progaming in Haskell"  et des \href{https://github.com/WADAlliance/Haskell\_Plutus\_Course}{notes du hackton Haskell et Plutus} de WADA.  Merci
+
+
+Haskell est un langage programmation avancé, fonctionnel. Les fonctions y jouent un rôle très important.  On dit qu'elles sont de première classe.   En Haskell, la notion de type est centrale.   Un peu comme en mathématique toute fonction a un domaine de définition et un ensemble image.  Ils doivent être précisés avant de coder.
+
+Nous donnons un aperçu des fonctions,  puis nous introduisons la notion de programmation fonctionnelle et nous présenterons les atouts majeurs de Haskell.
+
+\subsection{Fonctions}
+\label{sec:orgda3ee8b}
+Une fonction Haskell est une relation entre un ou plusieurs paramètres (\emph{argument}) et un résultat.   On la définit à l'aide d'une équation, comme suit\textasciitilde{}:
+
+\begin{verbatim}
+double x = x + x
+\end{verbatim}
+
+Ici, une fonction nommée `double` a un paramètre \(x\) et renvoie le résultat \(x + x\).
+
+\subsection{Programmation fonctionnelle}
+\label{sec:orge90b8dd}
+La programmation fonctionnelle est un style de programmation qui favorise l'utilisation des fonctions.  Haskell est un langage fonctionnel parce les fonctions y jouent un rôle de premier plan.
+
+Java, C++, Python  sont des langages  \emph{impératifs} parce qu'on y définit \textbf{comment faire} les calculs et non \textbf{quels résultats} avoir. Voici par exemple comment on programme la somme des entiers de \(1\) à \(n\) en style impératif,
+
+\begin{verbatim}
+int total = 0;
+for (int count = 1; count <= 1; count ++)
+    total = total + count;
+\end{verbatim}
+on décrit ci-dessus comment faire le calcul.
+
+Voici un exemple du même programme avec un style fonctionnel.
+\begin{verbatim}
+sum [1..n]
+\end{verbatim}
+Ici, on définit ce que l'on veut comme résultat.  Pour cela, on fait appel à deux fonctions `[1..n]` qui renvoie la liste des entiers de \(1\) à \(n\) et ensuite à la fonction `sum`.
+
+\subsection{Caractéristiques d'Haskell}
+\label{sec:org8b963ae}
+Voici quelqu'unes des caractéristiques du langage Haskell.  Il permet:
+\begin{itemize}
+\item les listes en compréhension
+\item les fonctions récursives,  c'est-à-dire des fonctions qui s'appellent elle-même.
+\item des programmes concis
+\item les fonctions de haut niveau (\emph{higer-order functions}), des fonctions qui utilisent d'autre fonction comme paramètre ou résultat.
+c'est-à-dire qu'une fonction peut s'appliquer à une autre fonction.
+\item un typage évolué des entrées et sorties des fonctions
+\item une évaluation paresseuse (\emph{lazy evalutation}), seuls les résultats utilisés sont calculés.
+\end{itemize}
+
+\subsection{Un peu d'histoire}
+\label{sec:org768b146}
+Haskell découle du \emph{lambda calculus}  développé dans les années 30 par Alonzo Church.   Il est aussi inspiré du Lisp (années 50), premier langage à base de liste.  Depuis 1987, il existe un comité pour le développement d'Haskell rassemblant des informaticiens de renom.  Au moins trois récipiendaires du prix ACM Turing Award ont participé au développement de Haskell.  Le langage est nomé en honneur à  Haskell Curry un logisticien Britanique.  
+
+\subsection{Exemples de programmes Haskell}
+\label{sec:org73f3141}
+
+\subsubsection{Faire la somme d'une liste de nombre}
+\label{sec:org39aebf9}
+On peut définir la fonction `somme` comme suit:
+\begin{verbatim}
+somme [] = 0
+somme (n:ns) = n + somme ns
+\end{verbatim}
+et l'appeller ainsi:
+\begin{verbatim}
+somme [1,2,3]
+\end{verbatim}
+
+
+En Haskell, toutes les fonctions ont un type. Celui de `somme` est :
+\begin{verbatim}
+somme :: Num a => [a] -> a
+\end{verbatim}
+
+
+Cela veut dire que pour une liste d'éléments de type `a` de la classe de type `Num`,  la fonction `somme` renvoie un seul élément de type `a`.   Il y a de nombreux types en Haskell et plusieurs types de nombres (ie. de la classe `Num`).
+
+Les types Haskell donnent des informations sur les fonctions. Ils permettent d'éviter beaucoup d'erreurs avant même l'exécution du programme.
+
+\subsubsection{Trier}
+\label{sec:org5d66497}
+Voici un autre exemple Haskell pour un programme de tri
+\begin{verbatim}
+  tri_vite [] = []
+  tri_vite (x:xs) = tri_vite plus_petits ++  [x] ++ tri_vite plus_grands
+                 where
+                   plus_petits = [a | a <- xs, a <= x]
+                   plus_grands =  [b | b <- xs, b > x]
+\end{verbatim}
+Nous reviendrons sur cet exemple plus tard.
+
+\section{De quoi avons-nous besoin pour commencer ?}
+\label{sec:org28acb68}
+\subsection{GHCi : Glasgow Haskell Compilater Interactif}
+\label{sec:orgfa96fa9}
+Comme pour tout programme, il nous faut un éditeur de texte.  Celui avec lequel vous êtes le plus confortable est souvent le meilleur.  Ensuite il faut un compilateur Haskell.  Lorsque vous programmerez vous aurez donc deux fenêtres ouvertes. L'une avec l'éditeur, l'autre avec le compilateur.
+
+Le compilateur que nous allons installer est le plus commun.  Il s'appelle \href{https://www.haskell.org/downloads/}{Glasgow Haskell Compilater (GHC)}.  Installez-le en suivant en suivant les instructions du lien.
+
+La version interactive du compilateur est pratique pour apprendre et c'est ce que nous utiliserons pour notre cours.  Sachez toute fois que l'on peut compiler un programme de la façon suivante:
+\begin{verbatim}
+ghc -O2 nom_du_programme.hs
+\end{verbatim}
+ou encore 
+\begin{verbatim}
+ghc --make mon nom_du_programme.hs
+\end{verbatim}
+
+
+Une fois ghci installé, tester le.  Vous devriez voir quelque chose comme cela:
+\begin{verbatim}
+mlk@teur ~ $ ghci
+GHCi, version 8.6.5: http://www.haskell.org/ghc/  :? for help
+Prelude> 
+\end{verbatim}
+
+À gauche, '>' est l'invite de commande.   Vous voyez écrit aussi 'Prelude'.  C'est une bibliothèque de fonction chargé par défaut dans le compilateur.
+
+Le système attend votre commande.  Essayer les commandes suivantes:
+
+\begin{verbatim}
+> 2+3*4
+\end{verbatim}
+
+\begin{verbatim}
+> (2+3)*4
+\end{verbatim}
+
+\begin{verbatim}
+> sqrt (3^2 + 4^2)
+\end{verbatim}
+
+\subsection{Prélude}
+\label{sec:orgf087ef9}
+La bibliothèque de départ d'Haskell contient un nombre important de fonctions, notamment des fonctions qui s'appliquent à des listes.   Les éléments des listes sont notés entre crochets, exemple
+\begin{verbatim}
+[1,2,3,4,5]
+\end{verbatim}
+
+Nous donnons ici les définitions et des exemples des fonctions les plus souvent utilisés.
+
+\subsubsection{head}
+\label{sec:org625350d}
+Sélectionne le premier élément d'une liste non vide
+
+\begin{verbatim}
+head  [1,2,3,4,5]
+\end{verbatim}
+
+\subsubsection{tail}
+\label{sec:orge3ce91f}
+Enlève le premier élément d'une liste  mon vide.
+\begin{verbatim}
+tail [1,2,3,4,5]
+\end{verbatim}
+
+\subsubsection{!! (index)}
+\label{sec:orgcdbcaaa}
+Sélectionne le \(n^{ième}\) élément d'une liste non vide.   Notez que le premier indice est 0.
+\begin{verbatim}
+[1,2,3,4,5]  !! 2
+\end{verbatim}
+
+\subsubsection{take}
+\label{sec:org0365f96}
+Sélectionne les n premiers éléments d'une liste.
+\begin{verbatim}
+take 3 [1,2,3,4,5]
+\end{verbatim}
+
+\subsubsection{drop}
+\label{sec:org54f84fc}
+Supprime les n premiers éléments d'une liste.
+\begin{verbatim}
+drop 3 [1,2,3,4,5]
+\end{verbatim}
+
+\subsubsection{length}
+\label{sec:org38534bc}
+Calcule la longueur d'une liste.
+\begin{verbatim}
+length [1,2,3,4,5]
+\end{verbatim}
+
+\subsubsection{sum}
+\label{sec:orgcb1b862}
+Fait la somme d'une liste de nombre.
+\begin{verbatim}
+sum [1,2,3,4,5]
+\end{verbatim}
+
+\subsubsection{product}
+\label{sec:orgd56a01e}
+Calcule le produit des éléments d'une liste.
+\begin{verbatim}
+product [1,2,3,4,5]
+\end{verbatim}
+
+\subsubsection{++ (concatène)}
+\label{sec:orgd78acad}
+Concatène (ou rassemble) deux listes en une seule.
+\begin{verbatim}
+[1,2,3] ++ [4,5]
+\end{verbatim}
+
+\subsubsection{reverse}
+\label{sec:orgc44a8bf}
+Renverse les éléments d'une liste.
+\begin{verbatim}
+reverse [1,2,3,4,5]
+\end{verbatim}
+
+\subsection{Comment appeler une fonction}
+\label{sec:orgb0da816}
+Les paramètres d'une fonction sont simplement séparés par des espaces.    Les parenthèses précisent la priorité des opérations sachant que l'application d'une fonction est prioritaire sur les opérations standards mathématiques, ainsi :
+\begin{verbatim}
+f a + b
+\end{verbatim}
+veut dire \(f(a) + b\) et non \(f(a+b)\), et 
+\begin{verbatim}
+f a b + c*d
+\end{verbatim}
+veut dire \(f(a, b) + cd\) et non \(f(a,b+cd)\). 
+
+Voici une table associant notation mathématique et notation Haskell
+
+\begin{center}
+\begin{tabular}{ll}
+notation mathématique & notation Haskell\\
+\hline
+\(f(x)\) & f x\\
+\(f(x,y)\) & f x y\\
+\(f(g(x))\) & f (g x)\\
+\(f(x,g(y))\) & f x (g y)\\
+\(f(x)g(y)\) & f x * g y\\
+\end{tabular}
+\end{center}
+
+\subsection{Scripts Haskell}
+\label{sec:org9c8daaa}
+ Les scripts Haskell ont généralement pour extensions '.hs'.    
+Supposons que nous ayons le code suivant dans un fichier appelé 'test.hs'
+\begin{verbatim}
+double x = x + x
+
+quadruple x = double (double x)
+\end{verbatim}
+
+ Ce programme  définit deux fonctions mai il n'affiche rien, et il ne demande rien à l'utilisateur non plus.
+Pour tester les fonctions, il est pratique de l'ouvrir dans ghci  comme suit:
+\begin{verbatim}
+ghci test.hs
+\end{verbatim}
+Cela va charger en mémoire les fonctions et nous pourront les appeler à l'intérieur de ghci
+\begin{verbatim}
+> quadruple 10
+40
+> take (double 2) [1,2,3,4,5,6,7,8]
+[1,2,3,4]
+\end{verbatim}
+
+Noter que lorsque  nous effectuons une modification dans le fichier 'test.hs', `ghci` ne prend pas en compte automatiquement les modifications.  Il faut utiliser la commande `:reload` (avec les :).
+
+Par exemple,  modifions 'test.hs' en lui ajoutant les deux fonctions suivantes:
+\begin{verbatim}
+factorielle n = product [1..n]
+
+moyenne ns = sum ns  `div` length ns
+\end{verbatim}
+Puis dans ghci, il faut écrire avant de pouvoir tester les nouvelles fonctions.
+\begin{verbatim}
+> :reload
+[1 of 1] Compiling Main             ( test.hs, interpreted )
+Ok, one module loaded.
+
+> factorielle 10
+3628800
+\end{verbatim}
+
+Des commandes importantes de ghci à connaître sont :
+\begin{itemize}
+\item :? ou :help,  pour afficher l'aide de ghci;
+\item :browse \emph{module},  pour montrer toutes les définitions chargées par le module;
+\item :doc \emph{fonction},  pour avoir la documenation d'une fonction;
+\item :i ou :info \emph{objet}, pour avoir des informations sur un object;
+\item :l ou :load \emph{fichier}, pour charger un module;
+\item :q ou :quit,  pour sortir du ghci;
+\item :r ou :reload \emph{fichier},  pour recharger un module qui vien d'être modifié;
+\item :t ou :type \emph{objet},  pour connaître le type d'un objet.
+\end{itemize}
+
+Par exemple:
+\begin{verbatim}
+> :doc head
+\end{verbatim}
+renvoie
+\begin{verbatim}
+Extract the first element of a list, which must be non-empty.
+\end{verbatim}
+
+\subsection{Règle de nommage des fonctions et des variables}
+\label{sec:org9e1b0ff}
+
+Le nom des fonctions et de leurs paramètres doivent commencer avec lettre une minuscule et peuvent ensuite contenir 0 ou plusieurs caractères suivant `a-zA-Z0-9'\_` .
+
+Comme dans tous langages de programmation, certains mots-clefs ont des significations spéciales et ils ne peuvent pas désigner des variables ou des fonctions. En Haskell ces mots sont les suivants:
+
+\begin{verbatim}
+case class data default deriving do else foreing if import in infix infixl infixr instance let module newtype of the type where
+\end{verbatim}
+
+\subsubsection{Convention pour les noms de variables}
+\label{sec:org6df80a2}
+Par convention, on appelle 'n', 'x', et 'cs' les variables qui contient respectivement des nombres, des valeurs quelconques et des caractères.
+On ajoute 's' aux noms des variables pour désigner une liste ou un ensemble.  Par exemple,  on écrira `ns`  pour une liste de nombres, ou `xs`  pour une liste de variables quelconques et `css`  pour une liste de caractères.
+
+\subsubsection{Disposition du code}
+\label{sec:orgd67577f}
+Comme dans python,  Haskell utilise des espaces pour grouper les expressions ensemble.  Dans le code ci-dessous,
+\begin{verbatim}
+  a = b + c
+      where
+        b = 1
+        c = 2
+
+  d = a * 2
+\end{verbatim}
+`b` et `c` sont des variables définies localement dans la fonction `a`.
+
+On peut rajouter des accolades et séparer les définitions avec des ;.
+\begin{verbatim}
+a = b + c
+    where
+      {b = 1;
+       c = 2};
+
+d = a * 2;
+\end{verbatim}
+Ce qui permet dde réécrire le code sur une seule ligne.
+\begin{verbatim}
+a=b+c where {b=1; c=2}; d=a*2;
+\end{verbatim}
+
+\begin{enumerate}
+\item Indentation
+\label{sec:org39c8b3f}
+Comme les éditeurs de texte interprètent différemment les tabulations,  il est préférable d'utiliser des espaces plutôt que des tabulations, pour l'indentation.   L'idéal et que son éditeur transforme automatiquement les tabulations en espaces.
+
+Par convention on utilise 8 espaces pour indenter le code.
+
+\item Commentaires
+\label{sec:org8b9c13d}
+\begin{enumerate}
+\item Simples
+\label{sec:org6f5a35a}
+
+Les commentaires simples commencent avec le symbole `--`.   Ils doivent tenir sur une ligne, comme ci-dessous:
+\begin{verbatim}
+-- Factorielle des n premiers entiers
+factorielle n = product [1..n]
+\end{verbatim}
+
+\item Imbriqués
+\label{sec:orgb278237}
+Les commentaires imbriqués sont encadrés par `\{-` et `-\}`.
+Ils peuvent s'étendre sur plusieurs lignes et contenir des commentaires.   Ils sont pratiques pour commenter  des blocs de code entiers, comme ci-dessous:
+\begin{verbatim}
+{-  3 fonctions du fichier test.hs commentées
+
+double x = x + x
+
+quadruple x = double (double x)
+
+-- Factorielle des n premiers entiers
+factorielle n = product [1..n]
+-}
+
+moyenne ns = sum ns  `div` length ns 
+\end{verbatim}
+
+Voyons maintenant plus en détail ce qui fait l'une des forces de Haskell, son système de typage.
+\end{enumerate}
+\end{enumerate}
+
+\subsection{Exercices}
+\label{sec:org85dcc66}
+
+\subsubsection{Exercice n°1}
+\label{sec:orge289546}
+Mettez les parenthèses sur les expressions numériques suivantes
+\(2^3*4\), \(2*3+4*5\)  et \(2+3*4^5\)
+
+\subsubsection{Exercice n°2}
+\label{sec:org0b6b81e}
+Corrigez les trois erreurs de syntaxe dans le script ci-dessous et vérifiez qu'il fonctionne dans `ghci`
+\begin{verbatim}
+N = a 'div' length xs
+    where 
+      a = 10
+     xs = [1,2,3,4,5]
+\end{verbatim}
+
+Écrire ce script en une seule ligne.
+
+
+\subsubsection{Exercice n°3}
+\label{sec:orgbdda6ef}
+La fonction `init` renvoie la dernière partie d'une liste par exemple
+\begin{verbatim}
+init [1,2,3,4,5]
+\end{verbatim}
+\begin{verbatim}
+[1,2,3,4]
+\end{verbatim}
+
+
+Définissez cette fonction de deux façons différentes avec les fonctions vu dans ce chapitre
+
+\section{Types et Classes de type}
+\label{sec:orge873c4f}
+Commençons par définir les types de base, puis ceux des listes et des fonctions.  Nous finirons en parlant dans classe de types.  
+
+On utilisera la commande ':t' dans ghci pour voir les types des objets.
+
+\subsection{Types de base}
+\label{sec:orgfca61b7}
+Les types suivant  sont définis par défaut dans \emph{Prelude}.
+
+\subsubsection{Bool -- les booléens}
+\label{sec:org04e34d8}
+\begin{verbatim}
+:t True
+\end{verbatim}
+
+\begin{verbatim}
+:t False 
+\end{verbatim}
+
+Lorsque l'on demande  le type de `True` ou `False`  la réponse est `Bool`.   En Haskell, tous ce qui suit les symboles `::` indique le type de l'objet.
+
+Les opérateurs classiques sur les booléens sont `\&\&`, `||` et `not`.
+
+\subsubsection{Char -- caractères}
+\label{sec:org65c8a28}
+On utilise les guillemets simples pour noter un caractère.
+\begin{verbatim}
+:t 'a'
+\end{verbatim}
+
+On peut aussi utiliser la valeur numérique (décimal ou hexadécimal) telle que définie par \href{https://en.wikipedia.org/wiki/List\_of\_Unicode\_characters\#Latin\_script}{le standard unicode}.   Cela est utile pour saisir des caractères de contrôles, comme '$\backslash{}$n' (nouvelle ligne) ou '$\backslash{}$t' (tabulation).
+
+
+
+\begin{verbatim}
+:t '\97'
+\end{verbatim}
+\begin{verbatim}
+:t '\x61'
+\end{verbatim}
+\begin{verbatim}
+'\x61' :: Char
+\end{verbatim}
+
+
+\begin{verbatim}
+('\97' == 'a') && ('a' == '\x61')
+\end{verbatim}
+\begin{verbatim}
+True
+\end{verbatim}
+
+
+\begin{enumerate}
+\item Fonction sur les caractères
+\label{sec:org167eccf}
+Il existe de nombreuses fonctions sur les caractères, notamment contenue dans la bibliothèque `Data.Char` que l'on peut charger avec
+\begin{verbatim}
+import Data.Char
+\end{verbatim}
+Un exemple 
+\begin{verbatim}
+:t toUpper
+\end{verbatim}
+\begin{verbatim}
+toUpper :: Char -> Char
+\end{verbatim}
+
+
+Ce type veut dire que `toUpper` prend en entrée un caractère et renvoie un caractère en résultat.
+
+\begin{verbatim}
+toUpper 'a'
+\end{verbatim}
+\end{enumerate}
+
+\subsubsection{String -- chaînes de caractères}
+\label{sec:org0925caf}
+Les `String` sont encadrés par des guillemets doubles.  Ce sont des séquences de caractères.
+\begin{verbatim}
+:t "efgh"
+\end{verbatim}
+\begin{verbatim}
+"efgh" :: [Char]
+\end{verbatim}
+
+\subsubsection{Int --  entiers à précision fixe}
+\label{sec:org190f90f}
+Les `Int` sont des entiers, par exemple -100, 9 ou 0.    Ils sont compris entre \(-2^{63}\)  et \(2^{63}-1\).   En dehors de cet intervalle, les résultats sont chaotiques.
+
+\begin{verbatim}
+2^63 - 1
+\end{verbatim}
+\begin{verbatim}
+9223372036854775807
+\end{verbatim}
+
+
+9 223 372 036 854 775 807 est positif, mais si on lui ajoute 1 et que l'on force le type `Int` on a
+\begin{verbatim}
+2^63 :: Int
+\end{verbatim}
+\begin{verbatim}
+-9223372036854775808
+\end{verbatim}
+
+un nombre négatif.  On a dépassé la borne \(2^63-1\)
+
+\subsubsection{Integer --  entiers sans précision fixée}
+\label{sec:org176bbdc}
+
+Les `Integer` sont des entiers aussi grands que ce que permet la mémoire de l'ordinateur.
+
+\begin{verbatim}
+2^63 :: Integer
+\end{verbatim}
+\begin{verbatim}
+9223372036854775808
+\end{verbatim}
+
+Cette fois ci le résultat est positif.
+Le désavantage des `Integers` c'est qu'ils sont plus lents à traiter que les `Int`.
+
+\subsubsection{Float --   nombres à virugle de précision simple}
+\label{sec:orgece1399}
+Les `Float` représentent les nombres décimaux, par exemple -12.34, 1.0 ou 3.1415927 (notez le point à la place de la virgule).   Leur taille en mémoire est limité et leur précision dépend de la taille du nombre, par exemple la précision de 
+\begin{verbatim}
+sqrt 2 :: Float
+\end{verbatim}
+\begin{verbatim}
+1.4142135
+\end{verbatim}
+
+est de 7 chiffres après la virgule, alors que celle de 
+
+\begin{verbatim}
+sqrt 9999 :: Float
+\end{verbatim}
+\begin{verbatim}
+99.995
+\end{verbatim}
+
+est de 3 chiffre seulement.
+
+`sqrt` est une fonction la librairie \emph{Prelude} qui calcule la racine carrée un nombre.
+
+\subsubsection{Double --  nombres à virgule avec deux fois plus de précision}
+\label{sec:org5bec984}
+Ce type est similaire à `Float`  mais avec deux fois plus de place en mémoire afin d'accroître la précision.
+
+\begin{verbatim}
+sqrt 2 :: Double
+\end{verbatim}
+\begin{verbatim}
+1.4142135623730951
+\end{verbatim}
+
+
+Ci-dessus la précision est maintenant de 16 et ci-dessous elle est maintenant de 14.
+\begin{verbatim}
+sqrt 9999 :: Double
+\end{verbatim}
+\begin{verbatim}
+99.99499987499375
+\end{verbatim}
+
+
+Notez qu'il faut toujours faire attention aux problèmes d'arrondis lorsque l'on utilise ces types de nombre pour des calculs précis.
+
+
+Nous venons de voir qu'il existe plusieurs types de nombre, `Int`, `Integer`, `Float`, et `Double`.    Nous pourront les regrouper dans la classe de type `Num` que nous détaillerons plus tard.
+
+\subsection{Types liste}
+\label{sec:org5f2d9e3}
+
+Une liste est une \textbf{séquence} d'éléments de \textbf{même type}.   Elle les  encadre avec des crochets et les séparer par des virgules.   On note \([T]\) le type de la liste dont tous les éléments sont de type \(T\), par exemple :
+
+\begin{verbatim}
+:t  [False, True, False ] 
+\end{verbatim}
+\begin{verbatim}
+[False, True, False ] :: [Bool]
+\end{verbatim}
+
+\begin{verbatim}
+:t  ['a', 'b', 'c', 'd']
+\end{verbatim}
+\begin{verbatim}
+['a', 'b', 'c', 'd'] :: [Char]
+\end{verbatim}
+
+
+Un peu plus compliqué
+\begin{verbatim}
+:t "Zéro"
+\end{verbatim}
+\begin{verbatim}
+"Zéro" :: [Char]
+\end{verbatim}
+
+On remarque qu'une chaîne de caractères est une liste de caractères.
+
+Une liste peut aussi contenir d'autre liste.
+\begin{verbatim}
+:t  ["Un", "Deux", "Trois"]
+\end{verbatim}
+\begin{verbatim}
+["Un", "Deux", "Trois"] :: [[Char]]
+\end{verbatim}
+
+
+Le nombre d'éléments d'une liste s'appelle \emph{length}.  La liste `[]` est  vide, elle a une longueur nulle.   Les listes qui n'ont qu'un seul élément  comme `[False]` ou `['a']` sont appelés \emph{singleton}.
+
+Il n'y a pas de restrictions sur le type d'élément que peut contenir une liste ou sur sa taille.   Cette dernière peut même être infinie.
+
+\subsection{Types tuple}
+\label{sec:orga01bd26}
+
+Le tuple est une \textbf{séquence} finie d'éléments potentiellement \textbf{de type différent}.   On le note entre les parenthèses `()` et ses éléments sont séparés par des virgules.   On écrira \((T_1, T_2, \cdots{}, T_n)\)  le type d'un tuple contenant des éléments de type \(T_1, T_2 \cdots{} T_n\)
+
+\begin{verbatim}
+:t (False, True)
+\end{verbatim}
+\begin{verbatim}
+(False, True) :: (Bool, Bool)
+\end{verbatim}
+
+
+\begin{verbatim}
+:t ('a', "Bob", True)
+\end{verbatim}
+\begin{verbatim}
+('a', "Bob", True) :: (Char, [Char], Bool)
+\end{verbatim}
+
+
+La longueur d'un tube est appelée \emph{arity}.   Le tuple de longueur zéro `()`  est le tuple vide, mais attention les singletons tuples n'existe pas car leur notation serait confondu avec l'usage mathématique des parenthèses.  Les parenthèses dans `(1+3)*4` doivent être comprise pour leur signification mathématique.  Elles ne désignent pas un tuple.
+
+
+Évidement, les tuples peuvent contenir d'autres tuples.
+\begin{verbatim}
+:t (False, (True, "Alpha"), [('b','c')])
+\end{verbatim}
+
+Il n'y a pas de limite quant au type des éléments contenus dans un tuple, mais leur taille est forcément finie.
+
+
+\subsection{Types fonction}
+\label{sec:orgc74ee0b}
+Une fonction est une relation entre des paramètres d'un certain type et un résultat qui peut-être d'un autre type.   On note \(T_1 -> T_2\)  le type de toutes les fonctions qui mettent en relation  un paramètre de type \(T_1\)  avec un résultat de type \(T_2\).   Par exemple,
+\begin{verbatim}
+:t not 
+\end{verbatim}
+
+\begin{verbatim}
+:t even
+\end{verbatim}
+
+Notez le symbole `=>`.  Il indique une contrainte de classe.   le type `a`  doit appartenir à la classe de type `Integral`.  Cette classe que nous détaillerons plus tard est une classe pour les types numériques pour lesquelles les opérations  `div` et `mod` sont définies.
+
+`even` (est pair) est une fonction qui renvoie `True` si le nombre est pair et `False` sinon.    
+
+\subsubsection{Fonction avec plusieurs paramètres et résultat}
+\label{sec:org70a34fb}
+Si une fonction a plusieurs paramètres, on peut les passer en tant que tuple.  
+
+\begin{verbatim}
+ajouter :: (Int, Int) -> Int
+ajouter (x,y) = x+y
+\end{verbatim}
+Par convention, en Haskell, on fait précéder la définition d'une fonction par son type.   Cela sert de documentation et facilite le débogage.
+
+Les résultats peuvent aussi être des listes, par exemple
+\begin{verbatim}
+zéro_à :: Int -> [Int]
+zéro_à n = [0..n]
+\end{verbatim}
+
+Notez que les fonctions ne sont pas obligatoirement définies sur tous l'ensemble de leur type (ou domaine).    La fonction `head` définie sur les listes,  ne l'est pas pour la liste vide.
+\begin{verbatim}
+:t head
+\end{verbatim}
+
+\begin{verbatim}
+head []
+\end{verbatim}
+
+Nous venons de voir comment définir des fonctions avec plusieurs variables, mais il existe une autre approche qui fait la force de Haskell.  Ce sont les fonctions curryfiées.
+
+\subsection{Fonction curryfiées (\emph{Curried functions})}
+\label{sec:orga146d08}
+Les fonctions qui prennent leur argument un par un et qui renvoie des fonctions s'appellent fonctions curryfiées ou \emph{curried function}.  En Haskell, une fonction peut renvoyer une fonction comme résultat.
+
+Comparons la fonction `ajouter` curryfiée ci-dessous à celle non currifiée du chapitre précédent.
+\begin{verbatim}
+ajouter' :: Int -> (Int -> Int)
+ajouter' x y = x+y
+\end{verbatim}
+
+La fonction `ajouter` curryfiée  prend un paramètre une entrée (un `Int`) et renvoie une fonction qui transforme un `Int` en `Int` (`Int->Int`).   Au chapitre précédent la fonction `ajouter`, non curryfié, qui prenait  2 paramètres en entrée et qui renvoyait un seul `Int` comme résultat.   Toutes les fonctions à plusieurs paramètres peuvent être curryfiées. L'avantage c'est la concision du code et sa lisibilité qui font éviter les bugs..
+
+Voici un autre exemple de fonction curryfiée
+\begin{verbatim}
+mult :: Int -> (Int -> (Int -> Int))
+mult x y z = x*y*z
+\end{verbatim}
+`mult` renvoie une fonction qui renvoie une fonction qui renvoie un `Int`
+
+\begin{verbatim}
+mult x y z
+\end{verbatim}
+veut  dire
+\begin{verbatim}
+((mult x) y) z
+\end{verbatim}
+
+Par convention on omettra les parenthèses au niveau des types, ainsi
+\begin{verbatim}
+mult :: Int -> (Int -> (Int -> Int))
+\end{verbatim}
+est équivalent à
+\begin{verbatim}
+mult :: Int -> Int -> Int -> Int
+\end{verbatim}
+
+
+\subsection{Type Polymorphique}
+\label{sec:org8f82221}
+Nous avons  la fonction `head`.  Elle renvoie le premier élément d'une liste quel que soit le type de cet élément.
+\begin{verbatim}
+head [1,2,3,4]
+\end{verbatim}
+\begin{verbatim}
+1
+\end{verbatim}
+
+
+\begin{verbatim}
+head ["Soumahoro", "Kanté"]
+\end{verbatim}
+\begin{verbatim}
+Soumahoro
+\end{verbatim}
+
+
+\begin{verbatim}
+head "Kirina"
+\end{verbatim}
+\begin{verbatim}
+'K'
+\end{verbatim}
+
+
+C'est donc une fonction qui s'applique à plusieurs types.  Cette spécificité est précisée lorsqu'on regarde son type.
+\begin{verbatim}
+:t head
+\end{verbatim}
+\begin{verbatim}
+head :: [a] -> a
+\end{verbatim}
+
+
+Son type fait apparaître une \textbf{variable de type} (\emph{type variable}) `a`.  Les variables de type sont notées avec des lettres minuscules par exemple `a`, `b`, ou `c`.
+
+Un type qui fait appel à une variable de type est appelé \textbf{type polymorphique}.
+\subsubsection{Exemples de fonctions ayant des types polymorphiques}
+\label{sec:org9d499ea}
+Regardons le type de certaines fonction courante en Haskell
+\begin{enumerate}
+\item fst
+\label{sec:org9f30c20}
+
+la fonction `fst` qui  extrait le premier élément d'une paire
+\begin{verbatim}
+:t fst
+\end{verbatim}
+\begin{verbatim}
+fst :: (a, b) -> a
+\end{verbatim}
+
+
+`fst` a un type qui contient deux variables de type. C'est naturellement un type polymorphique.
+
+\begin{verbatim}
+fst ("Palmier", 4)
+\end{verbatim}
+\begin{verbatim}
+Palmier
+\end{verbatim}
+
+\item take
+\label{sec:org0f01ede}
+`take` renvois les n premiers éléments d'une liste
+\begin{verbatim}
+take :: Int -> [a] -> [a]
+\end{verbatim}
+
+\item zip
+\label{sec:orge19f3d3}
+`zip` Rassemble deux listes de type différent en une seule liste de couple
+\begin{verbatim}
+zip :: [a] -> [b] -> [(a, b)]
+\end{verbatim}
+
+\item id
+\label{sec:org17c2c84}
+la fonction `id` identité  renvoie le paramètre à l'identique
+\begin{verbatim}
+id :: a -> a
+\end{verbatim}
+\end{enumerate}
+
+\subsection{Types surchargés,  Overloaded types}
+\label{sec:org7b444d9}
+Certaines fonctions s'appliquent à plusieurs types mais avec certaines contraintes. Par exemple la fonction (+)  s'applique `Int` et `Float`  mais pas aux listes.  On note cette contrainte \emph{class constraint}  `C a =>`,   où C est le nom d'une classe de type et `a` une variable de type.   
+\begin{verbatim}
+(+) :: Num a => a -> a -> a
+\end{verbatim}
+
+
+Cela veut dire que la fonction (+) s'applique à des types de la classe Num (ou numérique).
+
+Un type qui contient les contraintes de classe est appelé un \textbf{type surchargé} ou \emph{overloaded type}.
+
+Voici d'autres exemples
+\begin{verbatim}
+negate :: Num a => a -> a
+abs ::Num a => a -> a
+\end{verbatim}
+
+\subsection{Classes de base}
+\label{sec:orgc8fa39a}
+Une \emph{class} est un ensemble de type pour lesquelles certaines opérations (appelées méthodes) sont définies.
+
+Voici les classes de base définies par Haskell
+
+\subsubsection{Eq -- les types égalité}
+\label{sec:org6e9026f}
+Cette classe contient les types qui peuvent être comparés  en utilisant les méthodes suivantes
+
+\begin{verbatim}
+(==) :: a -> a -> Bool
+(/=) :: a -> a -> Bool
+\end{verbatim}
+
+
+Tous les types de base, les listes et les tuples, sont des instances de cette classe de type.
+
+\subsubsection{Ord --  les types  ordonnés}
+\label{sec:org62736c3}
+Cette classe contient tous les types de la classe égalité `Eq` et qui, en plus, supportent les méthodes 6 suivantes:
+
+\begin{verbatim}
+(<) :: a -> a -> Bool
+(>) :: a -> a -> Bool
+(<=) :: a -> a -> Bool
+(>=) :: a -> a -> Bool
+min :: a -> a -> a
+max :: a -> a -> a
+\end{verbatim}
+
+
+Tous les types de base sont des instances de cette classe de type.   Les listes et les tuples, aussi, si les types de leurs éléments  sont instance de cette classe.
+
+\begin{verbatim}
+('a', 10) < ('a', 100)
+\end{verbatim}
+
+\begin{verbatim}
+[1,2,3] > [0,20,4,32]
+\end{verbatim}
+
+Notez que les listes et tuples sont rangées comme dans un dictionnaire, en comparant l'ordre des éléments  un par un.
+
+\begin{verbatim}
+('a','b') < ('a', 10)
+\end{verbatim}
+
+\subsection{Show --  les types que l'on peut afficher}
+\label{sec:orge10a605}
+Cette classe contient tous les types dont les valeurs peuvent être converties en chaîne de caractères avec la méthode suivante:
+
+\begin{verbatim}
+show :: a -> String
+\end{verbatim}
+
+
+\begin{itemize}
+\item exemples :
+\end{itemize}
+\begin{verbatim}
+show [1,2,3]
+\end{verbatim}
+
+\begin{verbatim}
+show ('a', False)
+\end{verbatim}
+
+\subsection{Num --  les types numériques}
+\label{sec:orgc9f1c71}
+La classe de type `Num` comprend les `Int`, `Integer`, `Float` et  `Double`.  De façon général, elle comprend  tous les types qui supportent les six méthodes suivantes :
+\begin{verbatim}
+(+) :: a -> a -> a
+(-) :: a -> a -> a
+(*) :: a -> a -> a
+negate :: a -> a
+abs :: a -> a
+signum :: a -> a
+\end{verbatim}
+
+
+Si l'on regarde le type du nombre 4, par exemple
+\begin{verbatim}
+:t 4
+\end{verbatim}
+\begin{verbatim}
+4 :: Num p => p
+\end{verbatim}
+
+
+On voit qu'il doit être de la catégorie Num.
+
+La fonction `signum` renvoie le signe d'un nombre.
+\begin{verbatim}
+signum (-3)
+\end{verbatim}
+\begin{verbatim}
+-1
+\end{verbatim}
+
+Notez que les parenthèses sont importantes.  Si on les oublie `signum` essayera de s'appliquer sur le symbole '-'.
+
+\subsection{Integral}
+\label{sec:org67efd16}
+Ce sont les types de la classe Num,  mais qui en plus supporte les deux  méthodes suivantes :
+\begin{verbatim}
+div :: a -> a -> a
+mod :: a -> a -> a
+\end{verbatim}
+
+
+Il s'agit la division euclidienne et du modulo.
+
+\subsection{Fractional}
+\label{sec:orge66f4ed}
+Ce sont les types numériques qui, en plus, supportent les 2 méthodes suivantes:
+\begin{verbatim}
+(/) :: a -> a -> a
+recip :: a -> a
+\end{verbatim}
+
+
+\begin{verbatim}
+:doc recip
+\end{verbatim}
+
+\subsection{Exercices}
+\label{sec:org642eba0}
+
+\subsubsection{Exerice n°1}
+\label{sec:org3eacd6f}
+Quels sont les types des valeurs suivantes ?
+\begin{verbatim}
+['a','b','c']
+('a','b','c')
+[(False, 'O'), (True,'1')]
+([False,True], ['0','1'])
+[tail, init, reverse]
+\end{verbatim}
+
+\subsubsection{Exercice n°2}
+\label{sec:orga0aef92}
+écrire des définitions quelconque mais correct et qui ont les types suivants.
+\begin{verbatim}
+bools :: [Bool]
+nums :: [[Int]]
+add : Int -> Int -> Int -> Int
+copy :: a -> (a,a)
+apply :: (a->b) -> a -> b
+\end{verbatim}
+
+\subsubsection{Exercice n°3}
+\label{sec:org57305f2}
+trouver manuellement les types des fonctions suivantes ?
+
+\begin{verbatim}
+second xs = head (tail xs)
+échange (x,y) = (y,x)
+pair x y = (x,y)
+double x = x*2
+palindrome xs = reverse xs == xs
+deuxfois f x = f (fx)
+\end{verbatim}
+
+Prenez en compte les éventuelles contraintes de type
+vérifiant suite ce que vous avez trouvé à l'aide GHCi
+
+\section{Déclaration de fonctions}
+\label{sec:org62d6462}
+\subsection{En utilisant les fonctions existantes}
+\label{sec:orgb5077cd}
+La façon la plus simple de faire des fonctions et d'utiliser  des fonctions qui existent déjà.
+\begin{verbatim}
+impair :: Integral a => a -> Bool
+impair n = n `mod` 2 == 0
+\end{verbatim}
+Ici, on fait appel à l'opérateur `mod`.  On verra ce qu'est un opérateur plus loin.
+\begin{verbatim}
+séparer :: Int -> [a] -> ([a],[a])
+séparer = n xs = (take n xs, drop n xs)
+\end{verbatim}
+
+Ici, on fait appelle à `take` et `drop` et ci-dessous simplement à `/`.
+
+\begin{verbatim}
+inverse :: Fractional a => a -> a
+inverse n = 1/n
+\end{verbatim}
+
+\subsection{Expressions conditionnelles}
+\label{sec:org39c540d}
+\begin{verbatim}
+abs' :: Int -> Int
+abs' n = if n >= 0 then n else -n
+
+signum' :: Int -> Int
+signum' n = if n < 0 then 
+                -1
+            else
+                if n == 0 then
+                    0
+                else
+                    1
+\end{verbatim}
+
+\subsection{Gardes}
+\label{sec:orgfa7e38a}
+À la place des expressions conditionnelles,  on peut utiliser des équations gardées \emph{guarded equations}.  Un garde c'est un prédicat qui peut être vrai ou faux.   On le note sous forme d'équation ou d'inéquation, juste après un `|`.    Une fonction en utilise généralement plusieurs.
+Ils permettent de choisir les instructions à éxecuter. Seule la première des expressions dont le garde est vérifiée est exécutée.  Si un garde est faux, on regarde le deuxième, puis le troisième et ainsi de suite.
+
+\begin{verbatim}
+abs'' n | n >= 0 = n
+        | otherwise = -n
+\end{verbatim}
+`|`  se lit 'tel que'.  Dans la définition de la fonction `abs` il y a 2 guardes. ` n >= 0` et `otherwise`.  Ce dernier guarde est toujours vrai.
+
+L'avantage des gardes est qu'ils clarifient le code.
+
+Un autre exemple
+\begin{verbatim}
+signe n | n < 0 = -1
+        | n == 0 = 0
+        | otherwise = 1
+\end{verbatim}
+
+\subsection{Motifs (\emph{pattern matching})}
+\label{sec:org4f87473}
+
+ Beaucoup de fonctions ont des définitions intuitives.  On peut les construite en utilisant une suite de motifs.  
+Les motifs sont un peu comme pour les gardes qui permettent de choisir branche de code utiliser, mais ils s'appliquent directement aux arguments.  
+
+Par exemple pour la fonction suivante, en fonction des valeurs des paramètres on affichera soit `True` soit `False`.
+
+\begin{verbatim}
+et :: Bool -> Bool -> Bool
+True `et` True = True
+True `et` False = False
+False `et` True = False
+False `et` False = False
+\end{verbatim}
+
+Dans cette définition on peut rassembler les trois dernières expressions grâce au joker '\_'  qui remplace n'importe quelle valeurs.  La définition de la fonction devient alors:
+
+\begin{verbatim}
+et :: Bool -> Bool -> Bool
+True `et` True = True
+_ `et` _ = False
+\end{verbatim}
+
+\subsubsection{motifs avec des tuples}
+\label{sec:orged3f54c}
+On peut aussi utiliser des tuples dans un motif.  
+\begin{verbatim}
+premier :: (a,b) -> a
+premier (a,_) = a
+\end{verbatim}
+Ici, on selectionne les tuples de deux éléments et on renvoie le premier de ses éléments, ignorant le second.
+
+\subsubsection{motifs avec des listes}
+\label{sec:org3dae041}
+
+La même technique s'applique pour les listes.   Un motif de liste, avec une taille donnée, sélectionnera toutes les listes de cette taille.
+
+\begin{verbatim}
+test :: [Char] -> Bool 
+test ['a',_,_] = True
+test _ = False
+\end{verbatim}
+
+La fonction `test` renverra `True` pour toutes les listes d'exactement trois éléments si elles commencent par le caractère 'a'.
+
+Avec les list, on peut aussi utiliser l'opérateur ':' (\emph{cons}).  il permet de construire une liste ou de décomposer les listes.
+
+\begin{verbatim}
+1 :  [2,3]  == [1,2,3]
+\end{verbatim}
+\begin{verbatim}
+True
+\end{verbatim}
+
+
+Il ne faut pas le confondre avec l'opérateur de concaténation '++', qui s'utilise comme suit:
+\begin{verbatim}
+[1] ++ [2,3] == [1,2,3]
+\end{verbatim}
+\begin{verbatim}
+True
+\end{verbatim}
+
+
+Voici deux exemples:
+\subsubsection{Entête d'une liste}
+\label{sec:org7e51ecf}
+\begin{verbatim}
+entête :: [a] -> a
+entête (x:_) = x 
+\end{verbatim}
+
+\subsubsection{Queue d'une liste}
+\label{sec:orgca6fef0}
+\begin{verbatim}
+queue :: [a] -> [a]
+queue (_:xs) = xs
+\end{verbatim}
+
+\subsection{Expressions lambda}
+\label{sec:org1030c4e}
+
+On peut définir des fonctions sans leur donner de nom.  On appelle ces fonctions \emph{lambda}.  On définie leur paramètre avec la barre oblique `$\backslash$` et la flèche `->` indique le résultat.
+
+\begin{verbatim}
+\x -> x + x
+\end{verbatim}
+est la fonction qui prend une variable x et renvoie son double.
+On peut l'appeller comme cela :
+\begin{verbatim}
+(\x -> x + x) 3
+\end{verbatim}
+\begin{verbatim}
+6
+\end{verbatim}
+
+
+Le nombre de variables des fonctions lambda n'est pas limité.
+
+\begin{verbatim}
+\x -> (\y -> x + y)
+\end{verbatim}
+est l'écriture lambda de la fonction ajouter qui a deux paramètres
+
+Ce type de notation est utile pour définir des fonctions à l'intérieur d'autres fonctions.  Par exemple, voici la fonction `impaires` qui génèrent les premiers nombres impairs.     À la place d'écrire
+\begin{verbatim}
+impaires :: Int -> [Int]
+impaires n = map f [0..n-1]
+             where f x = x*2 +1
+\end{verbatim}
+on peut noter
+\begin{verbatim}
+impaires' :: Int -> [Int]
+impaires' map (\x -> x*2 +1) [0..n-1]
+\end{verbatim}
+
+La fonction \emph{map}  applique a un ensemble de valeurs, la fonction passé comme son première paramètre.
+
+\subsection{Opérateurs}
+\label{sec:org7bae8fa}
+Un opérateur est une fonction à deux paramètres qui s'écrit entre ses paramètres, par exemple \(2 + 3\).   N'importe quelle fonction avec deux paramètres peut être converti en opérateur l'encadrant par des accents graves \emph{back-quotes}, par exemple avec la division entière :
+\begin{verbatim}
+10 `div` 3
+\end{verbatim}
+\begin{verbatim}
+3
+\end{verbatim}
+
+
+On peut aussi curryfier n'importe quel opérateur en  l'encadrant avec des parenthèses, par exemple
+\begin{verbatim}
+(+) 2 3
+\end{verbatim}
+\begin{verbatim}
+5
+\end{verbatim}
+
+
+De façon générale si `\#` est un opérateur alors on a :
+\begin{verbatim}
+(#)  équivaut \x -> (\y -> x # y)
+(x #) équivaut \y -> x # y
+(# y) équivaut \x -> x # y
+\end{verbatim}
+
+
+par exemple 
+\begin{verbatim}
+(1/) équivaut à  \x -> 1/x
+\end{verbatim}
+
+\begin{verbatim}
+(1/) 4
+\end{verbatim}
+\begin{verbatim}
+0.25
+\end{verbatim}
+
+
+et 
+\begin{verbatim}
+(/2) équivaut à  \x -> x/2
+\end{verbatim}
+
+\begin{verbatim}
+(/2) 33
+\end{verbatim}
+\begin{verbatim}
+16.5
+\end{verbatim}
+
+\subsection{Exerices}
+\label{sec:orgd34a7f8}
+
+\subsubsection{Exercice n°1}
+\label{sec:orgd427cfa}
+En utilisant les fonctions de la librairie 'Prelude' définit une fonction appelé `moitié` qui prend une liste d'éléments et qui renvoie un tuple contenant les deux moitiés de cette liste.
+\begin{verbatim}
+moitié :: [a] -> ([a],[a])
+\end{verbatim}
+
+La fonction doit renvoyer une erreur si la liste n'a pas un nombre pair d'éléments.
+
+\subsubsection{Exercice n°2}
+\label{sec:orgc6435ab}
+Définit, de trois façons différentes, une fonction 'troisième' qui prend une liste d'éléments et qui renvoie le troisième élément de cette liste.
+\begin{verbatim}
+troisième :: [a] -> a
+\end{verbatim}
+
+\begin{enumerate}
+\item En utilisant les fonctions `head` et `tail`
+\label{sec:org4ce89ea}
+
+\item en utilisant l'opérateur d'indice '!!'
+\label{sec:orgdf1dbd8}
+
+\item en utilisant la correspondance de motif
+\label{sec:orgb813d1c}
+\end{enumerate}
+
+\subsubsection{Exercice n°3}
+\label{sec:orgde7dee9}
+Définir,  de trois façons différentes, la fonction 'boutsécurisé' qui se comporte comme la fonction `tail`  sauf qu'en cas de liste vide, elle renvoie la liste passée en paramètre.   Vous pouvez utiliser la fonction `null` de 'Prelude' pour savoir si la liste est vide
+\begin{verbatim}
+boutsécurisé :: [a] ->[a]
+null :: [a] -> Bool
+\end{verbatim}
+
+\begin{enumerate}
+\item En utilisant des expressions conditionnelles
+\label{sec:orgef01bf4}
+
+\item En utilisant des équations gardées
+\label{sec:orgf45df81}
+
+\item En utilisant la correspondance de motif
+\label{sec:orgbb495d0}
+\end{enumerate}
+
+\subsubsection{Exercice n°4}
+\label{sec:org6e50572}
+définir l'opérateur `(ou)` de la même façon que ce que nous avons fait pour `(et)`
+
+\section{Listes en compréhension}
+\label{sec:org3ebd5dd}
+Une liste en compréhension est une liste définie en utilisant les éléments d'une autre liste.  En mathématiques, la liste des carrés des 5 premiers entiers notée en compréhension s'écrit $$\{x^2 | x \in [1\cdots{} 5]\}$$.
+
+En Haskell on note
+\begin{verbatim}
+[x^2 | x <- [1..5 ]]
+\end{verbatim}
+\begin{verbatim}
+[1,4,9,16,25]
+\end{verbatim}
+
+
+On appelle la liste utilisé un \emph{générateur}.  On peut en utiliser plusieurs, par exemple
+\begin{verbatim}
+[(x,y) | x <- [1,2,3],  y <- "aB"]
+\end{verbatim}
+\begin{verbatim}
+[(1,'a'),(1,'B'),(1,'c'),(1,'d'),(2,'a'),(2,'B'),(2,'c'),(2,'d'),(3,'a'),(3,'B'),(3,'c'),(3,'d')]
+\end{verbatim}
+
+génère la liste des couples dont le premier élément est 1, 2 ou 3 et le deuxième 'a' ou 'B'.
+
+L'ordre des générateurs est important.
+\begin{verbatim}
+[(x,y) | y <- "aB", x <- [1,2,3]]
+\end{verbatim}
+\begin{verbatim}
+[(1,'a'),(2,'a'),(3,'a'),(1,'B'),(2,'B'),(3,'B')]
+\end{verbatim}
+
+
+C'est le second qui change plus vite.
+
+\subsection{Filtres \emph{Guards}}
+\label{sec:orga6bfb78}
+Dans les listes en  compréhension on peut utiliser des filtres (ou \emph{guards}) pour limiter les valeurs du générateurs à prendre en compte.
+Les guardes viennent après le symbole ',', par exemple :
+
+\begin{verbatim}
+diviseurs_de :: Int -> [Int]
+diviseurs_de n = [x | x <- [1..n], n `mod` x == 0]
+\end{verbatim}
+
+\subsection{la fonction zip}
+\label{sec:orgb86586a}
+La fonction `zip` est souvent utilisé avec les listes en compréhension.  C'est une fonction qui crée une liste de paires en prenant deux  éléments dans deux listes différentes, jusqu'à épuisement de l'une d'elles.
+
+\begin{verbatim}
+zip "abcd" [1..10]
+\end{verbatim}
+\begin{verbatim}
+[('a',1),('b',2),('c',3),('d',4)]
+\end{verbatim}
+
+
+On peut s'en servire pour créer des paires, à partir d'une même liste.
+\begin{verbatim}
+paires :: [a] -> [(a,a)]
+paires xs = zip xs (tail xs)
+\end{verbatim}
+Ce qui donne
+\begin{verbatim}
+paires [1..5]
+\end{verbatim}
+\begin{verbatim}
+[(1,2),(2,3),(3,4),(4,5)]
+\end{verbatim}
+
+
+On peut ainsi définir une fonction qui vérifie si une liste et triée.
+\begin{verbatim}
+est_triée :: Ord a => [a] -> Bool 
+est_triée xs = and [x <= y | (x,y)  <- paires xs]
+\end{verbatim}
+Vérifions avec
+\begin{verbatim}
+est_triée [1,2,3,10,5]
+\end{verbatim}
+\begin{verbatim}
+False
+\end{verbatim}
+
+\subsection{Exercices}
+\label{sec:org1d611d4}
+\subsubsection{Exercice n°1}
+\label{sec:org5387fce}
+En utilisant une liste en compréhension donner l'expression qui calcule la somme des carrés des cent premiers entiers.
+\(1^2+2^2+\cdots{}+100^2\)
+
+\subsubsection{Exercice n°2}
+\label{sec:orgb7b6f96}
+Soi un système de coordonnées sur une grille de taille \(m\times n\)  définie par  un couple \((x,y)\) avec \(0\leq x \leq m\) et \(0 \leq y \leq n\).
+En utilisant les fonctions standard définir la fonction 'grille'  qui renvoie les coordonnées de tous les points d'une crise dont les dimensions sont passées en paramètre.
+\begin{verbatim}
+grille :: Int -> Int -> [(Int,Int)]
+\end{verbatim}
+\begin{verbatim}
+> grille 1 2
+\end{verbatim}
+\begin{verbatim}
+[(0,0),(0,1),(0,2),(1,0),(1,1),(1,2)]
+\end{verbatim}
+
+\subsubsection{Exercice n°3}
+\label{sec:orgf2875cd}
+Définir une fonction `réplique` qui prend en paramètre un entier \(n\) et une valeur et qui renvoie une liste où la valeur est répliquée \(n\) fois.
+
+\begin{verbatim}
+réplique :: Int -> a -> [a]
+\end{verbatim}
+
+\begin{verbatim}
+> réplique 3 True
+\end{verbatim}
+\begin{verbatim}
+[True, True, True]
+\end{verbatim}
+
+\section{Fonctions récursives}
+\label{sec:orgeaa4277}
+
+\subsection{Concepts de bases}
+\label{sec:org2d651f4}
+Une fonction récursive et une fonction qui s'appelle elle-même. On peut définir la fonction `factorielle` récursivement.
+\begin{verbatim}
+factorielle :: Int -> Int
+factorielle 0 = 1
+factorielle x = x * factorielle (x - 1)
+\end{verbatim}
+Ce n'est pas la façon la plus rapide à calculer mais cela est très lisible.
+
+\subsection{Récursion et listes}
+\label{sec:org3f64e04}
+Voici d'autres exemples de fonctions récursive avec des listes en paramètre:
+
+\subsubsection{Produit}
+\label{sec:orgc4d516a}
+\begin{verbatim}
+produit :: Num a => [a] -> a
+produit [] = 0
+produit (n:ns) = n * produit ns
+\end{verbatim}
+
+\subsubsection{Longueur}
+\label{sec:org74120ec}
+\begin{verbatim}
+longueur :: [a] -> Int
+longueur [] = 0
+longueur (_:xs) = 1 + longueur xs
+\end{verbatim}
+\subsubsection{Renverse}
+\label{sec:orgb9a5e17}
+\begin{verbatim}
+renverse :: [a] -> [a]
+renverse [] = []
+renverse (x:xs) = reverse xs ++ [x] 
+\end{verbatim}
+
+\subsubsection{Coupler}
+\label{sec:orge3e4c53}
+Les fonctions récursives peuvent aussi avoir plusieurs paramètres.
+
+La fonction `coupler` fait comme le `zip` et on la définie comme suit:
+\begin{verbatim}
+coupler :: [a] -> [b] -> [(a,v)]
+coupler [] _ = []
+coupler _ [] = []
+coupler (x:xs) (y:ys) = (x,y) : coupler xs ys
+\end{verbatim}
+\subsubsection{Décapiter}
+\label{sec:orgf2456db}
+La fonction `décapiter` qui supprime les n premiers éléments d'une liste.
+\begin{verbatim}
+décapiter :: Int -> [a] -> [a]
+décapiter 0 xs = xs
+décapiter _ [] = []
+décapiter n (_:xs) = décapiter (n-1) xs
+\end{verbatim}
+
+\subsection{Récursions multiples}
+\label{sec:org98f376c}
+
+Une fonction récursive peut s'appeler elle-même plusieurs fois,  par exemple, ici,  pour construire la suite de fibonacci : 
+\begin{verbatim}
+fibo :: Int -> Int
+fibo 0 = 0
+fibo 1 = 1
+fibo n = fibo (n-2) + fibo (n-1)
+\end{verbatim}
+et ici pour définir un algorithme de tri\_rapide
+\begin{verbatim}
+tri_rapide :: Ord a => [a] -> [a]
+tri_rapide [] = []
+tri_rapide (x:xs) = tri_rapide plus_petits ++ [x] ++ tri_rapide plus_grands
+                    where 
+                      plus_petits = [a | a <- xs, a <= xs]
+                      plus_grands = [b | b <- xs, b > xs]
+\end{verbatim}
+
+\subsection{Récursion mutelle}
+\label{sec:org1f927db}
+Les fonctions récursives en Haskell peuvent aussi faire appellent à des fonctions qui les rappellent.  Par exemple `est\_pair` à besoin de `est\_impair` 
+\begin{verbatim}
+est_pair :: Int -> Bool 
+est_pair 0 = True
+est_pair n = est_impair (n-1)
+\end{verbatim}
+qui a besoin de `est\_pair`.
+\begin{verbatim}
+est_impair :: Int -> Bool
+est_impair 1 = True
+est_impair n = est_pair (n-1)
+\end{verbatim}
+Ou encore la fonction `indices\_pairs` qui selection un élément s sur deux dans une liste en partant du premier, à besoin des `indices\_impairs`
+\begin{verbatim}
+indices_pairs :: [a] -> [a]
+indices_pairs [] = []
+indices_pairs (x:xs) = x : indices_impairs xs
+\end{verbatim}
+
+qui a besoin de `indice\_pairs`.
+\begin{verbatim}
+indices_impairs :: [a] -> [a]
+indices_impairs [] = []
+indices_impairs (_:xs) = indices_pairs xs
+\end{verbatim}
+\subsection{Conseils pour construire des fonctions récursives.}
+\label{sec:orgedb593a}
+La récursion,  c'est comme le vélo.  Cela semble simple lorsque l'on voit quelqu'un d'autre en faire mais il faut de la pratique pour bien y arriver.
+
+Voici une démarche à suivre et quelques conseils pour y arrriver.
+\subsubsection{Définir le type de la fonction}
+\label{sec:org768e998}
+\begin{verbatim}
+produit :: [Int] -> Int
+\end{verbatim}
+\subsubsection{Identifier les cas importants}
+\label{sec:org93affef}
+\begin{verbatim}
+produit [] = 
+produit (n:ns) = 
+\end{verbatim}
+\subsubsection{Écrire la définition de cas simples}
+\label{sec:org31969e9}
+\begin{verbatim}
+produit [] = 1
+produit (n:ns) = 
+\end{verbatim}
+
+\subsubsection{Écrire la définition des autres cas}
+\label{sec:orgf496aca}
+\begin{verbatim}
+produit [] = 1
+produit (n:ns) = n * produit ns
+\end{verbatim}
+
+\subsubsection{Généraliser et simplifier}
+\label{sec:org8ba95f1}
+Dans notre exemple la fonction `produit` peut s'appliquer à tous les types de la classe `Num`.
+\begin{verbatim}
+produit :: Num a => [a] -> a
+\end{verbatim}
+
+On va voir dans le prochain chapitre que la manière dont nous venons de définir la fonction `produit`  est très générique et Haskell permet de coder une multitude de fonction de cette manière à l'aide de la fonction \emph{foldr}.   
+
+`produit` se  définit alors en une ligne.
+\begin{verbatim}
+produit = foldr (*) 1
+\end{verbatim}
+
+\subsection{Exerices}
+\label{sec:orge8137ad}
+
+\subsubsection{Exercices n°1}
+\label{sec:orgea4d1db}
+Définir une fonction récurcive 'euclide' qui calcule le plus grand diviseur de deux nombres non-négatifs.  
+\begin{verbatim}
+euclide :: Int -> Int -> Int
+\end{verbatim}
+Si les deux nombre sont égaux, alors ce nombre est le résultat, sinon le plus petit est soustrait au plus grand.
+
+\subsubsection{Exercice n°2}
+\label{sec:orge9507ba}
+Définir de façon récursive les fonctions suivantes:
+
+\begin{enumerate}
+\item `et\_liste`
+\label{sec:orge79f872}
+\begin{verbatim}
+et_liste :: [Bool] -> Bool 
+\end{verbatim}
+décide si tout les valeurs de la liste sont vraie
+
+\item 'concatène'
+\label{sec:org1c7e5c6}
+\begin{verbatim}
+concatène :: [[a]] -> [a]
+\end{verbatim}
+Concatène une liste de listes
+
+\item 'est\_élément'
+\label{sec:org3c59a87}
+\begin{verbatim}
+est_élément :: Eq a => a -> [a] -> Bool 
+\end{verbatim}
+Décide si un élément fait partie d'une liste.
+\end{enumerate}
+
+\subsubsection{Exercice n°3}
+\label{sec:orgc463e76}
+Définie une fonction récursive `fusionne`  qui rassemble deux listes en une seule triée.
+\begin{verbatim}
+fusionne :: Ord a => [a] -> [a] -> [a]
+\end{verbatim}
+par exemple
+\begin{verbatim}
+>merge [2,5,6] [1,3,4]
+\end{verbatim}
+\begin{verbatim}
+[1,2,3,4,5,6]
+\end{verbatim}
+
+\section{Fonctions de haut-niveau (higher-order)}
+\label{sec:org3bbe605}
+Une fonction de haut-niveau est une fonction qui \textbf{prend d'autre(s) fonction(s) en paramètre}.
+
+\subsection{Exemples de base}
+\label{sec:org55e3385}
+Les fonctions de ce types les plus courantes sont `map` et `filter`. 
+`map`  applique la fonction passé en paramètre sur une liste d'éléments.
+\begin{verbatim}
+map (\x -> x^2) [1..5]
+\end{verbatim}
+\begin{verbatim}
+[1,4,9,16,25]
+\end{verbatim}
+
+
+`filter` renvoie une liste d'élément sélectionné dans une autre liste selon un prédicat passé sous forme de fonction en paramètre, par exemple:
+
+\begin{verbatim}
+filter (\[x,y] -> x == y)  [ "aa", "ab", "Aa", "AA"] 
+\end{verbatim}
+\begin{verbatim}
+["aa","AA"]
+\end{verbatim}
+
+
+Nous donnons maintenant des exemples courants de fonctions de haut-niveau.
+\subsection{fold}
+\label{sec:org1c88a9b}
+\begin{itemize}
+\item `foldr`  applique un opérateur sur une liste en allant de la droite à la gauche.  Elle est souvent appelée \emph{reduce} dans d'autre langage.
+\end{itemize}
+\begin{verbatim}
+longueur :: [a] -> Int
+longueur = flodr (\_ n -> 1 +n) 0
+\end{verbatim}
+
+\begin{itemize}
+\item `foldl`:  applique un opérateur sur une liste en allant de la droite à la gauche.
+\end{itemize}
+\subsection{Composition}
+\label{sec:orgf1e5a83}
+L'opérateur `(.)` permet de faire de la composition de fonction.  Cela simplifie et de clarifie le code.   À la place de noter 
+\begin{verbatim}
+impaire n = not (paire n)
+\end{verbatim}
+on note
+\begin{verbatim}
+impaire  = not . pair
+\end{verbatim}
+À la place de 
+\begin{verbatim}
+repéter f x = f (f x)
+\end{verbatim}
+on écrit
+\begin{verbatim}
+répeter = f . f
+\end{verbatim}
+et à la place de 
+\begin{verbatim}
+somme_carré_positif ns = sum (map (^2) (filter paire ns))
+\end{verbatim}
+on écrira
+\begin{verbatim}
+somme_carré_positif = sum . map (^2) . filter pair
+\end{verbatim}
+
+\subsection{Exercices}
+\label{sec:orgb68e5a1}
+
+\subsubsection{Exercice n°1}
+\label{sec:org8f0baaa}
+Redéfinir la liste en compréhension \([f x | x <- xs, p x]\) en utilisant les fonctions de haut niveau `map` et `filter`
+\begin{enumerate}
+\item solution
+\label{sec:orgbc95fa3}
+\begin{verbatim}
+-- [f x | x <- xs, p x] ?
+exo1 :: (a -> b) -> [a] -> (a -> Bool) -> [b]
+exo1 f xs p = [f x | x <- xs, p x]
+
+exo1sol :: (a -> b) -> [a] -> (a -> Bool) -> [b]
+exo1sol f xs p = map f (filter p xs)
+-- map f filter p xs
+\end{verbatim}
+\end{enumerate}
+
+\subsubsection{Exercice n°2}
+\label{sec:org8f5f78c}
+Redéfinir les fonctions `map f` et `filter p` en utilisant `foldr`
+
+\begin{enumerate}
+\item solution
+\label{sec:org638f2fb}
+
+\begin{verbatim}
+-- exo3 redefine map f and filter p using foldr
+
+map_ :: (a -> b) -> [a] -> [b]
+map_ f xs = foldr apply_f [] xs
+  where apply_f x y = (f x : y)
+
+map__ :: (a -> b) -> [a] -> [b]
+map__ f xs = foldr (\x y -> f x : y) [] xs
+
+
+filter_ :: (a -> Bool) -> [a] -> [a]
+filter_ p xs = foldr filter_p [] xs
+  where filter_p x y
+          | p x = (x:y)
+          | otherwise = y
+\end{verbatim}
+\end{enumerate}
+
+\subsubsection{Exercice n°3}
+\label{sec:orgc201381}
+En utilisant `foldl` définr la fonction dec2Int
+qui converti une liste de nombre en entier
+\begin{verbatim}
+dec2Int :: [Int] -> Int
+\end{verbatim}
+
+\begin{verbatim}
+dec2int [2,3,4,5]
+\end{verbatim}
+\begin{verbatim}
+2345
+\end{verbatim}
+
+\begin{enumerate}
+\item sol
+\label{sec:org864334d}
+\begin{verbatim}
+-- exo 4 p. 105
+-- Using foldl, deﬁne a function dec2int :: [Int] -> Int that converts a
+-- decimal number into an integer. For example:
+
+dec2int :: [Int] -> Int
+dec2int xs = foldl (\x y -> 10 * x + y) 0 xs
+
+\end{verbatim}
+\end{enumerate}
+\section{Déclaration des Types et des Classes}
+\label{sec:org9209bac}
+Les noms de types de classe \textbf{commencent avec une majuscule}.
+
+\subsection{Comment déclarer de nouveau type}
+\label{sec:org42d8661}
+\subsubsection{types}
+\label{sec:org4343605}
+On peut les définir en utilisant des types existants
+\begin{verbatim}
+type Position = (Int, Int)
+type Transistion = Pos -> Pos
+\end{verbatim}
+
+Les types récursifs sont interdits.
+\begin{verbatim}
+type Arbre = (Int, [Tree]) --interdit
+\end{verbatim}
+
+Par contre, on peut utiliser les classes de type
+\begin{verbatim}
+type Paire a = (a,a)
+type Dico k v = [(k,v)]
+\end{verbatim}
+\subsubsection{data}
+\label{sec:org39d9e6b}
+`data` permet de créer un nouveau type en énumérant les différentes valeurs possibles.
+
+\begin{verbatim}
+data Déplacement = Nord | Sud | Est | Ouest deriving Show
+
+déplace :: Déplacement -> Position -> Position
+déplace North (x,y) = (x,y+1)
+déplace Sud (x,y) = (x, y-1)
+déplace Est (x,y) = (x+1,y)
+déplace Ouest (x,y) = (x-1,y)
+\end{verbatim}
+`data` permet d'utiliser des variables et des paramètres.  Par exemple :
+\begin{verbatim}
+data Forme = Cercle Float | Rectangle Float Float
+
+faire_carré :: Float -> Forme
+faire_carré n = Rectangle n n
+
+faire_cercle :: Float -> Forme
+faire_cercle r = Cercle r
+
+calculer_aire :: Forme -> Float
+calculer_aire (Rectangle long larg) = long * larg
+calculer_aire (Cercle r) = pi * r^2
+\end{verbatim}
+Ci-dessus, les constructeurs `Cercle` et `Rectangle` sont des fonctions constructeurs, à cause de leurs variables.  On le voit en demandant le type de `Cercle`.
+\begin{verbatim}
+:t Cercle
+\end{verbatim}
+\begin{verbatim}
+Cercle :: Float -> Forme
+\end{verbatim}
+
+
+\begin{itemize}
+\item un autre exemple de type avec une variable
+\end{itemize}
+\begin{verbatim}
+data Maybe a = Nothing | Just a
+
+division_securisée :: Int -> Int -> Maybe Int
+division_securisée _ 0 :: Nothing
+division_securisée m n = Just (m `div` n)
+\end{verbatim}
+
+\subsubsection{newtype}
+\label{sec:orgdc38d3f}
+La troisième façon de créer un type est en utilisant le mot clef `newtype`.
+\begin{verbatim}
+newtype Entier_Naturel = N Int
+\end{verbatim}
+
+\subsubsection{types récursifs}
+\label{sec:org31e04eb}
+Dans certains cas les définitions des types peuvent être récursives, par exemple
+\begin{verbatim}
+data Naturel = Zero | Succ Naturel deriving Show
+data Arbre a = Feuille a | Noeud (Arbre a) a (Arbre a) deriving Show
+\end{verbatim}
+
+\subsection{Classes de type}
+\label{sec:org032d8f8}
+Les classes de types ne sont possible que pour les types déclarés avec `data` et `newtype`.
+
+Voici comment on déclare un classe de type en Haskell
+\begin{verbatim}
+class Eq a where 
+    (==), (/=) :: a -> a -> Bool 
+
+    x /= y = not (x==y)
+\end{verbatim}
+et comment on instancie cette classe de type.
+\begin{verbatim}
+instance Eq Bool where
+    False == False = True 
+    True  == True  = True 
+    _ == _ = False 
+\end{verbatim}
+
+\subsubsection{instances de type dérivées}
+\label{sec:orga67ef43}
+Lors de la création d'un type il est possible de les faire dériver  de classe existante et il aura alors les méthodes par défaut de ces classes.
+
+La dérivation se fait comme suit:
+\begin{verbatim}
+data Bool = False | True
+          deriving (Eq, Ord, Show, Read)
+\end{verbatim}
+
+Cela veut dire que la classe de type Bool hérite automatiquement des méthodes de base des classe `Eq`, `Ord`, `Show` et `Read`.
+
+\subsection{Exercices}
+\label{sec:org8e511b0}
+
+\section{Annexes}
+\label{sec:org724675b}
+\end{document}

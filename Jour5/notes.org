@@ -1,0 +1,203 @@
+#+SETUPFILE: setup_diapos.org
+#+TITLE: Introduction à Haskell
+
+#+LATEX_HEADER: \hypersetup{
+#+LATEX_HEADER: colorlinks,
+#+LATEX_HEADER: allcolors=.,
+#+LATEX_HEADER: urlcolor=blue,
+#+LATEX_HEADER: }
+
+#+BEGIN_SRC latex  -i
+{
+  \usebackgroundtemplate{\includegraphics[height=\paperheight]{./Images/page_de_garde_wadaci_j5.png}}
+  \frame[plain]{
+  }
+}
+#+END_SRC
+
+* Haskell
+** Présentation 
+*** Haskell, c'est quoi ?
+**** 
+***** Un language
+      :PROPERTIES:
+      :BEAMER_COL: 0.5
+      :BEAMER_ENV: block
+      :END:
+
+   - purement fonctionnel
+   - open-source
+   - mature (+ 20 ans de développement)
+***** pour un développement
+      :PROPERTIES:
+      :BEAMER_COL: 0.5
+      :BEAMER_ENV: block
+      :END:
+
+  - rapide,  robust
+  # Accélère la résolution des bugs
+  - claire et  correcte
+  # Facilite la Ré-utilisation du code
+  # Réduit la compléixité du code
+
+  # Permet des audits de sécurité mathématiques
+**** 
+***** de qualité
+      :PROPERTIES:
+      :BEAMER_COL: 0.6
+      :BEAMER_ENV: block
+      :END:
+
+  - très bonnes bibliothèques
+  - parallélisme et l'évaluation concurrente
+  - [[https://wiki.haskell.org/Haskell][une communauté]] très active
+
+***** et des programmes
+      :PROPERTIES:
+      :BEAMER_COL: 0.4
+      :BEAMER_ENV: block
+      :END:
+
+  - flexibles,
+  - facile à maintenir,
+  - de très bonne facture.
+
+*** Qui utilise Haskell ?
+       #+ATTR_LaTeX: :height .5\textheight
+       [[file:Images/quiUtiliseHaskell.png]]
+**** Exemples ([[https://haskellcosm.com/][lien]]) 
+ - Ryan Trinkle,  CEO de SKEDGE.ME témoigne -> ([[https://www.youtube.com/watch?v=BveDrw9CwEg][vidéo]]):
+   - 80% de réduction du code, ~64x d'amélioration de la performance, suppression de bug importants.
+ - Autre exemple chez Facebook ([[https://www.youtube.com/watch?v=mlTO510zO78][en video]]) 
+
+** Mise en place
+*** Choisir un IDE
+**** 
+     @@latex:\only<1>{@@
+     
+     #+CAPTION: Adam Back ][]]
+     
+        #+ATTR_LaTeX: :height .3\textheight
+        [[file:Images/replit.png]]
+
+     @@latex:}@@
+
+@@latex:\only<2>{@@
+        #+ATTR_LaTeX: :height .3\textheight
+       [[file:Images/ghcup.png]]
+
+@@latex:}@@
+
+@@latex:\only<3>{@@
+        #+ATTR_LaTeX: :height .3\textheight
+       [[file:Images/try_haskell.png]]
+
+@@latex:}@@
+
+@@latex:\only<4>{@@
+        #+ATTR_LaTeX: :height .3\textheight
+       [[file:Images/demeter.png]]
+@@latex:}@@
+**** 
+
+ - <1->Replit IDE en ligne ->  [[https://replit.com/join/ybqsuyuphr-maliky][lien d'invitation]]
+ - <2->Installer ghci ([[https://www.haskell.org/downloads/][site officiel]])
+   - Utiliser [[https://www.haskell.org/ghcup/][GHCUP]] pour l'installation
+ - <3-> [[https://tryhaskell.org/#step3][Try Haskell]]  : pour un essaye Haskell en ligne 
+ - <4-> https://demeter.run/
+* La pratique
+** Déroulement de l'atelier
+*** Déroulement de l'atelier
+@@latex:\only<1>{@@
+        #+ATTR_LaTeX: :height .5\textheight
+       [[file:Images/manuel_haskell.png]]
+@@latex:}@@
+
+@@latex:\only<2>{@@
+        #+ATTR_LaTeX: :height .5\textheight
+       [[file:Images/manuel_contenu.png]]
+@@latex:}@@
+@@latex:\only<3>{@@
+        #+ATTR_LaTeX: :height .5\textheight
+       [[file:Images/manuel_exercice.png]]
+@@latex:}@@
+
+- <1>Récupérer le manuel sur 
+https://blockchain.numerique.ci/pluginfile.php/220/mod_resource/content/1/manuel.pdf
+- <2> Suivre les contenus en reproduisant les codes dans votre IDE
+- <3> Résoudre les exerices et discuter leurs solutions avec vos camarades
+** Plan du cours
+*** 
+**** Plan du cours
+      :PROPERTIES:
+      :BEAMER_ENV: block
+      :END:
+     
+    - Que sont les 'Types' et les 'Classes de type'
+    - Déclaration de fonctions
+    - Listes en compréhension
+    - Fonctions récursives
+    - Fonctions de haut-niveau (higher-order)
+    - Déclaration des Types et des Classes
+**** Le manuel (~40 pages)
+      :PROPERTIES:
+      :BEAMER_ENV: block
+      :END:
+
+* Ressoures et perspectives
+** Ressources de formation
+*** Ressources de formation ([[https://wiki.haskell.org/Haskell][Haskell Wiki]])
+**** Comprendre l'intérêt de la programmation fonctionnelle
+      :PROPERTIES:
+      :BEAMER_ENV: block      
+      :BEAMER_ACT: <1->
+      :END:
+     
+ - [[file:Ressources/beating_average.pdf][Faire mieux que la moyenne]] (Paul Graham) ([[https://franz.com/about/conferences/fds2001/presentations/pgtalk-rev2.pdf][enligne]])
+ - [[file:Ressources/why_functionnal_programming_matter.pdf][Pourquoi la programmation fonctionnelle est-elle importante ?]] (John Hughes) ([[https://www.cse.chalmers.se/~rjmh/Papers/whyfp.pdf][enligne]])
+
+**** Livres pour des études autonomes
+      :PROPERTIES:
+      :BEAMER_ENV: block      
+      :BEAMER_ACT: <2->
+      :END:
+
+ - [[https://wiki.haskell.org/Books][Liste de livres sur Haskell]] (en)
+ - [[https://github.com/WADAlliance/Haskell_Plutus_Course][Cours Haskell et de Plutus par WADA]] (fr) 
+ - Livre populaire : [[file:Ressources/learn_you_haskell_for_great_good.pdf][Apprendre Haskell vous fera du bien]] (en [[https://learnyouahaskell.github.io/chapters.html][enligne]])
+ - Livre de grand qualité : [[file:Ressources/Hutton_G_Programming_in_Haskell-Cambridge_UP_2018.pdf][Programming in Haskell (2018, Hutton Graham)]] (en, [[https://www.cambridge.org/us/academic/subjects/computer-science/programming-languages-and-applied-logic/programming-haskell-2nd-edition][enligne]])
+**** Cours en ligne gratuit
+      :PROPERTIES:
+      :BEAMER_ENV: block      
+      :BEAMER_ACT: <3>
+      :END:
+
+ - [[https://www.futurelearn.com/courses/functional-programming-haskell][Functional Programming Haskell]] sur Futurlearn (en)
+** Perspectives
+*** La suite...  Création de l'association WADACI
+   Donnera un cadre juridique pour :
+     - l'encadrement des prochaines formations (prochaine en mai)
+     - les campagnes de communication et de sensibilisation grand publique
+     - la réalisation de notre DAO
+**** Développement de projets crypto. 
+***** Idées pour le fond 10 ?
+      :PROPERTIES:
+      :BEAMER_COL: 0.5
+      :BEAMER_ENV: block
+      :END:
+
+       - Transport 
+       - DAO 
+         - Administration d'écoles 
+         - co-propriétés locatives
+***** 
+      :PROPERTIES:
+      :BEAMER_COL: 0.5
+      :BEAMER_ENV: block
+      :END:
+       - traçabilité de titres fonciers (entre autres)
+       - Observatoire des prix
+       - Plateforme de financement de multi-media
+*** 
+#+ATTR_LaTeX: :height \textheight
+[[file:Images/merci_wadaci.png]]
