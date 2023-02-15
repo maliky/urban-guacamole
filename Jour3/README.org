@@ -1,0 +1,17 @@
+* Point de la 3ème journée
+** Le matin
+Le 3ème jour, nous avons rappelé le contexte de la naissance du Bitcoin en présentant divers figures du monde de la blockchain ainsi qu'une application particulière des smart-contrat "la futarchy".
+
+Nous sommes entré dans le détail de ce qu'est une transaction Bitcoin et nous avons abordé les scripts sur la blockchain Bitcoin.   Nous avons expliqué le fonctionnement des "smart-contract" sur Etherum en parlant de leur point commun et de leur différence avec les scripts Bitcoin. 
+
+** L'après midi
+Dans L'atelier pratique de l'après-midi nous avons simulé l'achat d'un bien avec un smart contrat écrit sur Marlowe (un language de haut niveau pour Cardano).  Nous avons fait une deuxième simulation avec un autre smart contrat pour un emprunt.  Le but de cette activité était de réaliser que les smart contrat sont des programmes et qu'en les concevant nous devons avoir une idée clair des différents rôle joués par les utilisateurs.
+
+** Références et liens :
+
+    - Présentation ([[file:notes.pdf][diapos]])
+    - Photos de la journée ([[https://drive.google.com/drive/folders/1eixoFpgbtWgD1-zl1bi_J12EQp1VSfUo?usp=share_link][drive]])
+    - Article fondateur pour Etherum ([[https://ethereum.org/669c9e2e2027310b6b3cdce6e1c52962/Ethereum_Whitepaper_-_Buterin_2014.pdf][pdf]])
+    - Sites pour les simulation avec Marlow
+      - https://play.marlowe-finance.io
+      - https://run.marlowe-finance.io/

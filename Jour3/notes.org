@@ -1,0 +1,443 @@
+#+SETUPFILE: setup_diapos.org
+#+TITLE: Transactions on blockchains
+#+LATEX_HEADER: \hypersetup{
+#+LATEX_HEADER: colorlinks,
+#+LATEX_HEADER: allcolors=.,
+#+LATEX_HEADER: urlcolor=blue,
+#+LATEX_HEADER: }
+
+
+# objective
+# Blockchains
+
+# - Solutions pour améliorer la blockchain Bitcoin
+# Discussion autour des autres algorithmes de concensus, PO space, time, history, stack, governance ect.. et leurs variantes)
+# - Blockchain de 2nd et 3ème Génération
+#    définition d'un smart contract, présentation du modèle d'ehterum
+
+# Cryptographie  
+# - Fonction eliptiques
+# - Cryptographie asymétrique
+
+#+BEGIN_SRC latex  -i
+{
+  \usebackgroundtemplate{\includegraphics[height=\paperheight]{./page_de_garde_wadaci_j3a}}
+  \frame[plain]{
+  }
+}
+#+END_SRC
+* Intro
+** Les Cypher-punks
+*** Les précurseurs du Bitcoin
+
+**** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.6
+     :BEAMER_ENV: block
+     :END:
+- <1-> [[https://en.bitcoinwiki.org/wiki/Hashcash][Hashcash]] (M. Back)
+- <2-> [[https://nakamotoinstitute.org/secure-property-titles/][Titres de propriété sécurisés]]  (M. Szabo)
+  - Bit gold ; /smart-contract/
+- <3-> [[http://www.weidai.com/bmoney.txt][B-money]] (M. Dai)
+- <4-> Employé de PGP (M. Finney)
+  - 1er recipiendaire de BTC
+- <5> Voisin de Finney
+    
+**** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.4 
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <1->
+     :END:
+
+     @@latex:\only<1>{@@
+     
+     #+CAPTION: Adam Back ][]]
+     
+     #+ATTR_LaTeX: :width .8\textwidth
+ [[file:Images/adam.jpg]]
+
+     @@latex:}@@
+
+     @@latex:\only<2>{@@
+  #+CAPTION: Nick Szabo
+  #+ATTR_LaTeX: :width \textwidth
+ [[file:Images/nick_szabo.jpeg]]
+
+     @@latex:}@@
+@@latex:\only<3>{@@
+     #+CAPTION: Wei Dai
+     #+ATTR_LaTeX: :width \textwidth
+ [[file:Images/wei_dai.png]]
+
+     @@latex:}@@
+
+@@latex:\only<4>{@@
+     #+CAPTION: Hal Finney
+     #+ATTR_LaTeX: :width .8\textwidth
+ [[file:Images/hal_finney.png]]
+@@latex:}@@
+
+@@latex:\only<5>{@@
+     #+CAPTION: Dorian Nakamoto
+     #+ATTR_LaTeX: :width .8\textwidth
+ [[file:Images/dorian_nakamoto.png]]
+
+@@latex:}@@
+
+
+
+
+     
+*** Concept Cypher-punks
+ - <1-> Un Escrow :  un garant, *contrat de séquestre* (contrat de dépot)
+ - <2-> Signature Elliptiques (ECDSA)
+   - Sécurité forte : de l'orde de $2^{\text{longueur}(d_A)}$ ou $d_A$ est la clef
+   - Cryptographie asymétrique,  pair de clef (privée, public)
+   - Utile pour signer les transactions
+ - <3-> Merkle Tree :
+   - taille actuelle de la [[https://ycharts.com/indicators/bitcoin_blockchain_size][blockchain Bitcoin]] : 450G
+ - <4-> Fonction Hash160 = ripemd160(sha256(data))
+   
+*** Futarchy : Voter les valeurs en pariant l'espérance
+@@latex:\only<1>{@@
+#+ATTR_LaTeX: :height .7\textheight
+[[file:Images/futarchy_depart.png]]
+@@latex:}@@    
+
+@@latex:\only<2>{@@
+
+#+ATTR_LaTeX: :height .7\textheight
+[[file:Images/futarchy_all.png]]
+
+    
+- Financiarisation des décisions politiques ([[https://mason.gmu.edu/~rhanson/futarchy.html][Robin Hanson]])
+    
+
+@@latex:}@@    
+
+* Transactions Bitcoin
+** Transaction non dépensés uTXO
+*** Détaille d'un transaction non dépensée
+   #+ATTR_LaTeX: :width .9\textwidth
+   [[file:Images/transaction_btc.png]]
+** Bitcoin Script
+*** Un exemple
+**** Script "Payer à ... "
+     :PROPERTIES:
+     :BEAMER_COL: 0.46
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <1->
+     :END:
+@@latex:\only<1>{@@
+  #+BEGIN_verbatiminput
+  OP_DUP\\
+  OP_HASH160\\
+  69e02e18...\\
+  OP_EQAVLVERIFY\\
+  OP_CHEKSIG
+  #+END_verbatiminput
+@@latex:}@@    
+
+@@latex:\only<2->{@@
+ #+BEGIN_verbatiminput
+ <<sig>\\
+ <pubKey>\\
+ ----------------
+ #+END_verbatiminput    
+ #+BEGIN_verbatiminput
+ OP_DUP\\
+ OP_HASH160\\
+ <pubKeyHash?>\\
+ OP_EQAVLVERIFY\\
+ OP_CHEKSIG\\
+ #+END_verbatiminput
+@@latex:}@@
+ 
+**** Instructions
+     :PROPERTIES:
+     :BEAMER_COL: 0.46
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <3>
+     :END:
+- programmation en pile 
+- 256 instructions 
+  - 15 désactivées
+  - 75 réservées (pour plus tard)
+([[https://en.bitcoin.it/wiki/Script][liste complète sur en.bitcoin.it]])
+
+
+ # décrire son fonctionement
+*** Execution du Script "Payer à ..."
+
+     @@latex:\only<1>{@@
+    #+ATTR_LaTeX: :height .8\textheight
+    [[file:Images/exec00.png]]
+     @@latex:}@@
+
+     @@latex:\only<2>{@@
+    #+ATTR_LaTeX: :height .8\textheight
+    [[file:Images/exec01.png]]
+     @@latex:}@@
+
+          @@latex:\only<3>{@@
+    #+ATTR_LaTeX: :height .8\textheight
+    [[file:Images/exec02.png]]
+     @@latex:}@@
+
+          @@latex:\only<4>{@@
+    #+ATTR_LaTeX: :height .8\textheight
+    [[file:Images/exec02b.png]]
+     @@latex:}@@
+
+          @@latex:\only<5>{@@
+    #+ATTR_LaTeX: :height .8\textheight
+    [[file:Images/exec03.png]]
+     @@latex:}@@
+
+          @@latex:\only<6>{@@
+    #+ATTR_LaTeX: :height .8\textheight
+    [[file:Images/exec03b.png]]
+     @@latex:}@@
+
+          @@latex:\only<7>{@@
+    #+ATTR_LaTeX: :height .8\textheight
+    [[file:Images/exec04.png]]
+     @@latex:}@@
+
+          @@latex:\only<8>{@@
+    #+ATTR_LaTeX: :height .8\textheight
+    [[file:Images/exec05.png]]
+     @@latex:}@@
+
+     @@latex:\only<9>{@@
+    #+ATTR_LaTeX: :height .8\textheight
+    [[file:Images/exec06.png]]
+     @@latex:}@@
+
+    @@latex:\only<10>{@@
+    #+ATTR_LaTeX: :height .8\textheight
+    [[file:Images/exec07.png]]
+     @@latex:}@@
+     
+****     COMMENT
+    #+ATTR_LaTeX: :width \textwidth
+    [[file:Images/script_execution.png]]
+     
+- <1-> OP_DUP :: duplique ce qui est en haut\\
+- <2-> OP_HASH160 :: hash 2 fois.  une fois avec SHA-256 puis avec RIPEMD-160\\
+- <3-> <pubKeyHash?> :: adresse du destinataire
+- <4-> OP_EQAVLVERIF :: vrai si les entrées sont égales
+- <5-> OP_CHEKSIG :: vérifie la signature et la clef publique
+
+
+** Les Limites du modèle Bitcoin
+***   
+- pas d'universalité
+- Ne connais pas la valeur de l'utxo
+- Une utxo est soit dépensée ou pas
+  - Il n'y a pas d'état intermédiaire
+- Le script n'a pas accès au nonce,  ni aux infos de la blockchain
+* Etherum
+** Avantages d'Etherum
+*** Ce qu'Etherum apporte de nouveau
+     - Accès à l'état de toute la blockchain
+     - Permets des Applications (Universelles)
+     - est moins énergivore (POW vs POS)
+
+** Similitudes Etherum - Bitcoin
+*** Chaine de block   
+      #+ATTR_LaTeX: :width \textwidth
+   [[file:Images/ethereum-blocks.png]]
+   #+ATTR_LaTeX: :width .8\textwidth
+*** Arbre de Merkle
+   [[file:Images/spv-bitcoin.png]]
+
+*** Etats et transitions
+@@latex:\only<1>{@@
+        #+ATTR_LaTeX: :width \textwidth
+   [[file:Images/ethereum-state-transition.png]]
+@@latex:}@@
+
+        @@latex:\only<2>{@@
+        #+ATTR_LaTeX: :width \textwidth 
+[[file:Images/ethereum-apply-block-diagram.png]]
+
+@@latex:}@@
+Les blockchain Etherum et Bitcoin peuvent être vue comme des systèmes à transition d'états
+
+
+** Différence Etherum - Bitcoin
+*** Un autre modèle de transaction
+**** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.5
+     :BEAMER_ENV: block
+     :END:
+
+****** Compte Etherum
+- Nonce
+- Balance du compte
+- Code du contrat
+- <2> Espace de stockage
+  - stack : FIFO
+  - memory : un tableau de taille variable
+  - storage : pour le long terme
+
+**** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.5
+     :BEAMER_ENV: block
+     :END:
+     #+CAPTION: Exemple d'un nouvel état
+      #+ATTR_LaTeX: :width .6\textwidth
+     [[file:Images/etat_etherum.png]]
+
+*** Messages ou transactions Etherum
+**** Ils peuvent
+ - être crée /on-chain/
+ - contenir des données
+ - être des réponses à un autre message
+ - accéder à tout l'état de la blockchain
+
+*** Deux exemples de "smart contract"
+
+**** Remplace une donnée sur la blockchain
+    #+BEGIN_SRC js  -i
+if !contract.storage[msg.data[0]]:
+   contract.storage[msg.data[0]] = msg.data[1]
+    #+END_SRC   
+
+**** Envois un montant à quelqu'un
+    #+BEGIN_SRC js
+ def send(to, val):
+   if self.storage[msg.sender] >= val:
+      self.storage[msg.sender] = self.storage[msg.sender] - val
+      self.storage[to] = self.storage[to] + val
+    #+END_SRC
+
+** Exécution d'un contrat
+*** Exécution d'un contrat
+**** Objectif
+ - Les frais sont limités par STARTGAS x GASPRICE
+ - En cas d'erreur tout doit aller au mineur
+ - En cas de réussite le mineur ne prend que ce qui a été consommé et le reste retourne au créateur de la transaction
+
+**** Plus précisement    
+    #+BEGIN_verbatiminput
+11: Vérifier le format de la transactoin\\
+2: Prendre STARTGAS * GASPRICE dans balance de l'envoyeur\\
+3: Enlève frais de la transaction dans les STARTGAS, 5 gas / byte\\
+4: Fais le transfert de valeur\\
+5: Fait tourner le code dans EVM\\
+6: calcule combien de GAS on été dépensé et renvois le reste à l'envoyeur\\
+    #+END_verbatiminput
+   
+** Applications
+*** Application purement financières
+**** 
+    :PROPERTIES:
+     :BEAMER_COL: 0.5
+     :BEAMER_ENV: block
+     :END:
+    
+- Sous-monnaies
+  - stable coins
+- produits dérivés
+- contrat hedging
+  - assurances, [[https://blog.ethereum.org/2014/03/28/schellingcoin-a-minimal-trust-universal-data-feed][SchellingCoin]]
+- Compte d'épargne
+- Application notariale
+- contrat de travail
+- loterie
+- marché distribués
+**** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.35
+     :BEAMER_ENV: block
+     :END:
+     #+ATTR_LaTeX: :width \textwidth
+[[file:Images/defi_service.jpeg]]
+     
+*** Applications semi-financières
+**** Monnaies  et données
+     :PROPERTIES:
+     :BEAMER_COL: 0.49
+     :BEAMER_ENV: block
+     :END:
+     
+Être payés pour, ou fournir, des données
+***** gestions des identités
+ - gestion de nom de domaine (nameCoin)
+ - gestoin d'ID
+ - gestion de fichiers
+ - gestion de contenu
+ - réseau sociaux décentralisé
+****    
+     :PROPERTIES:
+     :BEAMER_COL: 0.45
+     :BEAMER_ENV: block
+     :END:
+@@latex:\only<1>{@@
+     #+ATTR_LaTeX: :width \textwidth
+[[file:Images/id_management.png]]
+ 
+@@latex:}@@
+
+@@latex:\only<2>{@@
+
+*Autres Applications:*
+- Calcul distribué\\
+  (seti@home, folding@home)
+
+@@latex:}@@
+
+*** Applications non-financières
+****     
+     :PROPERTIES:
+     :BEAMER_COL: 0.35
+     :BEAMER_ENV: block
+     :END:
+    
+- Vote en ligne
+- Gouvernance décentralisé
+**** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.5
+     :BEAMER_ENV: block
+     :END:
+     #+ATTR_LaTeX: :width \textwidth
+[[file:Images/block_vote.jpeg]]     
+*** Applications Autonome et Décentralisé
+
+**** DA : Decentralised Autonomous
+    - DAC communauté (equal vote)
+- DAC corporation (votre proportional to share)
+**** DAO : Decentralised Autonomous Organisation
+Peut fonctionner avec des individus ne parlant pas la même langue
+- Automatise de la gouvernance
+Code modifiable car stoqué dans la zone de stoquage des contrats
+- modifié à l'aide de pointeurs
+
+*** Divers
+-    ICO: Initial coin offering
+-    ASIC : Application speecific integrated circuits
+    
+
+* Références
+** Références
+*** 
+**** Article fondateur des smart-contracts
+  - Whitepaper d'Etherum ([[https://ethereum.org/669c9e2e2027310b6b3cdce6e1c52962/Ethereum_Whitepaper_-_Buterin_2014.pdf][pdf]])
+   
+**** CV de personnages celfs
+     - [[https://en.bitcoinwiki.org/wiki/Adam_Back][Adam Back]] :  [[https://www.youtube.com/watch?v=HEZAlNBJjA0][vidéo]]
+     - [[https://en.bitcoinwiki.org/wiki/Nick_Szabo][Nick Szabo]] : [[https://www.youtube.com/watch?v=tWuN2R2DC6c][vidéo]]
+     - [[https://en.bitcoinwiki.org/wiki/Wei_Dai][Wei Dai]]
+**** Liens pour une introduction aux smart-contracts sur Cardano
+ -  https://play.marlowe-finance.io
+ -  https://run.marlowe-finance.io/
+
+   
+* COMMENT Perpesctive
+  temps décentralisé
