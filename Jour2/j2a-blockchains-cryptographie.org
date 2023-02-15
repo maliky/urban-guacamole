@@ -1,0 +1,609 @@
+#+SETUPFILE: setup_diapos.org
+#+TITLE: Blockchains et Cryptographie
+
+
+
+# objective
+# Blockchains
+
+# - Solutions pour améliorer la blockchain Bitcoin
+# Discussion autour des autres algorithmes de concensus, PO space, time, history, stack, governance ect.. et leurs variantes)
+# - Blockchain de 2nd et 3ème Génération
+#    définition d'un smart contract, présentation du modèle d'ehterum
+
+# Cryptographie  
+# - Fonction eliptiques
+# - Cryptographie asymétrique
+
+#+BEGIN_SRC latex  -i
+{
+  \usebackgroundtemplate{\includegraphics[height=\paperheight]{./page_de_garde_wadaci_j2a}}
+  \frame[plain]{
+  }
+}
+#+END_SRC
+* Introduction
+** De quoi allons-nous parler ?
+*** De quoi allons-nous parler ?
+   #+ATTR_LaTeX: :width \textwidth
+    [[file:Images/consensus_cryptographie.png]]
+**** Cryptographie & Consensus
+     :PROPERTIES:
+     :BEAMER_COL: 0.46
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <1->
+     :END:
+     - <1>Outils de la cryptographie
+     - <1>Systèmes distribués 
+     - <1>Les différents Consensus
+  
+**** Universalité et Smart-contracts
+     :PROPERTIES:
+     :BEAMER_COL: 0.54
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <1->
+     :END:
+     - <0> Applications distribuées (dApp)
+     - <0> Etherum et Cardano
+     - <0> Quelles applications ?
+** C'est quoi déjà la blockchain Bitcoin
+*** Une chaine de blocs
+**** 
+    :PROPERTIES:
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <1->
+     :END:
+     
+     #+BEGIN_SRC latex  -i
+ \begin{figure}[ht]
+   \centering
+   \includegraphics<1>[width=\textwidth]{Images/anatomy-of-a-chain-1.png}
+   \includegraphics<2>[width=.3\textwidth]{Images/anatomy-of-a-chain-1.png}   
+\end{figure}
+     #+END_SRC
+**** Maintenu par ses utilisateurs
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <2>
+     :END:
+     @@latex:\only<2>{@@     
+Empereurs,  Élus,  Mineurs, vous et moi.
+@@latex:}@@
+
+***** 
+      :PROPERTIES:
+      :BEAMER_ENV: block
+     :BEAMER_ACT: <2>      
+      :END:
+      #+BEGIN_SRC latex  -i
+\only<2>{
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=.25\textwidth]{Images/user_empereur}
+  \includegraphics[width=.25\textwidth]{Images/user_elu}
+  \includegraphics[width=.25\textwidth]{Images/user_mineur2}    
+  \includegraphics[width=.24\textwidth]{Images/user_user2}
+\end{figure}
+}
+      #+END_SRC
+*** C'est un DLT : /Distributed Ledger Technology/
+
+#+BEGIN_SRC latex  -i
+ \begin{figure}[ht]
+   \centering
+\includegraphics<1>[width=.6\textwidth]{Images/tx}
+   \includegraphics<2>[width=.6\textwidth]{Images/block}
+   \includegraphics<3>[width=\textwidth]{Images/Anatomy-of-a-block2}    
+   \includegraphics<4>[width=\textwidth]{Images/anatomy-of-a-chain-1}
+ \end{figure}
+     #+END_SRC
+     @@latex:\only<1>{@@
+     [[https://andersbrownworth.com/blockchain/tokens][Tx]]:  ".00012300 BTC pour Binta, signé Amadou"
+     @@latex:}@@
+     @@latex:\only<2>{@@
+     Les mineurs inclu la [[https://andersbrownworth.com/blockchain/tokens][tx dans un bloc]] et cherchent un *bon* /nonce/
+     @@latex:}@@
+     @@latex:\only<3>{@@
+     Le 1\ier{} mineur à gagner un *bon* /nonce/, annonce son bloc
+     - avec une récompense ([[https://andersbrownworth.com/blockchain/coinbase][coinbase]])
+     - c'est un *élu* (ou leader)
+     @@latex:}@@
+     @@latex:\only<4>{@@
+     Les autres mineurs:
+     - Vérifient le bloc
+     - Ajoutent le nouveau block *a la plus longue chaine*
+     - Puis une nouvelle *loterie* commence.
+
+     @@latex:}@@      
+
+* La cryptographie au service de la blockchain
+** Transactions (tx)
+*** Validité d'une transaction
+**** Qu'est qui rend une transaction valide ?
+*** Validité d'une transaction
+**** Qu'est qui rend une transaction valide ?
+**** Il faut ...
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :BEAMER_COL: 0.4
+     :BEAMER_ACT: <1->
+     :END:
+     -  Des fonds disponibles
+     -  Une identié  (signature)
+     -  Pas de duplication
+     - <2> un compte bancaire ?  
+**** Confiance !
+     :PROPERTIES:
+     :BEAMER_ENV: block
+     :BEAMER_COL: 0.6
+     :BEAMER_ACT: <2->
+     :END:
+     @@latex:\only<2>{@@
+     #+CAPTION:  en Mme. La-Garde ?
+     #+ATTR_LaTeX: :width .9\textwidth 
+     [[file:Images/bce_lagarde.jpg]]
+     @@latex:}@@
+
+     
+*** Le Modèle des UTXO : Unspent Transaction Output
+**** Les UTXO sont comme des tirelires    
+     @@latex:\only<1>{@@
+     #+CAPTION:  Connaître le contenu de sa tirelire
+     #+ATTR_LaTeX: :height .6\textheight 
+     [[file:Images/tirelire.png]]
+     @@latex:}@@
+     @@latex:\only<2>{@@
+     #+CAPTION:  Tout dépenser quand on l'utilise
+     #+ATTR_LaTeX: :height .6\textheight 
+     [[file:Images/tirelire_cassee.png]]
+     @@latex:}@@
+
+*** Ça ressemble à quoi une transaction dans un bloc ?
+**** Explorons avec l'[[https://explorer.btc.com/btc/block/772825][explorer.btc.com]]
+
+     #+CAPTION:  Un bloc miné hier par Binance
+     #+ATTR_LaTeX: :height .8\textheight 
+     [[file:Images/binance_bloc.png]]
+     
+
+** Le modèle UTXO plus en détail
+***  
+    :PROPERTIES:
+    :BEAMER_ENV: block
+    :BEAMER_ACT: <1>
+    :END:
+    #+ATTR_LaTex: :width .9\textwidth
+    [[file:Images/Transaction1.png]]
+***  
+    :PROPERTIES:
+    :BEAMER_ENV: block
+    :BEAMER_ACT: <2>
+    :END:
+    #+ATTR_LaTex: :width .9\textwidth
+    [[file:Images/Transaction2.png]]
+
+***  
+    :PROPERTIES:
+    :BEAMER_ENV: block
+    :BEAMER_ACT: <3>
+    :END:
+    #+ATTR_LaTex: :width .9\textwidth
+    [[file:Images/Transaction3.png]]
+***  
+    :PROPERTIES:
+    :BEAMER_ENV: block
+    :BEAMER_ACT: <4>
+    :END:
+    #+ATTR_LaTex: :width .9\textwidth
+    [[file:Images/Transaction4.png]]
+***  
+    :PROPERTIES:
+    :BEAMER_ENV: block
+    :BEAMER_ACT: <5>
+    :END:
+    #+ATTR_LaTex: :width .9\textwidth
+    [[file:Images/Transaction5.png]]
+***  
+    :PROPERTIES:
+    :BEAMER_ENV: block
+    :BEAMER_ACT: <6>
+    :END:
+    #+ATTR_LaTex: :width .9\textwidth
+    [[file:Images/Transaction6.png]]
+
+
+
+*** En résumé
+    - Chaque pièces est unique (non fungible)
+    - on réfère des pièces particulières lorsqu'on les dépense
+    - les pièces sont consommées et de nouvelles créées
+    - on ne peut dépense une pièce qu'une fois.
+    #     https://en.bitcoin.it/wiki/Transaction
+
+** Hash et signatures
+*** Propriété des Hash
+    - Résistance à la préimage
+    - Résistance à collision
+    - impossible de produire la signature d'un autre
+    - imposssible de remonter en message en regardant la signature
+    - même output pour input identique
+    #  resistance  difficile de trouver deux input such that $H(x) == H(y)$
+    # : entrée $y$, difficile de trouver $x | h(x) = y$
+    # entrée $y$ difficle de trouver $x' | h(x') = h(y)$
+    # give $x$ it's difficult to find $x'$ such that $H(x) == H(x')$
+**** SHA256 et RIPEMD160
+     quantum resistant
+   
+** Comment vérifier les transactions
+*** Arbre de Merkle 
+    #+CAPTION:  Arbre de Merkle
+    #+ATTR_LaTeX: :height .8\textheight 
+    [[file:Images/merkle.png]]
+
+    -  2500 tx/bloc en moyenne (2019)
+    -  Prouve qu'une transaction est dans l'arbre rapidement
+
+** Sécurité des clés
+
+*** Création des clefs
+  - La clef privée: un nombre au hasard parmis $2\textsuperscript{160}$ possibilité
+    - environs $2\textsuperscript{63}$ grains de sable sur terre
+    - Chance d'avoir le même grain de sable <0.0001\%      
+    - Il y a des milliard de milliards d'adresses pour tous les humains
+  - La clef publique, générée à partir de la clef privée
+  - Les addresses publiques sont générées à partir de la clef publique
+
+*** ECDSA elipitic Curve Digital Signature Algorithm
+**** Génération des clés
+     :PROPERTIES:     
+     :BEAMER_COL: 0.46
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <1->
+     :END:
+
+     - Si on connait P et Q -> R
+     - Mais R ne permet pas de trouver P et Q
+
+**** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.46
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <1->
+     :END:
+
+     #+CAPTION:  Courbe eliptic $y^2 = x^3 +7$
+     #+ATTR_LaTeX: :width .8\textwidth 
+     [[file:Images/eliptic.png]]
+
+
+
+* Systèmes distribués
+** Système distrivués
+*** De l'infiniment petit à l'infiniment grand
+    #+ATTR_LaTeX: :width .6\textwidth
+    [[file:Images/grand_petit.png]]
+    
+**** Petit
+     :PROPERTIES:
+     :BEAMER_COL: 0.46
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <1->
+     :END:
+     #+CAPTION:  Avec memoire partagé
+     #+ATTR_LaTeX: :width .8\textwidth
+     [[file:Images/memoire_partagee.png]]
+    
+     
+**** Grand
+     :PROPERTIES:
+     :BEAMER_COL: 0.46
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <1->
+     :END:
+     #+CAPTION:  Avec envois de messages
+     #+ATTR_LaTeX: :width .8\textwidth
+     [[file:Images/envoi_message.png]]
+    
+
+
+*** Propriétés des Systèmes distribués
+**** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.46
+     :BEAMER_ENV: block
+     :END:
+     - <1-> *Robustesse* :  la machine fonctionne toujours
+     - <2> *Atomocite* : elle est perçu comme une seule machine
+
+**** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.46
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <2>
+     :END:
+     @@latex:\only<1>{@@
+     #+ATTR_LaTeX: :width .8\textwidth
+     [[file:Images/robuste.png]]
+
+     @@latex:}@@
+
+     @@latex:\only<2>{@@          
+     #+ATTR_LaTeX: :width .8\textwidth
+     [[file:Images/atomicite.png]]
+     @@latex:}@@
+          
+*** Problèmes des Systèmes distribués
+**** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.60
+     :BEAMER_ENV: block
+     :END:
+     
+     - <1> Complexité
+     - <2> Perte de *l'universalité*
+***** 
+      @@latex:\only<2>{@@
+      Tout ce qui /était/ calculable l'était avec la *Machine de Turing*
+      @@latex:}@@
+
+**** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.40
+     :BEAMER_ENV: block
+     :END:
+
+     @@latex:\only<1>{@@
+     #+ATTR_LaTeX: :width \textwidth
+     [[file:Images/graphe_complexe.png]]
+     @@latex:}@@
+     @@latex:\only<2>{@@
+     #+ATTR_LaTeX: :width \textwidth
+     [[file:Images/turing_schema.png]]
+     @@latex:}@@
+
+
+** Les Généraux Byzantins
+*** Attaque ou retraite ?
+**** Le problème des généraux Byzantins
+     @@latex:\only<1>{@@
+     #+CAPTION:  Le lieutenant est un traitre
+     #+ATTR_LaTeX: :width .9\textwidth 
+     [[file:Images/byzantine_gp1.png]]
+     @@latex:}@@
+     
+     @@latex:\only<2>{@@
+     #+CAPTION:  Le commandant est un traitre
+     #+ATTR_LaTeX: :width .9\textwidth 
+     [[file:Images/byzantine_gp2.png]]
+     @@latex:}@@
+    
+*** BFT Systems 
+**** /Systèmes tolérants aux fautes Byzantines/
+     - Nombre et participants connus
+     - Election d'un leader
+     - Traites Punis
+
+***** Sans signature
+      - honnête majorité obligatoire
+***** Avec signature
+      - Pas de majorité obligatoire      
+
+** Blockchains et consensus
+*** Preuve de travail (PoW) : Consensus de Nakamoto
+    @@latex:\only<1>{@@
+    #+ATTR_LaTeX: :height .8\textheight 
+    [[file:Images/distrib2.png]]
+    @@latex:}@@
+
+    @@latex:\only<2>{@@
+    #+ATTR_LaTeX: :height .8\textheight 
+    [[file:Images/consensus1.png]]
+    @@latex:}@@
+
+    @@latex:\only<3>{@@
+    #+ATTR_LaTeX: :height .8\textheight 
+    [[file:Images/consensus2.png]]
+    @@latex:}@@
+    @@latex:\only<4>{@@
+    #+ATTR_LaTeX: :height .8\textheight 
+    [[file:Images/consensus3.png]]
+    @@latex:}@@
+    @@latex:\only<5>{@@
+    #+ATTR_LaTeX: :height .8\textheight 
+    [[file:Images/consensus4.png]]
+    @@latex:}@@
+    @@latex:\only<6>{@@
+    #+ATTR_LaTeX: :height .8\textheight 
+    [[file:Images/consensus5.png]]
+    @@latex:}@@
+    @@latex:\only<7>{@@
+    #+ATTR_LaTeX: :height .8\textheight 
+    [[file:Images/consensus6.png]]
+    @@latex:}@@
+    @@latex:\only<8>{@@
+    #+ATTR_LaTeX: :height .8\textheight 
+    [[file:Images/consensus7.png]]
+    @@latex:}@@
+    @@latex:\only<9>{@@
+    #+ATTR_LaTeX: :height .8\textheight 
+    [[file:Images/consensus8.png]]
+    @@latex:}@@
+    @@latex:\only<10>{@@
+    #+ATTR_LaTeX: :height .8\textheight 
+    [[file:Images/consensus9.png]]
+    @@latex:}@@
+
+    @@latex:\only<11>{@@
+    #+ATTR_LaTeX: :height .8\textheight 
+    [[file:Images/consensus10.png]]
+    @@latex:}@@
+     
+
+**** Consensus de Nakamoto
+     :PROPERTIES:
+     :BEAMER_COL: 0.50
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <1->
+     :END:
+     
+     - Anonyme et ouvert à tous
+     - Règle de la plus longue chaine
+     - Leader choisi à la loterie
+     - Honnêtes encouragés
+**** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.50
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <1->
+     :END:
+
+** Comment maintenir le Consensus autrement ?
+*** Consensus basé un enjeu
+**** PoS, DPoS
+     :PROPERTIES:
+     :BEAMER_COL: 0.4
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <1->
+     :END:
+     
+     @@latex:\only<1->{@@
+     #+CAPTION:  Ouroboros Praos (Cardano)
+     #+ATTR_LaTeX: :width .4\textwidth 
+     file:Images/ouroboros.png
+     @@latex:}@@
+**** BFT-based POS
+     :PROPERTIES:
+     :BEAMER_COL: 0.6
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <1->
+     :END:
+     
+     @@latex:\only<2>{@@
+     #+CAPTION:  Tendermint (Cosmos Hub)
+     #+ATTR_LaTeX: :width .9\textwidth 
+     [[file:Images/logo_tendermint_text.png]]
+     @@latex:}@@
+     @@latex:\only<3>{@@
+     #+CAPTION:  Algorand
+     #+ATTR_LaTeX: :width .9\textwidth 
+     file:Images/logo_algorand_text.png
+     @@latex:}@@
+     @@latex:\only<4->{@@
+     #+CAPTION:  Casper FFG (ETH)
+     #+ATTR_LaTeX: :width .9\textwidth 
+     [[file:Images/logo_casper.png]]
+     @@latex:}@@
+     - <2-> Tendermint (Cosmos)
+     - <3-> Algorand (ALG)
+     - <4> Casper FFG (ETH)
+*** D'autres consensus
+*****    
+      :PROPERTIES:
+      :BEAMER_COL: 0.4
+      :BEAMER_ENV: block
+      :END:
+    
+      - <1-> PoH (Histoire) Solana
+      - <2-> Preuve d'espace (Chia)
+      - <3-> POA (autorité)
+      # nécessité de proover qui ont est   
+
+      - <4-> PoET (elapsed Time)
+        # nécessite spécific matérial
+
+***** 
+      :PROPERTIES:
+      :BEAMER_ACT: <1->
+      :BEAMER_COL: 0.6
+      :BEAMER_ENV: block
+      :END:
+
+      @@latex:\only<3->{@@
+      #+ATTR_LaTeX: :width .9\textwidth 
+      [[file:Images/logo_chia_solana.png]]
+      @@latex:}@@
+
+**** Consensus Exotique
+     :PROPERTIES:
+     :BEAMER_ACT: <5->
+     :END:
+***** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.5
+     :BEAMER_ENV: block
+     :END:
+
+     - PoH (Preuve de non dépense)
+     - PoU (Preuve d'usage)
+***** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.5
+     :BEAMER_ENV: block
+     :END:
+
+     - PoST (temps d'enjeu)
+     - PoL (preuve de vie)  
+*** Vulnérabilité des POS
+    #+ATTR_LaTeX: :height .3\paperheight
+    [[file:Images/longuest_chain.png]]
+    
+**** Simulation gratuite
+     
+     - Il n'y rien en jeu
+       # plusieurs chaines
+     - Corruption postérieur
+     - Attaque longue distance (long range attack)
+     # recréer une chaine où on récupère tout les rewards, ou tx fees       
+     - Trafic sur l'enjeu  (stake grinding attack)
+       # joue sur l'historique pour modifier le résulat de la fonction aléatoire
+
+
+
+*** Optimisations
+**** Le trilemme    
+    #+ATTR_LaTeX: :width .7\paperheight
+    [[file:Images/trilemme_ven.png]]
+
+*** Optimisations
+**** Vitesses : Segwit
+     :PROPERTIES:
+     :BEAMER_COL: 0.46
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <1->
+     :END:
+     
+     @@latex:\only<1>{@@
+     #+ATTR_LaTeX: :width \textwidth
+     [[file:Images/segWit-1.png]]
+     @@latex:}@@
+**** Vitesses : Segwit 2x
+     :PROPERTIES:
+     :BEAMER_COL: 0.46
+     :BEAMER_ENV: block
+     :BEAMER_ACT: <1->
+     :END:
+    
+     #+ATTR_LaTeX: :width \textwidth
+     [[file:Images/segWit2x.png]]
+
+**** Vitesses : Améliorations lightning
+     #+ATTR_LaTeX: :width \textwidth
+     [[file:Images/payment-channels.png]]
+
+    
+
+
+* Perspectives
+** Perspectives
+*** 
+- Comment maintenir les consensus ?
+- Cryptographie à l'épreuve des ordinateurs quantiques ?
+- Quelle avenir pour les blockchains publiques ?
+*** 
+**** Merci
+
+    
+    
+    
+
+

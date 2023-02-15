@@ -1,0 +1,46 @@
+Dans quel objectif le chiffrement est-il utilisé ?
+{
+~Faire des calculs mathématiques complexes plus rapidement
+=Protéger la confidentialité d'un message sur un canal non sécurisé
+~Prouver qu'une personne est bien l'auteur d'un message
+~Transformer un message dans un format de protocole réseau
+}
+
+
+Combien de valeurs différentes peut avoir une clé secrète de 128 bits ?
+{
+~128^2
+~128!
+=2^128
+~128
+~10^128
+}
+
+::Avec le chiffrement asymétrique, on utilise::
+Avec le chiffrement asymétrique, on utilise 
+{
+~%-33.33333%La clé privée pour chiffrer et la clé publique pour déchiffrer
+~%-33.33333%La clé privée pour chiffrer et la clé privée pour déchiffrer
+~%100%La clé publique pour chiffrer et la clé privée pour déchiffrer
+~%-33.33333%La clé publique pour chiffrer et la clé publique pour déchiffrer
+}
+
+
+::Un code MAC permet de::
+Un code MAC permet de 
+{
+~%-25%Échanger une information de manière confidentielle
+~%100%S'assurer qu'un message n'a pas été modifié par un attaquant
+~%-25%Signer un message avec une paire de clés privée/publique
+~%-25%Calculer le haché d'un message sans utiliser de clé secrète
+~%-25% Authentifier un utilisateur avec un mot de passe
+}
+
+::De quelle opération le système de cryptographie asymétrique  RSA utilise-t-il les propriétés::
+De quelle opération le système de cryptographie asymétrique RSA utilise-t-il les propriétés 
+{
+~Les courbes elliptiques
+~La multiplication
+~Le OU exclusif
+=La factorisation  
+}

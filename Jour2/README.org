@@ -1,0 +1,4 @@
+* Atelier de formation Jour2
+  - le matin : Présentation -> [[file:j2a-blockchains-cryptographie.pdf]]
+  - en début d'après-midi : visite du super-calculateur ([[https://drive.google.com/drive/folders/1lwUSrAV_hVg0gTw9BNYal8EWdN2eHVLq?usp=share_link][voir les photos]])
+  - l'après midi: atelier de codage [[file:atelier_blockchain_pratique.org][(liens vers les instructions)]]
