@@ -1,0 +1,19 @@
+* Testnet faucet
+  https://docs.cardano.org/cardano-testnet/tools/faucet
+  https://github.com/Hyperion-BT/Helios
+  https://pycardano.readthedocs.io/en/latest/tutorial.html
+  https://cardano.stackexchange.com/questions/9769/how-to-deploy-the-plutus-smart-contract
+  
+* Script context
+** Bitcoin
+   un script côté utxo et un redeemer (une donnée) qui s'y applique pour autoriser la dépense.
+** Ethereum
+Le script voit toute la blockchain -> problème pour prédire ce que va faire le script -> problème de sécurité
+** Cardano
+   le script a accès à toute la transaction qui est validée. (all input and output of the transaction)
+   aussi puissant qu'etherum
+*** Avantage
+    peut vérifier avant qu'une transacation est valide
+    pas de frais à payer si la transaction échoue (sur ether sià
+    )
+    

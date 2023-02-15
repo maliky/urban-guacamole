@@ -1,0 +1,176 @@
+#+SETUPFILE: setup_diapos.org
+#+TITLE: Transactions on blockchains
+#+LATEX_HEADER: \hypersetup{
+#+LATEX_HEADER: colorlinks,
+#+LATEX_HEADER: allcolors=.,
+#+LATEX_HEADER: urlcolor=blue,
+#+LATEX_HEADER: }
+
+
+#+BEGIN_SRC latex  -i
+{
+  \usebackgroundtemplate{\includegraphics[height=\paperheight]{./page_de_garde_wadaci_j4.png}}
+  \frame[plain]{
+  }
+}
+#+END_SRC
+
+* Tutoriel 1: Communiquer avec un noeud Cardano
+** Mise en place
+*** Créer un compte sur la Plateforme
+      #+ATTR_LaTeX: :height .7\textheight
+      [[file:Images/demeter_run.png]]
+Liens vers la plateforme -> [[http://demeter.rum][demeter.run]]
+
+** Tutoriel
+*** Communiquer avec un noeud Cardano 
+    Lien github -> [[https://github.com/txpipe/cardano-cli-starter-kit][Cardano-cli.git]]
+      #+ATTR_LaTeX: :height .7\textheight
+      [[file:Images/tuto_cardano_cli.png]]
+
+* Script Plutus : Une introduction à Haskell
+** Enchère à l'anglaise
+*** Alice propose une enchère (1/4)
+      #+ATTR_LaTeX: :height .5\textheight
+      [[file:Images/enchere_01.png]]
+**** Alice fournit
+      :PROPERTIES:
+     :BEAMER_COL: 0.3
+     :BEAMER_ENV: block
+      :END:
+    - le NFT
+    - un datum (avec l'offre minimal)
+**** Le smart-contract contient
+     :PROPERTIES:
+     :BEAMER_COL: 0.7
+     :BEAMER_ENV: block
+     :END:
+
+      - conditions de validité de l'offre (on-chain)
+      - logique pour fin d'enchère (off-chain)
+*** Bob fait une offre, nouvelle transaction (2/4)
+      #+ATTR_LaTeX: :height .55\textheight
+      [[file:Images/enchere_02.png]]
+
+**** En entrée
+     :PROPERTIES:
+     :BEAMER_COL: 0.3
+     :BEAMER_ENV: block
+     :END:
+
+      - UTxO d'Alice
+      - UTxO de Bob
+**** En sortie 
+     :PROPERTIES:
+     :BEAMER_COL: 0.7
+     :BEAMER_ENV: block
+     :END:
+
+      - adresse du script -> NFT, datum (Bob, 100)
+
+*** Charlie sur-offre (3/4)
+      #+ATTR_LaTeX: :height .55\textheight
+      [[file:Images/enchere_03.png]]
+
+**** En entrée
+     :PROPERTIES:
+     :BEAMER_COL: 0.3
+     :BEAMER_ENV: block
+     :END:
+
+- UTxO du script
+- UTxO de Charlie
+**** En sortie
+     :PROPERTIES:
+     :BEAMER_COL: 0.7
+     :BEAMER_ENV: block
+     :END:
+
+   - adresse du script -> NFT, datum (Charlie, 150)
+   - adresse de Bob -> 100
+
+*** Fin de l'enchère (4/4)
+      #+ATTR_LaTeX: :height .55\textheight
+      [[file:Images/enchere_04.png]]
+Après un certain temps décidé par Alice ou le script
+**** En entrée
+     :PROPERTIES:
+     :BEAMER_COL: 0.3
+     :BEAMER_ENV: block
+     :END:
+
+    - UTx0 du script
+**** En sortie
+     :PROPERTIES:
+     :BEAMER_COL: 0.7
+     :BEAMER_ENV: block
+     :END:
+      - adresse Charlie -> le NFT
+      - adresse Alice -> le montant
+** Code d'un smart contract 
+*** Code d'un smart contract 
+      #+ATTR_LaTeX: :height .55\textheight
+      [[file:Images/smart-contract-plutus.png]]
+
+   Voir Github du [[https://github.com/input-output-hk/plutus-pioneer-program/blob/main/code/week01/src/Week01/EnglishAuction.hs][programme pionniers de plutus]] pionneer
+*** Survol du code
+**** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.5
+     :BEAMER_ENV: block
+     :END:
+
+***** on chain
+le code Haskell qui compilé, pour
+- UPLC : plutus-core
+***** off chain 
+Le code qui ne réside pas sur la blockchain.
+- Sert à construire une transaction valide
+- Se trouve généralement dans le portefeuille
+*** 
+     :PROPERTIES:
+     :BEAMER_COL: 0.5
+     :BEAMER_ENV: block
+     :END:
+
+***** Différentes parties du code
+ - data
+ - script
+ - compilation
+ - validation
+ - mockup code for playground
+
+** Compilation  : plutus template
+*** Compilation  : plutus template
+Partie du code qui compile en UPLC
+#+BEGIN_SRC haskell
+typedAuctionValidator :: Scripts.TypedValidator Auctioning
+typedAuctionValidator = Scripts.mkTypedValidator @Auctioning
+    $$(PlutusTx.compile [|| mkAuctionValidator ||])
+    $$(PlutusTx.compile [|| wrap ||])
+  where
+    wrap = Scripts.wrapValidator @AuctionDatum @AuctionAction
+
+#+END_SRC
+
+* Tutoriel 2 : Comment compiler un script plutus et l'activer
+** Tutoriel
+*** Comment compiler un script plutus et l'activer
+
+      #+ATTR_LaTeX: :height .7\textheight
+      [[file:Images/tuto_cardano_cli.png]]
+Lien github -> [[https://github.com/txpipe/plutus-starter-kit][plutus-start-kit.git]]
+* Références
+** Références
+*** Liens des références
+**** IOG Academy
+ Lien -> [[https://www.youtube.com/@iogacademy/playlists][Vidéos et ressources devenir expert en Marlow, Plutus et Haskell]]
+
+**** Plutus pioneer programm
+ Lien -> [[https://www.youtube.com/@iogacademy/playlists?view=50&sort=dd&shelf_id=3][Plutus pioneer program]] Lars Brünjes
+**** Tutoriels Demeters
+ - [[https://github.com/orgs/txpipe/repositories][Github de txpipe]]
+***** D'autre tutos
+ - https://github.com/iburzynski/emurgo-plutus-starter
+ - https://github.com/input-output-hk/Alonzo-testnet
+

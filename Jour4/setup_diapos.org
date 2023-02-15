@@ -1,0 +1,45 @@
+#+STARTUP: fold
+#+AUTHOR: Doc. Malik Koné
+#+LANGUAGE: fr
+#+OPTIONS: H:3 toc:nil num:t broken-links:t ^:{} date:t author:t title:nil
+#+LATEX_HEADER: \usepackage[french]{babel}
+#+LATEX_HEADER: \usepackage[labelformat=empty]{caption}
+#+LATEX_HEADER: \usepackage{verbatim}
+
+#+LATEX_HEADER: \definecolor{purple_wada}{RGB}{128,71,189} %   #8047bdff
+#+LATEX_HEADER: \definecolor{links}{HTML}{2A1B81}
+
+#+LATEX_HEADER: \useoutertheme{infolines}
+
+#+LATEX_HEADER: %
+#+LATEX_HEADER: % Beamer options
+#+LATEX_HEADER: %
+#+LATEX_HEADER: \setbeamertemplate{caption}{\raggedright\insertcaption\par}
+#+LATEX_HEADER: \setbeamercovered{transparent}
+#+LATEX_HEADER: \setbeamertemplate{section in toc}[sections numbered]
+#+LATEX_HEADER: \setbeamertemplate{subsection in toc}[square]
+#+LATEX_HEADER: \setbeamertemplate{navigation symbols}{}
+#+LATEX_HEADER: \setbeamercolor{section in head/foot}{bg=purple_wada, fg=white}
+#+LATEX_HEADER: \setbeamercolor{subsection in head/foot}{bg=white, fg=purple_wada}
+#+LATEX_HEADER: \setbeamercolor{title in head/foot}{fg=purple_wada,bg=white}
+#+LATEX_HEADER: \setbeamercolor{author in head/foot}{fg=white,bg=purple_wada}
+#+LATEX_HEADER: \setbeamercolor{date in head/foot}{fg=white,bg=purple_wada}
+#+LATEX_HEADER: \setbeamercolor{frametitle}{fg=purple_wada,bg=white}
+#+LATEX_HEADER: \setbeamercolor{block title}{fg=purple_wada,bg=white}
+
+#+LATEX_HEADER: % 
+#+LATEX_HEADER: % Adding frame at each section
+#+LATEX_HEADER: % 
+#+LATEX_HEADER: \AtBeginSubsection[]
+#+LATEX_HEADER: {
+#+LATEX_HEADER:   \begin{frame}
+#+LATEX_HEADER: \frametitle{Sommaire}
+#+LATEX_HEADER: \tableofcontents[currentsection,currentsubsection] 
+#+LATEX_HEADER: \end{frame}
+#+LATEX_HEADER: }
+
+
+#+BEAMER_THEME: default
+
+#+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col)
+
