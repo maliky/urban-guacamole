@@ -1,0 +1,12 @@
+* Point de la 5ème journée de l'atelier
+** Matinée
+Le matin a été l'occasion d'une initiation language Haskell.  Après avoir présenté ([[file:notes.pdf][diapos]]) l'intérêt, voir la suppériorité de ce language sur des langages plus populaires, nous avons parcourus [[file:manuel.pdf][le manuel rédigé pour l'occasion]] et en faisant quelques exerices.
+
+
+** L'après-midi
+Nous avons discuter de notre future en tant que groupe de développeur passioné par la blockchain.
+Nous allons céer une association afin de poursuivre les formations et la sensibilisation dans les meilleurs condition.  Cela nous donnera aussi un cadre juridique pour le développement de services.
+
+** Conclusion
+[[https://drive.google.com/drive/folders/1n93bNsJ78vLJPe67VncTMD8ihHI_JyY9?usp=share_link][Photos de la remise des certificats]] de participations.
+
