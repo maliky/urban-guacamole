@@ -1,0 +1,20 @@
+#+SETUPFILE: setup_diapos.org
+#+TITLE: Introduction à Haskell
+
+#+LATEX_HEADER: \hypersetup{
+#+LATEX_HEADER: colorlinks,
+#+LATEX_HEADER: allcolors=.,
+#+LATEX_HEADER: urlcolor=blue,
+#+LATEX_HEADER: }
+
+#+BEGIN_SRC latex  -i
+{
+  \usebackgroundtemplate{\includegraphics[height=\paperheight]{./page_de_garde_wadaci_j5b.png}}
+  \frame[plain]{
+  }
+}
+#+END_SRC
+
+* La suite ?
+** Comment s'organiser
+** Créer

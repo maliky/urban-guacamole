@@ -1,0 +1,5 @@
+* Point de la 1ère journée de l'atelier
+- Présentation [[file:j1a-blockchain-bitcoin.pdf][Blockchain Bitcoin]]
+- Présentation [[file:j1b-cryptoeconomie.pdf][Crypto-économie]]
+- Photos de la 1ère journée ([[https://drive.google.com/drive/folders/1RPlfbfNFPmtjLxGlwe7pHcLWdYTD_qeA?usp=share_link][en ligne]])  
+  
