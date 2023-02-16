@@ -1,6 +1,7 @@
 #+SETUPFILE: setup_diapos.org
 #+TITLE: Introduction à Haskell
 
+#+LATEX_HEADER: \usepackage{multicol}
 #+LATEX_HEADER: \hypersetup{
 #+LATEX_HEADER: colorlinks,
 #+LATEX_HEADER: allcolors=.,
@@ -73,14 +74,16 @@
 ** Mise en place
 *** Choisir un IDE
 **** 
-     @@latex:\only<1>{@@
-     
-     #+CAPTION: Adam Back ][]]
+     @@latex:\only<1>{
+     \begin{multicols}{2}@@
      
         #+ATTR_LaTeX: :height .3\textheight
         [[file:Images/replit.png]]
+        
+        #+ATTR_LaTeX: :height .3\textheight
+        [[file:Images/play_haskell.png]]
 
-     @@latex:}@@
+     @@latex:\end{multicols}}@@
 
 @@latex:\only<2>{@@
         #+ATTR_LaTeX: :height .3\textheight
@@ -100,11 +103,10 @@
 @@latex:}@@
 **** 
 
- - <1->Replit IDE en ligne ->  [[https://replit.com/join/ybqsuyuphr-maliky][lien d'invitation]]
- - <2->Installer ghci ([[https://www.haskell.org/downloads/][site officiel]])
-   - Utiliser [[https://www.haskell.org/ghcup/][GHCUP]] pour l'installation
- - <3-> [[https://tryhaskell.org/#step3][Try Haskell]]  : pour un essaye Haskell en ligne 
- - <4-> https://demeter.run/
+ - <1-> IDE en ligne : [[https://replit.com/join/ybqsuyuphr-maliky][Replit]] ou [[https://play-haskell.tomsmeding.com][play-haskell]] 
+ - <2-> IDE en local : Installer [[https://www.haskell.org/downloads/][ghci]] (avec  [[https://www.haskell.org/ghcup/][GHCUP]])
+ - <3-> Découverte :  [[https://tryhaskell.org/#step3][Try Haskell]] 
+ - <4-> Cardano specific :  [[https://demeter.run/][demeter.run]]
 * La pratique
 ** Déroulement de l'atelier
 *** Déroulement de l'atelier
@@ -122,8 +124,7 @@
        [[file:Images/manuel_exercice.png]]
 @@latex:}@@
 
-- <1>Récupérer le manuel sur 
-https://blockchain.numerique.ci/pluginfile.php/220/mod_resource/content/1/manuel.pdf
+- <1>Récupérer le manuel sur le site [[https://blockchain.numerique.ci]] ou sur le [[file:manuel.pdf][github de l'atelier]] 
 - <2> Suivre les contenus en reproduisant les codes dans votre IDE
 - <3> Résoudre les exerices et discuter leurs solutions avec vos camarades
 ** Plan du cours

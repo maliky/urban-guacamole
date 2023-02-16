@@ -1,4 +1,4 @@
-% Created 2023-02-15 mer. 17:18
+% Created 2023-02-16 jeu. 11:05
 % Intended LaTeX compiler: pdflatex
 \documentclass[presentation]{beamer}
 \usepackage[utf8]{inputenc}
@@ -34,6 +34,7 @@
 \tableofcontents[currentsection,currentsubsection]
 \end{frame}
 }
+\usepackage{multicol}
 \hypersetup{
 colorlinks,
 allcolors=.,
@@ -59,10 +60,10 @@ urlcolor=blue,
 }
 
 \section{Haskell}
-\label{sec:org14b55af}
+\label{sec:orga551a9e}
 \subsection{Présentation}
-\label{sec:org21f4dbf}
-\begin{frame}[label={sec:org00e6cb1}]{Haskell, c'est quoi ?}
+\label{sec:org089e3c7}
+\begin{frame}[label={sec:org34271cd}]{Haskell, c'est quoi ?}
 \begin{block}{}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
@@ -112,7 +113,7 @@ urlcolor=blue,
 \end{block}
 \end{frame}
 
-\begin{frame}[label={sec:org22e9edb}]{Qui utilise Haskell ?}
+\begin{frame}[label={sec:org01cc241}]{Qui utilise Haskell ?}
 \begin{center}
 \includegraphics[height=.5\textheight]{Images/quiUtiliseHaskell.png}
 \end{center}
@@ -128,16 +129,21 @@ urlcolor=blue,
 \end{frame}
 
 \subsection{Mise en place}
-\label{sec:orgeaea36d}
-\begin{frame}[label={sec:org10b4ca0}]{Choisir un IDE}
+\label{sec:orgb5ceac5}
+\begin{frame}[label={sec:org0af5e88}]{Choisir un IDE}
 \begin{block}{}
 \only<1>{
+     \begin{multicols}{2}
 
 \begin{center}
 \includegraphics[height=.3\textheight]{Images/replit.png}
 \end{center}
 
-}
+\begin{center}
+\includegraphics[height=.3\textheight]{Images/play_haskell.png}
+\end{center}
+
+\end{multicols}}
 
 \only<2>{
 \begin{center}
@@ -161,21 +167,18 @@ urlcolor=blue,
 \end{block}
 \begin{block}{}
 \begin{itemize}
-\item <1->Replit IDE en ligne ->  \href{https://replit.com/join/ybqsuyuphr-maliky}{lien d'invitation}
-\item <2->Installer ghci (\href{https://www.haskell.org/downloads/}{site officiel})
-\begin{itemize}
-\item Utiliser \href{https://www.haskell.org/ghcup/}{GHCUP} pour l'installation
-\end{itemize}
-\item <3-> \href{https://tryhaskell.org/\#step3}{Try Haskell}  : pour un essaye Haskell en ligne
-\item <4-> \url{https://demeter.run/}
+\item <1-> IDE en ligne : \href{https://replit.com/join/ybqsuyuphr-maliky}{Replit} ou \href{https://play-haskell.tomsmeding.com}{play-haskell}
+\item <2-> IDE en local : Installer \href{https://www.haskell.org/downloads/}{ghci} (avec  \href{https://www.haskell.org/ghcup/}{GHCUP})
+\item <3-> Découverte :  \href{https://tryhaskell.org/\#step3}{Try Haskell}
+\item <4-> Cardano specific :  \href{https://demeter.run/}{demeter.run}
 \end{itemize}
 \end{block}
 \end{frame}
 \section{La pratique}
-\label{sec:orgcbf5ace}
+\label{sec:org1bba7b4}
 \subsection{Déroulement de l'atelier}
-\label{sec:org28cb168}
-\begin{frame}[label={sec:orge1c99c6}]{Déroulement de l'atelier}
+\label{sec:orgf93231b}
+\begin{frame}[label={sec:orgcec9595}]{Déroulement de l'atelier}
 \only<1>{
 \begin{center}
 \includegraphics[height=.5\textheight]{Images/manuel_haskell.png}
@@ -194,17 +197,14 @@ urlcolor=blue,
 }
 
 \begin{itemize}
-\item <1>Récupérer le manuel sur
-\end{itemize}
-\url{https://blockchain.numerique.ci/pluginfile.php/220/mod\_resource/content/1/manuel.pdf}
-\begin{itemize}
+\item <1>Récupérer le manuel sur le site \url{https://blockchain.numerique.ci} ou sur le \href{manuel.pdf}{github de l'atelier}
 \item <2> Suivre les contenus en reproduisant les codes dans votre IDE
 \item <3> Résoudre les exerices et discuter leurs solutions avec vos camarades
 \end{itemize}
 \end{frame}
 \subsection{Plan du cours}
-\label{sec:orged82b31}
-\begin{frame}[label={sec:orgbc5c1db}]{}
+\label{sec:org0714f4e}
+\begin{frame}[label={sec:org95cd5af}]{}
 \begin{block}{Plan du cours}
 \begin{itemize}
 \item Que sont les 'Types' et les 'Classes de type'
@@ -220,10 +220,10 @@ urlcolor=blue,
 \end{frame}
 
 \section{Ressoures et perspectives}
-\label{sec:orgd0291f8}
+\label{sec:org806e676}
 \subsection{Ressources de formation}
-\label{sec:org91b6df9}
-\begin{frame}[label={sec:orgb81d234}]{Ressources de formation (\href{https://wiki.haskell.org/Haskell}{Haskell Wiki})}
+\label{sec:org3d6c17a}
+\begin{frame}[label={sec:orgdd65eb3}]{Ressources de formation (\href{https://wiki.haskell.org/Haskell}{Haskell Wiki})}
 \begin{block}<1->{Comprendre l'intérêt de la programmation fonctionnelle}
 \begin{itemize}
 \item \href{Ressources/beating\_average.pdf}{Faire mieux que la moyenne} (Paul Graham) (\href{https://franz.com/about/conferences/fds2001/presentations/pgtalk-rev2.pdf}{enligne})
@@ -246,8 +246,8 @@ urlcolor=blue,
 \end{block}
 \end{frame}
 \subsection{Perspectives}
-\label{sec:orgc6b72f0}
-\begin{frame}[label={sec:org6cc5f83}]{La suite\ldots{}  Création de l'association WADACI}
+\label{sec:orge566750}
+\begin{frame}[label={sec:org20a9eee}]{La suite\ldots{}  Création de l'association WADACI}
 Donnera un cadre juridique pour :
 \begin{itemize}
 \item l'encadrement des prochaines formations (prochaine en mai)
@@ -280,7 +280,7 @@ Donnera un cadre juridique pour :
 \end{columns}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org02aac31}]{}
+\begin{frame}[label={sec:orgf0c5734}]{}
 \begin{center}
 \includegraphics[height=\textheight]{Images/merci_wadaci.png}
 \end{center}
