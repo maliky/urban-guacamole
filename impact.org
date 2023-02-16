@@ -29,7 +29,7 @@ This workshop  also had an impact on our preparness to organise bigger events on
     - All were motivated and were really interested in the blockchain and smart contract rather than crypto-economy
     - We had the visit of two university professors, one from Université de Cocody, the other from EPITA in France.
       
-*** Continuations
+*** Continuation
      In order to strengthen our endeavours in the journey of decentralized applications in Côte d'Ivoire we decided at the end of the workshop to create an association (WADACI) with the following objectives:
      - promote the blockchain technology
      - drive workshops and learning sessions
