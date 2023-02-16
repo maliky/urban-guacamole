@@ -1,0 +1,38 @@
+
+* Impact of the workshop "décode ta richesse avec la blockchain Cardano".
+
+** Description
+This workshop about Blockchains was carried out on five consecutives Saturday at the Centre National de Calcul de Côte d'Ivoire ([[https://cncci.edu.ci/][CNCCI]]) from January the 14th to February the 11th.
+The target audience was software developer interested in blockchain technology.  Fiveteen participants showed up at least once among those ten attended all five the workshops.  Participants were drawn from a previous listing that recorded attendance to sensibilisationt campaign on Cardano carried since 2020.
+This first iteration of the workshop was the occasion to confront our approach and pedagogical material with real public.  Before summer, we will carry out one or two more iterations of the same workshop  to meet our 30 regular participants target.
+
+** The first iteration's impact on the Ivorian community
+   The blockchain community in Côte d'Ivoire mainely focuses on the crypto-economy side.  Some seminars exist, but they focus on using trading tools and advocating some trading tricks.
+   Our objective is more constructive and grounded  in technology.  We aim to impact the adoption of blockchain software and, in particular, our capacity as Ivorian and African to build our own solutions on blockchains.
+   
+During this first iteration, our impact was mainly qualitative.  We managed to engage 13 participants with different backgrounds.  The participants worked at the economy  ministry, big telecom companies, bank and insurances.  They have been dedicated to the workshop and will pursue for their personal development, research, promotion and development of blockchain technology.
+
+This workshop  also had an impact on our preparness to organise bigger events on the same topic.  We collected material and built a small but dedicated community able to assemble more of our target audience for futures workshops.
+
+** Perspectives
+
+*** What problems did we encounter ?
+- We had some Internet connection problems
+- Some online services were not accessible by all the participants at once.  We were, probably,  throttled because we used the same IP to make our requests.
+- Participants often came late.
+- The participants level and computer's were unequal
+- A majority was not confortable with English ressources.
+
+*** What as great ?
+    - We had no space problem
+    - We had subsidies for lunch and were able to create a community by spending time together
+    - All were motivated and were really interested in the blockchain and smart contract rather than crypto-economy
+    - We had the visit of two university professors, one from Université de Cocody, the other from EPITA in France.
+      
+*** Continuations
+     In order to strengthen our endeavours in the journey of decentralized applications in Côte d'Ivoire we decided at the end of the workshop to create an association (WADACI) with the following objectives:
+     - promote the blockchain technology
+     - drive workshops and learning sessions
+     - federate local energies for working on the blockchain
+     - experiment with self-made smart-contracts
+
