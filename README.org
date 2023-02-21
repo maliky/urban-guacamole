@@ -10,7 +10,7 @@ Ce dossier contient des ressources pour 5 jours d'ateliers organisés par WADACI
 
   
 * Remerciements
-  Cet atelier n'aurait pas pu se faire sans le concours du [[https://cncci.edu.ci/][Centre de calcul de Côte d'ivoire]] et la générosité de son directeur:   Doc. Issa Traoré.
+  Cet atelier n'aurait pas pu se faire sans le concours du [[https://cncci.edu.ci/][Centre de calcul de Côte d'ivoire]] et la générosité de son directeur:   Docteur Issa Traoré.
   Nous avons aussi reçu un soutient financier de la part de la [[https://wada.org][West African Decentralized Alliance]].  Puisse-t-ils recevoir en retour notre infinie gratitude.
 
 [[file:impact.org][ref. inpact report]]
