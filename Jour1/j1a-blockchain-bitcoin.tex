@@ -1,51 +1,25 @@
-% Created 2023-01-14 sam. 22:27
+% Created 2023-09-03 dim. 21:37
 % Intended LaTeX compiler: pdflatex
 \documentclass[presentation]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[french]{babel}
-\usepackage[labelformat=empty]{caption}
-\usepackage{verbatim}
-\definecolor{purple_wada}{RGB}{128,71,189} %   #8047bdff
-\definecolor{links}{HTML}{2A1B81}
-\useoutertheme{infolines}
-%
-% Beamer options
-%
-\setbeamertemplate{caption}{\raggedright\insertcaption\par}
-\setbeamercovered{transparent}
-\setbeamertemplate{section in toc}[sections numbered]
-\setbeamertemplate{subsection in toc}[square]
-\setbeamertemplate{navigation symbols}{}
-\setbeamercolor{section in head/foot}{bg=purple_wada, fg=white}
-\setbeamercolor{subsection in head/foot}{bg=white, fg=purple_wada}
-\setbeamercolor{title in head/foot}{fg=purple_wada,bg=white}
-\setbeamercolor{author in head/foot}{fg=white,bg=purple_wada}
-\setbeamercolor{date in head/foot}{fg=white,bg=purple_wada}
-\setbeamercolor{frametitle}{fg=purple_wada,bg=white}
-\setbeamercolor{block title}{fg=purple_wada,bg=white}
-%
-% Adding frame at each section
-%
-\AtBeginSubsection[]
-{
-\begin{frame}
-\frametitle{Sommaire}
-\tableofcontents[currentsection,currentsubsection]
-\end{frame}
-}
 \usetheme{default}
-\author{Doc. Malik Koné}
+\author{Malik K. Koné}
 \date{\today}
-\title{Blockchain Bitcoin}
+\title{Les suites}
 \hypersetup{
- pdfauthor={Doc. Malik Koné},
- pdftitle={Blockchain Bitcoin},
+ pdfauthor={Malik K. Koné},
+ pdftitle={Les suites},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 28.2 (Org mode 9.4.6)}, 
- pdflang={French}}
+ pdfcreator={Emacs 28.2 (Org mode 9.6.7)}, 
+ pdflang={English}}
 \begin{document}
+
+\maketitle
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
 
 {
   \usebackgroundtemplate{\includegraphics[height=\paperheight]{./page_de_garde_wadaci_j1a}}
@@ -54,10 +28,9 @@
 }
 
 \section{Introduction}
-\label{sec:org6ae4311}
-\subsection{Notions de départ}
-\label{sec:orge15284c}
-\begin{frame}[label={sec:org0e122a6}]{Notions de départ}
+\label{sec:org6f536e9}
+\begin{frame}[label={sec:org1959b3f}]{Notions de départ}
+\begin{block}{Notions de départ}
 \begin{center}
 \includegraphics[width=\textwidth]{Pictures/cryptographics/anatomy-of-a-chain-1.png}
 \end{center}
@@ -83,11 +56,11 @@
 \end{block}
 \end{column}
 \end{columns}
+\end{block}
 \end{frame}
 
-\subsection{Les types d'utilisateurs des Blockchain}
-\label{sec:org22e9ade}
-\begin{frame}[label={sec:org2fe7fed}]{Les rôles sur la blockchain}
+\begin{frame}[label={sec:org7ff72af}]{Les types d'utilisateurs des Blockchain}
+\begin{block}{Les rôles sur la blockchain}
 \begin{columns}
 \begin{column}{0.39\columnwidth}
 \begin{block}{}
@@ -111,30 +84,31 @@
 \end{block}
 \end{column}
 \end{columns}
+\end{block}
 \end{frame}
 
 \section{Bitcoin : Blockchain de 1\iere{} génération}
-\label{sec:org5f3514b}
-\subsection{La Naissance du Bitcoin}
-\label{sec:org33f371e}
-\begin{frame}[label={sec:orgaf2e55a}]{}
+\label{sec:orgeb73947}
+\begin{frame}[label={sec:org3b084ec}]{La Naissance du Bitcoin}
+\begin{block}{}
 \begin{verse}
-Toute action engendre une réaction (3\ieme{} loi de Newton)\\
+Toute action engendre une réaction (3\ieme{} loi de Newton)\\[0pt]
 \end{verse}
-\end{frame}
-\begin{frame}[label={sec:org1e2cafc}]{La Naissance du Bitcoin}
+\end{block}
+\begin{block}{La Naissance du Bitcoin}
 \begin{columns}
 \begin{column}{0.70\columnwidth}
 \begin{block}{From: Satoshi Nakamoto satoshi@vistomail.com}
 \begin{verbatiminput}
-SSubject: Bitcoin P2P e-cashe paper\\
-Newsgroups: gmane.comp.encryption.general\\
-Date: Friday 31st October 2008 18:10:00 UTC\\
-~\\
+SSubject: Bitcoin P2P e-cashe paper\\[0pt]
+Newsgroups: gmane.comp.encryption.general\\[0pt]
+Date: Friday 31st October 2008 18:10:00 UTC\\[0pt]
+~\\[0pt]
 I've been working on a new electronic cash system that's fully peer-to-peer, with no trusted third party.
 \end{verbatiminput}
 \end{block}
 \end{column}
+
 \begin{column}{0.30\columnwidth}
 \begin{block}{Cyber-Anarchisme}
 \begin{center}
@@ -143,278 +117,278 @@ I've been working on a new electronic cash system that's fully peer-to-peer, wit
 \end{block}
 \end{column}
 \end{columns}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org32b58f8}]{La Naissance du Bitcoin}
+\begin{block}{La Naissance du Bitcoin}
 \begin{block}{Cypherpunk (Hal Finney)}
 \begin{center}
 \includegraphics[width=\linewidth]{Pictures/cryonics_hal_finney.png}
 \end{center}
 \end{block}
+\end{block}
 \end{frame}
 
-\subsection{Que vaut la blockchain ?}
-\label{sec:org29a2cbc}
-\begin{frame}[label={sec:org8015952}]{Que vaut la blockchain ?}
+\begin{frame}[label={sec:org88d23fe}]{Que vaut la blockchain ?}
+\begin{block}{Que vaut la blockchain ?}
 \begin{center}
 \includegraphics[width=.8\linewidth]{Pictures/layers_btc.png}
 \end{center}
 \begin{block}{Cela dépendera de son utilité}
 \end{block}
+\end{block}
 \end{frame}
 
-\subsection{Historique du cours du Bitcoin}
-\label{sec:org2d3b012}
-\begin{frame}[label={sec:orgbef6b76}]{}
+\begin{frame}[label={sec:org6ff9387}]{Historique du cours du Bitcoin}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/00debut0.png}
 \end{center}
-\end{frame}
-\begin{frame}[label={sec:org67a4773}]{}
+\end{block}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/01debut_prix_crea.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org6089146}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/02debut_prix_1.png}
 \end{center}
-\end{frame}
-\begin{frame}[label={sec:org8212f73}]{}
+\end{block}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/03debut_prix_1000.png}
 \end{center}
-\end{frame}
-\begin{frame}[label={sec:org0a5e132}]{}
+\end{block}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/04debut_pizza.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org2fb149c}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/05debut_mtdox.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:orgb36eb10}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/06debut_silk.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org427466f}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/07debut_wiki.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org60a477c}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/10debut_BCE.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org571236c}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/11debut_ICO.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org1288e27}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/12debut_FED.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org54a508b}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/13debut_realite.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org6c82bb0}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/20adoption.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org1a5a5f0}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/21adoption_blockchain_privee.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org89c0f6b}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/21adoption_japon.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:orgb50e36e}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/22adoption_prix.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org6126cdb}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/23adoption_univ.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org02f5a82}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/23adoption_voyage.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org93e28e2}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/24adoption_network.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org3d51639}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/25adoption_enchere.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org07b8e4a}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/26adoption_train.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org422439f}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=1\textwidth]{./Pictures/Timeline/30hal_finney.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org32f6d7a}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=1\textwidth]{./Pictures/Timeline/31hal_finney.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org838c29f}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/40emballement.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:orgfd20619}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/41emballement_20000.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:orgd084714}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/42emballement_crash3.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org0f440e5}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/43emballement_rebond.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org2a3c23d}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/44emballement_crash4.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:orgc4b0909}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/45emballement_aujourdhui.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org4e37dd1}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/50emballement_banque.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:orgef2f7c8}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/51emballement_senat.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org63cd6af}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/60emballement_halving.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org4b7ffbd}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/61emballement_halving2.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:orgc0aecf8}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=1.05\textwidth]{./Pictures/Timeline/62emballement_halvings.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:orgfc05229}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/70emballement_segwit.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org2eda74a}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/71emballement_lightning.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org949d556}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/72emballement_phoenix.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:orgdeef69c}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/80emballement_pizza.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org60e6605}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/81emballement_magasin.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org5395d1f}]{}
+\begin{block}{}
 \begin{center}
 \includegraphics[width=.95\textwidth]{./Pictures/Timeline/90emballement_trump.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org2f8f553}]{et aujourd'hui ?}
+\begin{block}{et aujourd'hui ?}
 \href{https://www.coingecko.com/en/coins/bitcoin/usd?chart=7\_days\#panel}{Regardons le graphique des prix du Bitcoin jusqu'à ce jour}
+\end{block}
 \end{frame}
 
-\subsection{Quel est le problème résolu}
-\label{sec:org45541bd}
-\begin{frame}[label={sec:orgaffe3e9}]{La double dépense}
+\begin{frame}[label={sec:org41f4ea0}]{Quel est le problème résolu}
+\begin{block}{La double dépense}
 \begin{center}
 \includegraphics[width=.8\textwidth]{Pictures/double_depense.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org3d80ae3}]{Comment le problème est-il résolu ?}
+\begin{block}{Comment le problème est-il résolu ?}
 \begin{center}
 \includegraphics[width=\textwidth]{Pictures/cryptographics/anatomy-of-a-chain-1.png}
 \end{center}
@@ -429,11 +403,11 @@ I've been working on a new electronic cash system that's fully peer-to-peer, wit
 
 \begin{block}<5>{Un exemple de block}
 \end{block}
-\end{frame}
+\end{block}
 
 
 
-\begin{frame}[label={sec:orgfccfadb}]{Plus techniquement comment cela fonctionne ?}
+\begin{block}{Plus techniquement comment cela fonctionne ?}
 \begin{figure}[ht]
    \centering
    \includegraphics<1>[width=.6\textwidth]{Pictures/cryptographics/tx}
@@ -463,21 +437,21 @@ Les autres mineurs:
 \end{itemize}
 
 }      
-\end{frame}
+\end{block}
 
 
-\begin{frame}[label={sec:org93b4926}]{Et, ça marche depuis 2009 !}
+\begin{block}{Et, ça marche depuis 2009 !}
 \begin{center}
 \includegraphics[width=.7\linewidth]{Pictures/pizza_1millions.jpg}
 \end{center}
 \begin{itemize}
 \item 18/05/2010, \href{https://bitcointalk.org/index.php?topic=137.msg1195}{les Pizza à 10000 BTC de Laslo (bitcointalk.org)}
 \end{itemize}
+\end{block}
 \end{frame}
 
-\subsection{Les limites}
-\label{sec:org2286b02}
-\begin{frame}[label={sec:orgc06464b}]{Des problèmes de taille}
+\begin{frame}[label={sec:org7eec08b}]{Les limites}
+\begin{block}{Des problèmes de taille}
 \begin{block}{Puissance nécessaire}
 \begin{itemize}
 \item \href{https://www.blockchain.com/fr/charts/hash-rate}{Hash Rate}  (TeraHash/s, Tera = 1000 milliards)
@@ -498,46 +472,47 @@ Les autres mineurs:
 \end{block}
 \begin{block}{Manque d'adaptabilité}
 \end{block}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:org568f4f1}]{Coût énergétique}
+\begin{block}{Coût énergétique}
 \begin{center}
 \includegraphics[width=\textwidth]{Pictures/mining-farm-bitcoin.jpg}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:orgc5711b1}]{\href{https://www.blockchain.com/charts/pools}{Concentration du hashrate} (janv 2023)}
+\begin{block}{\href{https://www.blockchain.com/charts/pools}{Concentration du hashrate} (janv 2023)}
 \begin{center}
 \includegraphics[width=.6\textwidth]{Pictures/hashrate_distrib_jan23.png}
 \end{center}
-\end{frame}
+\end{block}
 
-\begin{frame}[label={sec:orgfca2973}]{\href{https://www.blockchain.com/explorer/charts/transactions-per-second}{Vitesse de traitement des transactions}}
+\begin{block}{\href{https://www.blockchain.com/explorer/charts/transactions-per-second}{Vitesse de traitement des transactions}}
 \begin{center}
 \includegraphics[width=\textwidth]{Pictures/cryptographics/the-scaling-issue.png}
 \end{center}
-\end{frame}
-\begin{frame}[label={sec:org1637eed}]{Jeux d'instructions limités}
+\end{block}
+\begin{block}{Jeux d'instructions limités}
 \begin{center}
 \includegraphics[width=.9\textwidth]{Pictures/automate_simple.jpeg}
 \end{center}
-\end{frame}
-\begin{frame}[label={sec:org4a9b083}]{Hard-forks}
+\end{block}
+\begin{block}{Hard-forks}
 \begin{center}
 \includegraphics[width=.9\textwidth]{Pictures/cryptographics/blockchain-hard-fork.png}
 \end{center}
+\end{block}
 \end{frame}
 
 \section{Perspectives}
-\label{sec:orgf147ad8}
-\subsection{Perspectives}
-\label{sec:orgb129057}
-\begin{frame}[label={sec:orgeeebfab}]{}
+\label{sec:orgf246700}
+\begin{frame}[label={sec:org7df0c43}]{Perspectives}
+\begin{block}{}
 \begin{block}{Naissance d'une techno}
 \end{block}
 \begin{block}{qui réunie}
 \end{block}
 \begin{block}{mais qui pourrait être plus efficace}
+\end{block}
 \end{block}
 \end{frame}
 \end{document}

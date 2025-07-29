@@ -1,8 +1,8 @@
 * Atelier "Décode ta richesse avec la blockchain Cardano"
-Ce dossier contient des ressources pour 5 jours d'ateliers organisés par WADACI.  Vous y trouverez les images, les notes de cours, les exercices et les diapositives utilisé pendant ces 5 journées.
+Ce dossier contient des ressources pour 5 jours d'ateliers organisés par WADACI.  Vous y trouverez les images, les notes de cours, les exercices et les diapositives utilisées pendant ces cinq journées.
 
 ** Notes techniques
-- Les sources des présentations sont au format org-mode de [[https://www.gnu.org/software/emacs/][GNU emacs]].  Si vous n'en avez pas entendu parlé regardez la très bonne vidéo de System crafters "[[https://www.youtube.com/watch?v=PNE-mgkZ6HM&t=1s][Emacs From Scratch #6 - Organisez votre vie avec le mode Org]]".
+- Les sources des présentations sont au format org-mode de [[https://www.gnu.org/software/emacs/][GNU emacs]].  Si vous n'en avez pas entendu parlé, je vous invite à regarder la très bonne vidéo de System crafters qui présente ce super logiciel "[[https://www.youtube.com/watch?v=PNE-mgkZ6HM&t=1s][Emacs From Scratch #6 - Organisez votre vie avec le mode Org]]".
 
   J'utilise ensuite `org-beamer-export-to-latex` pour convertir le `.org` en `.tex`  et je compile le `LaTeX` pour obtenir des fichiers pdf présentables.
 

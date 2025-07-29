@@ -601,9 +601,12 @@ Empereurs,  Élus,  Mineurs, vous et moi.
 - Quelle avenir pour les blockchains publiques ?
 *** 
 **** Merci
-
-    
-    
-    
+#+BEGIN_SRC latex  -i
+{
+  \usebackgroundtemplate{\includegraphics[height=\paperheight]{./remerciement}}
+  \frame[plain]{
+  }
+}
+#+END_SRC
 
 

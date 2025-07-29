@@ -1,4 +1,4 @@
-% Created 2023-02-15 mer. 13:13
+% Created 2023-03-10 ven. 14:10
 % Intended LaTeX compiler: pdflatex
 \documentclass[presentation]{beamer}
 \usepackage[utf8]{inputenc}
@@ -36,14 +36,14 @@
 }
 \usetheme{default}
 \author{Doc. Malik Koné}
-\date{21/01/2023}
+\date{\today}
 \title{Blockchains et Cryptographie}
 \hypersetup{
  pdfauthor={Doc. Malik Koné},
  pdftitle={Blockchains et Cryptographie},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 28.2 (Org mode 9.4.6)}, 
+ pdfcreator={Emacs 28.2 (Org mode 9.5.5)}, 
  pdflang={French}}
 \begin{document}
 
@@ -54,10 +54,10 @@
 }
 
 \section{Introduction}
-\label{sec:orgfe9a5cc}
+\label{sec:orgec0d3ac}
 \subsection{De quoi allons-nous parler ?}
-\label{sec:org4af2e2c}
-\begin{frame}[label={sec:org2ba3ca3}]{De quoi allons-nous parler ?}
+\label{sec:orge94a8da}
+\begin{frame}[label={sec:orgbe157e8}]{De quoi allons-nous parler ?}
 \begin{center}
 \includegraphics[width=\textwidth]{Images/consensus_cryptographie.png}
 \end{center}
@@ -84,8 +84,8 @@
 \end{columns}
 \end{frame}
 \subsection{C'est quoi déjà la blockchain Bitcoin}
-\label{sec:org4141334}
-\begin{frame}[label={sec:org9a3c089}]{Une chaine de blocs}
+\label{sec:org37da688}
+\begin{frame}[label={sec:org26c2e95}]{Une chaine de blocs}
 \begin{block}<1->{}
 \begin{figure}[ht]
    \centering
@@ -113,7 +113,7 @@ Empereurs,  Élus,  Mineurs, vous et moi.
 \end{block}
 \end{frame}
 
-\begin{frame}[label={sec:orge8def4b}]{C'est un DLT : \emph{Distributed Ledger Technology}}
+\begin{frame}[label={sec:org085dd1b}]{C'est un DLT : \emph{Distributed Ledger Technology}}
 \begin{figure}[ht]
    \centering
 \includegraphics<1>[width=.6\textwidth]{Images/tx}
@@ -147,14 +147,14 @@ Les autres mineurs:
 \end{frame}
 
 \section{La cryptographie au service de la blockchain}
-\label{sec:org0098c4e}
+\label{sec:orga8cb93b}
 \subsection{Transactions (tx)}
-\label{sec:orgddc64f4}
-\begin{frame}[label={sec:orgae65ccd}]{Validité d'une transaction}
+\label{sec:org3c51484}
+\begin{frame}[label={sec:org1c6804f}]{Validité d'une transaction}
 \begin{block}{Qu'est qui rend une transaction valide ?}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:orgc02c2d1}]{Validité d'une transaction}
+\begin{frame}[label={sec:orge385b69}]{Validité d'une transaction}
 \begin{block}{Qu'est qui rend une transaction valide ?}
 \end{block}
 \begin{columns}
@@ -183,7 +183,7 @@ Les autres mineurs:
 \end{frame}
 
 
-\begin{frame}[label={sec:org3c96be5}]{Le Modèle des UTXO : Unspent Transaction Output}
+\begin{frame}[label={sec:orgb29dfe4}]{Le Modèle des UTXO : Unspent Transaction Output}
 \begin{block}{Les UTXO sont comme des tirelires}
 \only<1>{
 \begin{figure}[htbp]
@@ -202,7 +202,7 @@ Les autres mineurs:
 \end{block}
 \end{frame}
 
-\begin{frame}[label={sec:org71f5f62}]{Ça ressemble à quoi une transaction dans un bloc ?}
+\begin{frame}[label={sec:org4a6cb3d}]{Ça ressemble à quoi une transaction dans un bloc ?}
 \begin{block}{Explorons avec l'\href{https://explorer.btc.com/btc/block/772825}{explorer.btc.com}}
 \begin{figure}[htbp]
 \centering
@@ -214,34 +214,34 @@ Les autres mineurs:
 
 
 \subsection{Le modèle UTXO plus en détail}
-\label{sec:org66f2568}
-\begin{frame}<1>[label={sec:org17dc626}]{}
+\label{sec:org0e01238}
+\begin{frame}<1>[label={sec:orga920807}]{}
 \begin{center}
 \includegraphics[width=.9\textwidth]{Images/Transaction1.png}
 \end{center}
 \end{frame}
-\begin{frame}<2>[label={sec:org4ea5444}]{}
+\begin{frame}<2>[label={sec:org76ab5cc}]{}
 \begin{center}
 \includegraphics[width=.9\textwidth]{Images/Transaction2.png}
 \end{center}
 \end{frame}
 
-\begin{frame}<3>[label={sec:org6455523}]{}
+\begin{frame}<3>[label={sec:org89afbe4}]{}
 \begin{center}
 \includegraphics[width=.9\textwidth]{Images/Transaction3.png}
 \end{center}
 \end{frame}
-\begin{frame}<4>[label={sec:orgea1cd9a}]{}
+\begin{frame}<4>[label={sec:org92251a4}]{}
 \begin{center}
 \includegraphics[width=.9\textwidth]{Images/Transaction4.png}
 \end{center}
 \end{frame}
-\begin{frame}<5>[label={sec:org3b84a54}]{}
+\begin{frame}<5>[label={sec:orge4d997a}]{}
 \begin{center}
 \includegraphics[width=.9\textwidth]{Images/Transaction5.png}
 \end{center}
 \end{frame}
-\begin{frame}<6>[label={sec:org1930b45}]{}
+\begin{frame}<6>[label={sec:org24282c2}]{}
 \begin{center}
 \includegraphics[width=.9\textwidth]{Images/Transaction6.png}
 \end{center}
@@ -249,7 +249,7 @@ Les autres mineurs:
 
 
 
-\begin{frame}[label={sec:orgba15f31}]{En résumé}
+\begin{frame}[label={sec:org2e9e0eb}]{En résumé}
 \begin{itemize}
 \item Chaque pièces est unique (non fungible)
 \item on réfère des pièces particulières lorsqu'on les dépense
@@ -259,8 +259,8 @@ Les autres mineurs:
 \end{frame}
 
 \subsection{Hash et signatures}
-\label{sec:orgf8b45b8}
-\begin{frame}[label={sec:org1416328}]{Propriété des Hash}
+\label{sec:org762f216}
+\begin{frame}[label={sec:org3e924b3}]{Propriété des Hash}
 \begin{itemize}
 \item Résistance à la préimage
 \item Résistance à collision
@@ -274,8 +274,8 @@ quantum resistant
 \end{frame}
 
 \subsection{Comment vérifier les transactions}
-\label{sec:org7e10f49}
-\begin{frame}[label={sec:org6897415}]{Arbre de Merkle}
+\label{sec:org517c5b0}
+\begin{frame}[label={sec:orgb818462}]{Arbre de Merkle}
 \begin{figure}[htbp]
 \centering
 \includegraphics[height=.8\textheight]{Images/merkle.png}
@@ -289,9 +289,9 @@ quantum resistant
 \end{frame}
 
 \subsection{Sécurité des clés}
-\label{sec:org201c967}
+\label{sec:orgef3aaac}
 
-\begin{frame}[label={sec:orgf78bf71}]{Création des clefs}
+\begin{frame}[label={sec:org69f860f}]{Création des clefs}
 \begin{itemize}
 \item La clef privée: un nombre au hasard parmis \(2\textsuperscript{160}\) possibilité
 \begin{itemize}
@@ -304,7 +304,7 @@ quantum resistant
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orga02c1d7}]{ECDSA elipitic Curve Digital Signature Algorithm}
+\begin{frame}[label={sec:org48fb07c}]{ECDSA elipitic Curve Digital Signature Algorithm}
 \begin{columns}
 \begin{column}{0.46\columnwidth}
 \begin{block}<1->{Génération des clés}
@@ -330,10 +330,10 @@ quantum resistant
 
 
 \section{Systèmes distribués}
-\label{sec:orgdab6eb7}
+\label{sec:org5091e83}
 \subsection{Système distrivués}
-\label{sec:org2880269}
-\begin{frame}[label={sec:org35ec938}]{De l'infiniment petit à l'infiniment grand}
+\label{sec:orgaf3e8dd}
+\begin{frame}[label={sec:org5a1062d}]{De l'infiniment petit à l'infiniment grand}
 \begin{center}
 \includegraphics[width=.6\textwidth]{Images/grand_petit.png}
 \end{center}
@@ -364,7 +364,7 @@ quantum resistant
 
 
 
-\begin{frame}[label={sec:org969e7f9}]{Propriétés des Systèmes distribués}
+\begin{frame}[label={sec:orgb3001bc}]{Propriétés des Systèmes distribués}
 \begin{columns}
 \begin{column}{0.46\columnwidth}
 \begin{block}{}
@@ -394,7 +394,7 @@ quantum resistant
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org99a0d58}]{Problèmes des Systèmes distribués}
+\begin{frame}[label={sec:orgb2a19c2}]{Problèmes des Systèmes distribués}
 \begin{columns}
 \begin{column}{0.60\columnwidth}
 \begin{block}{}
@@ -429,8 +429,8 @@ Tout ce qui \emph{était} calculable l'était avec la \alert{Machine de Turing}
 
 
 \subsection{Les Généraux Byzantins}
-\label{sec:org8c8d32b}
-\begin{frame}[label={sec:org1324014}]{Attaque ou retraite ?}
+\label{sec:org017b24c}
+\begin{frame}[label={sec:org09c9e6c}]{Attaque ou retraite ?}
 \begin{block}{Le problème des généraux Byzantins}
 \only<1>{
 \begin{figure}[htbp]
@@ -450,7 +450,7 @@ Tout ce qui \emph{était} calculable l'était avec la \alert{Machine de Turing}
 \end{block}
 \end{frame}
 
-\begin{frame}[label={sec:org1238962}]{BFT Systems}
+\begin{frame}[label={sec:org9294e01}]{BFT Systems}
 \begin{block}{\emph{Systèmes tolérants aux fautes Byzantines}}
 \begin{itemize}
 \item Nombre et participants connus
@@ -472,8 +472,8 @@ Tout ce qui \emph{était} calculable l'était avec la \alert{Machine de Turing}
 \end{frame}
 
 \subsection{Blockchains et consensus}
-\label{sec:org659404b}
-\begin{frame}[label={sec:orgbc2e499}]{Preuve de travail (PoW) : Consensus de Nakamoto}
+\label{sec:orgb9218ee}
+\begin{frame}[label={sec:orgf49b2d8}]{Preuve de travail (PoW) : Consensus de Nakamoto}
 \only<1>{
 \begin{center}
 \includegraphics[height=.8\textheight]{Images/distrib2.png}
@@ -553,8 +553,8 @@ Tout ce qui \emph{était} calculable l'était avec la \alert{Machine de Turing}
 \end{frame}
 
 \subsection{Comment maintenir le Consensus autrement ?}
-\label{sec:org576c526}
-\begin{frame}[label={sec:org4604eb2}]{Consensus basé un enjeu}
+\label{sec:org1b8ffcc}
+\begin{frame}[label={sec:org72fbc6c}]{Consensus basé un enjeu}
 \begin{columns}
 \begin{column}{0.4\columnwidth}
 \begin{block}<1->{PoS, DPoS}
@@ -599,7 +599,7 @@ Tout ce qui \emph{était} calculable l'était avec la \alert{Machine de Turing}
 \end{column}
 \end{columns}
 \end{frame}
-\begin{frame}[label={sec:orgd9ae9f7}]{D'autres consensus}
+\begin{frame}[label={sec:orgbfd5388}]{D'autres consensus}
 \begin{columns}
 \begin{column}{0.4\columnwidth}
 \begin{block}{}
@@ -647,7 +647,7 @@ Tout ce qui \emph{était} calculable l'était avec la \alert{Machine de Turing}
 \end{columns}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:orgb5cea10}]{Vulnérabilité des POS}
+\begin{frame}[label={sec:org8cbcbb1}]{Vulnérabilité des POS}
 \begin{center}
 \includegraphics[height=.3\paperheight]{Images/longuest_chain.png}
 \end{center}
@@ -667,7 +667,7 @@ Tout ce qui \emph{était} calculable l'était avec la \alert{Machine de Turing}
 
 
 
-\begin{frame}[label={sec:org87d9e3f}]{Optimisations}
+\begin{frame}[label={sec:org6284eb0}]{Optimisations}
 \begin{block}{Le trilemme}
 \begin{center}
 \includegraphics[width=.7\paperheight]{Images/trilemme_ven.png}
@@ -675,7 +675,7 @@ Tout ce qui \emph{était} calculable l'était avec la \alert{Machine de Turing}
 \end{block}
 \end{frame}
 
-\begin{frame}[label={sec:org6f3e276}]{Optimisations}
+\begin{frame}[label={sec:org0e58eaa}]{Optimisations}
 \begin{columns}
 \begin{column}{0.46\columnwidth}
 \begin{block}<1->{Vitesses : Segwit}
@@ -706,18 +706,23 @@ Tout ce qui \emph{était} calculable l'était avec la \alert{Machine de Turing}
 
 
 \section{Perspectives}
-\label{sec:orge2c7ef8}
+\label{sec:orgec75651}
 \subsection{Perspectives}
-\label{sec:org07aad0e}
-\begin{frame}[label={sec:org1b99a6d}]{}
+\label{sec:org4dd5a07}
+\begin{frame}[label={sec:org6c58303}]{}
 \begin{itemize}
 \item Comment maintenir les consensus ?
 \item Cryptographie à l'épreuve des ordinateurs quantiques ?
 \item Quelle avenir pour les blockchains publiques ?
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org6827cf2}]{}
+\begin{frame}[label={sec:org3d009df}]{}
 \begin{block}{Merci}
+{
+  \usebackgroundtemplate{\includegraphics[height=\paperheight]{./remerciement}}
+  \frame[plain]{
+  }
+}
 \end{block}
 \end{frame}
 \end{document}
