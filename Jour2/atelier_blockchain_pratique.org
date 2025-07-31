@@ -1,19 +1,20 @@
-* Activité pratique de la deuxième journée de l'atelier
-** Créer une blockchain en python de zéro
+ Activité pratique de la deuxième journée de l'atelier
+** Créer une blockchain en python à partir de zéro
  - Objectif : 
-Créer une application qui permet à ses utilisateurs de publier des trucs sur une blockchain à l'aide d'une interface simple
+Créer une application qui permet à ses utilisateurs de publier des messages sur une blockchain en utilisant une interface simple.
  - Prérequis :
 Avoir une environnement de développement python installé.
+Etre capable de comprendre et d'executer des commandes linux dans windows.
 
 ** Prérequis installation de l'IDE
 
 *** télécharger et installer un éditeur de texte
 
-*** Installer python 3.8.4
+*** Installer python 3.8.4 (ou une version plus récente)
 
 https://www.python.org/downloads/windows/
 
-cocher la case "add python" to PATH au moment au début l'installation
+(Pour windows) Cocher la case "add python" to PATH au moment de l'installation
 **** Vérifier que python est bien installé
 - Ouvrir un terminal (ou invite de commande) et taper
 
@@ -28,8 +29,7 @@ projet_blockchain
 └── blockchain_tuto
 #+END_SRC
 
-Dans l'invite de commande taper:
-
+Pour créer un dossier projet_blockchain et un sous-dossier blockchain_tuto, taper dans un terminal:
 #+BEGIN_SRC bash  -i
 mkdir projet_blockchain ; cd projet_blockchain; mkdir blockchain_tuto
 pip install virtualenv
@@ -42,7 +42,7 @@ dir
 
 *** Créer l'environnement virtuel
 
-Pour installer des programmes (ou des bibliothèques) python nous allons utiliser le gestionnaire de paquet officiel python qui s'appell 'pip'
+Pour installer des programmes (ou des bibliothèques) python nous allons utiliser le gestionnaire de paquet officiel python qui s'appelle 'pip'
 
 Commençons par installer un programme qui va gérer notre environnement
 #+BEGIN_SRC bash  -i
@@ -55,10 +55,10 @@ virtualenv .
 #+END_SRC
 le '.' indique le dossier courant
 
-Cela doit créer les dossiers 'Scripts' et 'Lib'.  et ça va isoler notre projet des autres projet python que vous pourriez développé par ailleur
+Cela doit créer les dossiers 'Scripts' et 'Lib' et ça va isoler notre projet des autres projets python que vous pourriez développer par ailleur
 
 Ensuite activons cet environnement.
-- à la racine du projet (dans projet_blockchain)
+- à la racine du projet (dans le dossier projet_blockchain)
 #+BEGIN_SRC bash  -i
 Scripts\activate
 # parfois il faut faire Scripts\activate.bat
@@ -71,26 +71,25 @@ Lorsque vous aurez besoin de désactiver l'environnement virutel faites
 Scripts\deactivate
 #+END_SRC
  
-** étapes  (programmation)
+** Étapes  (programmation)
 
 
-dans le dossier blockchain_tuto
-
+Dans le dossier blockchain_tuto,
+#+BEGIN_SRC bash  -i
 projet_blockchain
 └── blockchain_tuto
+#+END_SRC
 
-créer avec sublime texte le fichier 'noeud_serveur.py'
+Créez avec sublime texte le fichier 'noeud_serveur.py'.
 
-*** enregistrer les transaction dans des blocs
+*** Enregistrer les transactions dans des blocs
 
-chaque transaction doit avoir:
+Chaque transaction doit avoir:
+- un contenu
+- un auteur
+- une étiquette temporelle
 
-un contenu
-un auteur
-une étiquette temporelle
-
-on va stocker tout ça en json
-
+Nous allons stocker tout ça au format `json` comme suit:
 #+begin_json
 {
 "author": "non d'auteur",
@@ -99,7 +98,7 @@ on va stocker tout ça en json
 }
 #+end_json
 
-on va travailler dans le fichier noeud_serveur.py
+Nous allons va travailler dans le fichier `noeud_serveur.py`
 
 #+begin_src python  -i
 class block:
@@ -110,24 +109,24 @@ class block:
 
 #+end_src
 
-*** ajouter une empreinte digitale sur les blocs
+*** Ajouter une empreinte digitale sur les blocs
 
 +################ pause jusqu'à 11h  ################+
 
- pour s'assurer qu'il n'y a pas modification du block on va utiliser des fonctions cryptographic de hash.  elle doit avoir les propriétés suivantes:
- - facile à calculer
- - pour une entrée donnée elle doit toujours renvoyer la même sortie (hash)
- - le resultat doit apparaitre uniformémeent aléatoire
+ Pour s'assurer qu'il n'y a pas modification du block nous allons utiliser des fonctions cryptographique de hash.  Cette fonctioon doit avoir les propriétés suivantes:
+ - Facile à calculer,
+ - Pour une entrée donnée elle doit toujours renvoyer la même sortie (hash).
+ - Le resultat doit apparaitre uniformement aléatoire.
 
- il sera donc impossible de remonter aux données depuis le hash et si vous connaisser le hash et l'entrée vous pouvez facilement vérifier que c'est le bon hash
+Grâce à ces propriétés,  il sera donc impossible de remonter aux données depuis le hash.  Parcontre, si vous pouvez facilement vérifier qu'un hash correspond à une entrée en particulier.
 
- en python on peut simplement utiliser
+Pour créer le hash du text 'test' en python, nous pouvons simplement utiliser:
  #+begin_src python  -i
 from hashlib import sha256
 sha256(b'test').hexdigest()
  #+end_src
 
- on va sauvegarder le hash du block dans un champ de l'objet block et ce sera son identité.
+Nous allons sauvegarder le hash du block dans un champ de l'objet block (voir plus haut la `class block`).  Ce hash ce sera comme la carte d'identité du block.
 
  #+begin_src python  -i
 from hashlib import sha256
@@ -138,17 +137,17 @@ def calculer_hash(block):
     return sha256(block_string.encode()).hexdigest()
  #+end_src
 
- en pratique toute les transactions sont hasher uniquement mais ici on simplifiera car ça ne change pas le fonctionnement de la blockchain
+ En pratique chaque transactions est hashée individuellement. Dans notre cas, nous simplifierons en hashant toutes les transactions en stand-by d'un coup.  Cela ne change pas le fonctionnement de la blockchain.
 
-*** enchainer les blocs
+*** Enchainer les blocs
 
- maintenant que nous avons les blocks, il nous faut garder ensemble.  nous pourrions simplement utiliser une liste mais alors quelqu'un pourrait remplacer un ancien block par un nouveau altéré.
+ Maintenant que nous avons des blocks, il nous faut les garder ensemble, les lier.  Nous pourrions simplement utiliser une liste (en python). Le problème c'est que quelqu'un pourrait remplacer un ancien block par un nouveau block sans que cela se voit immédiatement.
 
-il faut nous assurer que le changement dans un ancien block invalide toute la chaine.  la façon de faire ça avec la blockchain du bitcoin, c'est de de créer une dépendance entre les blocs en les enchainant avec leur hash.  dans chaque nouveau bloc on insert le hachage du bloc précédent.
+Il faut donc nous assurer que le changement d'un block invalide toute la chaine.  Pour faire cela ça avec la blockchain du bitcoin, nous allons créer une dépendance entre  les blocs en les enchainant avec leur hash.  Ainsi, dans chaque nouveau bloc nous inserons le hash du bloc précédent.
 
-se pose alors la question du premier bloc.  c'est un bloc particulier que l'on appelle le bloc génèse.  il est créer de façon exceptionnelle.
+Se pose alors la question du premier bloc?  C'est un bloc particulier que l'on appelle le bloc génèse (genesis).  Il est créé ex-nihilo, de façon exceptionnelle.
 
-ok.  donc ajoutons un champ /prec_hachage/ à notre objet block et implémentons la structure initiale de la blockchain
+ok.  Donc nous ajoutons un champ /prec_hachage/ à notre objet block et nous implémentons la structure initiale de la blockchain
 
  #+begin_src python  -i
 from hashlib import sha256
@@ -180,7 +179,7 @@ class chainedeblocs:
 
     def creer_bloc_genese(self):
         """
-        crée le bloc génèse et l'ajoute à notre chaine.
+        Crée le bloc génèse et l'ajoute à notre chaine.
         ce bloc à une index 0, un prec_hachage null et un hachage valide
         """
         bloc_genese = bloc(0, [], 0, "0")
@@ -192,19 +191,19 @@ class chainedeblocs:
         return self.chaine[-1]
  #+end_src
 
- maintenant si le contenu d'un bloc change:
- - son hash va changé
- - son hash ne correspondra plus à celui référencé dans le bloc suivant
- - donc le hash du bloc suivant va changer cela va invalider tous les blocs qui suivent
+ Maintenant si le contenu d'un bloc change:
+ - Son hash va changer
+ - Son hash ne correspondra plus à celui référencé dans le bloc suivant
+ - Donc le hash du bloc suivant va changer et ainsi de suite.  Ainis en vérifiant le hash du dernier block nous pouvois savoir s'il y a eu un changement  à un endroit quelconque de la chaine.
 
-*** Implémenter un algorithm de preuve par le travail
+*** Implémenter l'algorithm de preuve par le travail
 
-Mais il y a un problème.  Si on change un bloc et son hash on peut facilement recalculer le hash de tous les autres bloc pour former une nouvelle chaine valide.
-Pour éviter cela on va rendre le calcule du hash plus difficile.  On ne va accepter que les hash qui ont un nombre définie de zéros au début.
+Mais il y a un problème.  Si nous changeons un bloc et son hash, nous pouvons aussi facilement recalculer le hash de tous les autres bloc pour former une nouvelle chaine avec de nouveau hash.  Pour éviter cela nous alons va rendre le calcul du hash plus difficile.  On ne va accepter que des hash qui commencent par un nombre prédéfini de zéros.  Si c'est 3 alors  le hash d'un bloc doit être de la from '000abdefhash...'
 
-Mais le hash ne va pas changer tant que nous ne changeons pas les données, et on ne veux pas les changer alors comment faire ?  il suffit d'ajouter un truc hasher en plus des donnée un truc bidon de tel sorte que le hash commence par le nombre de zéro que l'on veux.  Ce truc bidon c'est le *nonce*.  C'est un nombre que l'on va incrémenté jusqu'à ce que je hash du bloc ai le nombre de zéros voulus.
+Cependant le hash ne va pas changer tant que nous ne changeons pas les données, et on ne veux pas les changer alors comment faire ?
+Et bien, il suffit d'ajouter quelquechose dans le block.  Ce truc bidon c'est le *nonce* (numerical once).  C'est un nombre que l'on va incrémenté jusqu'à ce que le hash du bloc ait le nombre de zéros voulu.
 
-Dans la blockchain cette technique s'appelle l'algorithm du *Hashcash*.  Nous en implémentons une version simplifiée.  Le nombre de zéro va définir la difficulté de preuve par le travail.  Plus il y aura de zéro plus ce sera difficle de trouve le *nonce*.  par contre se sera toujours aussi facile de vérifier que le hash est correct.
+Dans la blockchain cette technique s'appelle l'algorithm du *Hashcash*.  Nous en implémentons une version simplifiée.  Le nombre de zéro va définir la difficulté de la preuve par le travail.  Plus il y aura de zéros plus ce sera difficle de trouve le bon *nonce*.  Par contre se sera toujours aussi facile de vérifier que le hash est correct.
 
 #+BEGIN_SRC python  -i
 class Chainedeblocs:
@@ -225,7 +224,7 @@ class Chainedeblocs:
         return hachage
 #+END_SRC
 
-Remarque: il n'y a pas de stratégie particulier pour trouver le nonce. il faut tout tester.  ou utiliser du matériel qui peut calculer des hash avec moins d'instruction CPU.
+Remarque: il n'y a pas de stratégie particulière pour trouver le nonce. Il faut tout tester, ou utiliser du matériel qui peut calculer des hash avec moins d'instructions CPU.
 
 *** Ajouter de bloc sur la chaine
 
