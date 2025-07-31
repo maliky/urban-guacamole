@@ -1,5 +1,5 @@
 * Point de la 4ème journée de l'atelier
-Le matin comme l'après midi nous avons travailler sur avec les tutoriel de demeter.run qui permettent de communiquer avec des noeuds cardano sur le testnet.
+Le matin comme l'après midi nous avons travaillé sur avec les tutoriels de demeter.run qui permettent de communiquer avec des noeuds cardano sur le testnet.
 - Tutoriel 1 : Créer des transaction
 - Tutoriel 2: Créer et battre sa propre monnaie.
 
