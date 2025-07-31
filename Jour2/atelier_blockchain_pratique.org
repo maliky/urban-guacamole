@@ -1,4 +1,5 @@
- Activité pratique de la deuxième journée de l'atelier
+ Activité pratique de la deuxième journée de l'atelier.
+ 
 ** Créer une blockchain en python à partir de zéro
  - Objectif : 
 Créer une application qui permet à ses utilisateurs de publier des messages sur une blockchain en utilisant une interface simple.
@@ -29,7 +30,7 @@ projet_blockchain
 └── blockchain_tuto
 #+END_SRC
 
-Pour créer un dossier projet_blockchain et un sous-dossier blockchain_tuto, taper dans un terminal:
+Pour créer un dossier projet_blockchain et un sous-dossier blockchain_tuto, saisir dans un terminal:
 #+BEGIN_SRC bash  -i
 mkdir projet_blockchain ; cd projet_blockchain; mkdir blockchain_tuto
 pip install virtualenv
@@ -42,54 +43,52 @@ dir
 
 *** Créer l'environnement virtuel
 
-Pour installer des programmes (ou des bibliothèques) python nous allons utiliser le gestionnaire de paquet officiel python qui s'appelle 'pip'
+Pour installer des programmes (ou des bibliothèques) python utilisons le gestionnaire de paquet officiel python qui s'appelle 'pip'
 
 Commençons par installer un programme qui va gérer notre environnement
 #+BEGIN_SRC bash  -i
 pip install virtualenv
 #+END_SRC
 
-puis on créer l'environnement virtuel
+puis créons l'environnement virtuel
 #+BEGIN_SRC bash  -i
 virtualenv .
 #+END_SRC
 le '.' indique le dossier courant
 
-Cela doit créer les dossiers 'Scripts' et 'Lib' et ça va isoler notre projet des autres projets python que vous pourriez développer par ailleur
+Cela crée les dossiers 'Scripts' et 'Lib' et isole notre projet des autres projets python que vous pourrions développer par ailleur.
 
-Ensuite activons cet environnement.
-- à la racine du projet (dans le dossier projet_blockchain)
+Activons cet environnement à la racine du projet (dans le dossier projet_blockchain)
 #+BEGIN_SRC bash  -i
 Scripts\activate
 # parfois il faut faire Scripts\activate.bat
 #+END_SRC
 
-Si votre environnement est activité vous verrez le nom du dossier entre parenthèse
+Une fois l'environnement activité vous devriez voir le nom du dossier aparaitre entre parenthèse.
 
-Lorsque vous aurez besoin de désactiver l'environnement virutel faites
+Pour désactiver l'environnement virutel faites
 #+BEGIN_SRC bash  -i
 Scripts\deactivate
 #+END_SRC
  
 ** Étapes  (programmation)
 
-
-Dans le dossier blockchain_tuto,
+Dans le dossier blockchain_tuto
 #+BEGIN_SRC bash  -i
 projet_blockchain
 └── blockchain_tuto
 #+END_SRC
 
-Créez avec sublime texte le fichier 'noeud_serveur.py'.
+Créer le fichier 'noeud_serveur.py' (avec sublime texte, par exemple)
 
 *** Enregistrer les transactions dans des blocs
 
-Chaque transaction doit avoir:
+Chaque transaction doit contenir:
 - un contenu
 - un auteur
 - une étiquette temporelle
 
-Nous allons stocker tout ça au format `json` comme suit:
+Stockons tout ça dans une structure `json` comme suit:
 #+begin_json
 {
 "author": "non d'auteur",
@@ -98,8 +97,7 @@ Nous allons stocker tout ça au format `json` comme suit:
 }
 #+end_json
 
-Nous allons va travailler dans le fichier `noeud_serveur.py`
-
+Dans le fichier `noeud_serveur.py` créer la class block
 #+begin_src python  -i
 class block:
     def __init__(self, index, transactions, timestamp):
@@ -113,20 +111,20 @@ class block:
 
 +################ pause jusqu'à 11h  ################+
 
- Pour s'assurer qu'il n'y a pas modification du block nous allons utiliser des fonctions cryptographique de hash.  Cette fonctioon doit avoir les propriétés suivantes:
+ Pour s'assurer qu'il n'y a pas modification du bloc nous utilisons une fonction cryptographique, le hash.  Cette fonction a les propriétés suivantes:
  - Facile à calculer,
- - Pour une entrée donnée elle doit toujours renvoyer la même sortie (hash).
- - Le resultat doit apparaitre uniformement aléatoire.
+ - Pour une entrée donnée, elle renvoie toujours la même chose en sortie (le hash).
+ - Le resultat paraît uniformement aléatoire.
 
-Grâce à ces propriétés,  il sera donc impossible de remonter aux données depuis le hash.  Parcontre, si vous pouvez facilement vérifier qu'un hash correspond à une entrée en particulier.
+Grâce à ces propriétés, il est impossible de retrouver les données originelles en connaissant le hash.  Parcontre, il est facile de vérifier qu'un hash correspond à une entrée particulière.
 
-Pour créer le hash du text 'test' en python, nous pouvons simplement utiliser:
+Pour créer le hash du text 'test' en python, nous utilisons
  #+begin_src python  -i
 from hashlib import sha256
 sha256(b'test').hexdigest()
  #+end_src
 
-Nous allons sauvegarder le hash du block dans un champ de l'objet block (voir plus haut la `class block`).  Ce hash ce sera comme la carte d'identité du block.
+Nous sauvegardons le hash du bloc dans un champ de l'objet bloc (voir plus haut la `class block`).  Ce hash est comme la carte d'identité du block.
 
  #+begin_src python  -i
 from hashlib import sha256
@@ -137,17 +135,17 @@ def calculer_hash(block):
     return sha256(block_string.encode()).hexdigest()
  #+end_src
 
- En pratique chaque transactions est hashée individuellement. Dans notre cas, nous simplifierons en hashant toutes les transactions en stand-by d'un coup.  Cela ne change pas le fonctionnement de la blockchain.
+En pratique chaque transactions est hashée individuellement. Dans notre cas, nous simplifions notre code en hashant toutes les transactions d'un seul coup, mais  cela ne change pas le fonctionnement de la blockchain.
 
 *** Enchainer les blocs
 
- Maintenant que nous avons des blocks, il nous faut les garder ensemble, les lier.  Nous pourrions simplement utiliser une liste (en python). Le problème c'est que quelqu'un pourrait remplacer un ancien block par un nouveau block sans que cela se voit immédiatement.
+Maintenant que nous avons des blocks, il nous faut les lier.  Nous pourrions simplement utiliser une liste python.  Cependant, quelqu'un pourrait remplacer un ancien bloc par un nouveau bloc dans la liste sans que cela se voit immédiatement.
 
-Il faut donc nous assurer que le changement d'un block invalide toute la chaine.  Pour faire cela ça avec la blockchain du bitcoin, nous allons créer une dépendance entre  les blocs en les enchainant avec leur hash.  Ainsi, dans chaque nouveau bloc nous inserons le hash du bloc précédent.
+Pour nous assurer que le changement d'un bloc invalide toute la chaine de bloc nous créons une dépendance entre les blocs en les enchainant les un les autres avec leur hash.  C'est à dire que chaque nouveau bloc contient le hash du bloc précédent.
 
-Se pose alors la question du premier bloc?  C'est un bloc particulier que l'on appelle le bloc génèse (genesis).  Il est créé ex-nihilo, de façon exceptionnelle.
+Se pose alors la question du premier bloc.  Il s'appelle le bloc de génèse (genesis block, car il est particulier. C'est le seul qui n'inclut pas le hash d'un autre bloc.
 
-ok.  Donc nous ajoutons un champ /prec_hachage/ à notre objet block et nous implémentons la structure initiale de la blockchain
+Ajoutons, donc, un champ /prec_hachage/ à notre objet bloc et nous implémentons la structure initiale de la blockchain
 
  #+begin_src python  -i
 from hashlib import sha256
@@ -191,19 +189,20 @@ class chainedeblocs:
         return self.chaine[-1]
  #+end_src
 
- Maintenant si le contenu d'un bloc change:
- - Son hash va changer
- - Son hash ne correspondra plus à celui référencé dans le bloc suivant
- - Donc le hash du bloc suivant va changer et ainsi de suite.  Ainis en vérifiant le hash du dernier block nous pouvois savoir s'il y a eu un changement  à un endroit quelconque de la chaine.
+Dorénavant, si le contenu d'un bloc change:
+ - son hash change
+ - son hash ne correspond plus à celui référencé dans le bloc suivant
+ - le hash du bloc suivant change et ainsi de suite.  Aussi, en vérifiant le hash du dernier bloc savons automatiquement si cette chaine de blocs est identique à une autre chaine dont nous vérifions le dernier block uniquement.
 
 *** Implémenter l'algorithm de preuve par le travail
 
-Mais il y a un problème.  Si nous changeons un bloc et son hash, nous pouvons aussi facilement recalculer le hash de tous les autres bloc pour former une nouvelle chaine avec de nouveau hash.  Pour éviter cela nous alons va rendre le calcul du hash plus difficile.  On ne va accepter que des hash qui commencent par un nombre prédéfini de zéros.  Si c'est 3 alors  le hash d'un bloc doit être de la from '000abdefhash...'
+Cependant, il y reste un problème.  Il est simple de changer un bloc et de recalculer son hash ainsi que celui de tous les autres bloc pour former une nouvelle chaine valide. Si deux chaines diffèrent, comment savoir laquelle contient les informations juste.
+La solution est de rendre le calcul du hash difficile, en  acceptant uniquement les hash qui commencent par un nombre prédéfini de zéros.  Par exemple, si c'est 3,  le hash d'un bloc doit être de la forme '000abdefhash...'
 
-Cependant le hash ne va pas changer tant que nous ne changeons pas les données, et on ne veux pas les changer alors comment faire ?
-Et bien, il suffit d'ajouter quelquechose dans le block.  Ce truc bidon c'est le *nonce* (numerical once).  C'est un nombre que l'on va incrémenté jusqu'à ce que le hash du bloc ait le nombre de zéros voulu.
+Cependant la forme du hash dépend des données, et nous ne voulons pas les changer.
+La solution est d'ajouter un petit quelque chose en plus des données.  C'est le *nonce* (numerical once).  C'est un nombre que aléatoire que nous trouvons en essayant successivement, de façon incrémentale, de calculer le hash pour qu'il ait la forme voulu.
 
-Dans la blockchain cette technique s'appelle l'algorithm du *Hashcash*.  Nous en implémentons une version simplifiée.  Le nombre de zéro va définir la difficulté de la preuve par le travail.  Plus il y aura de zéros plus ce sera difficle de trouve le bon *nonce*.  Par contre se sera toujours aussi facile de vérifier que le hash est correct.
+Dans la blockchain cette technique s'appelle l'algorithm du *Hashcash*.  Nous en implémentons une version simplifiée.  Le nombre de zéro va définir la difficulté de la preuve par le travail.  Plus il y aura de zéros plus ce sera difficle de trouver le bon *nonce*.  Par contre se sera toujours aussi facile de vérifier que le hash est correct.
 
 #+BEGIN_SRC python  -i
 class Chainedeblocs:
@@ -226,11 +225,11 @@ class Chainedeblocs:
 
 Remarque: il n'y a pas de stratégie particulière pour trouver le nonce. Il faut tout tester, ou utiliser du matériel qui peut calculer des hash avec moins d'instructions CPU.
 
-*** Ajouter de bloc sur la chaine
+*** Ajouter un bloc sur la chaine
 
 Pour ajouter un bloc à la chaine nous devons d'abord vérifier que:
-- le bloc est valid (ie. la preuve du travail, le nonce, doit être correcte)
-- l'ordre des transaction doit être préservé, le prec_hachage doit correspondre au hash du dernier bloc dans notre chaine
+- le bloc est valide (ie. par la preuve du travail, le nonce, doit être correcte)
+- l'ordre des transactions est préservés, le prec_hachage doit correspondre au hash du dernier bloc dans notre chaine
 
 #+BEGIN_SRC python  -i
 class Blockchain:
@@ -256,9 +255,10 @@ class Blockchain:
 
 **** Miner les transations
 
-Au départ les transactions ne seront pas confirmée et elles attendront d'être incluses dans un bloc.  Les mettre dans un bloc et calculer la preuve par le travail, c'est ce qu'on appeler miner un bloc.  Une fois miner, on peut le mettre dans la chaine.
+Au départ les transactions ne sont pas confirmées et elles attendent d'être incluses dans un bloc.
+Les mettre dans un bloc et calculer le hash (preuve par le travail), c'est  /miner/ un bloc.  Une fois le bloc miné, nous l'ajoutons à la chaine.
 
-Dans la plus part des cryptmonaie, les mineurs reçoivent une récompense pour leur travail.  Inclure cette fonctionnalité est un exercice pour ceux qui veulent aller plus loin.
+Dans la plus part des cryptmonaies, les mineurs reçoivent une récompense pour leur travail.  Inclure cette fonctionnalité est un exercice pour ceux qui veulent aller plus loin.
 
 #+BEGIN_SRC python  -i
 class Blockchain:
@@ -279,9 +279,9 @@ class Blockchain:
         if not self.unconfirmed_transactions:
             return False
 
-        last_block = self.last_block
+        last_bloc = self.last_block
 
-        new_block = Block(index=last_block.index + 1,
+        new_bloc = Block(index=last_block.index + 1,
                           transactions=self.unconfirmed_transactions,
                           timestamp=time.time(),
                           prec_hachage=last_block.hash)
@@ -294,10 +294,9 @@ class Blockchain:
 
 *** Créer les interfaces
 
-On va utiliser Flask un micro-framework pour créer l'API REST qui va interagir et invoquer nos différentes opération sur le noeud de la block chain.
-
-- installer le avec *pip install flask* et *pip install requests*
-puis ajouter le code suivant ua fichier principal
+On va utiliser `Flask` un micro-framework pour créer l'API REST qui va interagir et invoquer nos différentes opérations sur le noeud de la blockchain.
+- Installer 'flask' avec *pip install flask* ainsique *pip install requests*
+- Puis ajouter le code suivant ua fichier principal
 
 #+BEGIN_SRC python  -i
 from flask import Flask, request
@@ -310,7 +309,7 @@ app =  Flask(__name__)
 blockchain = Blockchain()
 #+END_SRC
 
-Pour ajouter de nouvelle transaction nous allons utiliser le code suivant
+Ajoutons de nouvelles transactions avec le code suivant
 
 #+BEGIN_SRC python  -i
 # Flask's way of declaring end-points
@@ -330,19 +329,19 @@ def new_transaction():
     return "Success", 201
 #+END_SRC
 
-et voici un autre point d'entrée pour récupérer la copie de la chaine  détenu par le noeud interrogé.
+Voici un autre point d'entrée pour récupérer la copie de la chaine détenue par le noeud interrogé.
 
 #+BEGIN_SRC python  -i
 @app.route('/chain', methods=['GET'])
 def get_chain():
     chain_data = []
-    for block in blockchain.chain:
+    for bloc in blockchain.chain:
         chain_data.append(block.__dict__)
     return json.dumps({"length": len(chain_data),
                        "chain": chain_data})
 #+END_SRC
 
-Il faut aussi pouvoir demander au noeud de miner les transactions non confirmées, si il y en a:
+Ci-dessous, nous demandons au noeud de miner les transactions non confirmées, si il y en a:
 #+BEGIN_SRC python  -i
 @app.route('/mine', methods=['GET'])
 def mine_unconfirmed_transactions():
@@ -358,9 +357,9 @@ def get_pending_tx():
 
 *** Etablir le consensus et la décentralisation
 
-Jusqu'à maintenant la blockchain est implémentée pour tourner sur un seul ordinateur. Il faut que les données soit distribué car nous ne pouvons avoir confiance en une seule machine.
+Jusqu'à maintenant la blockchain est implémentée pour tourner sur un seul ordinateur. Cependant, nous voulons que les données soient distribués car nous ne pouvons avoir confiance en une seule machine.
 
-Donc, pour gérer la décentralisation il faut déjà créer un mécanisme qui va permettre à un noeud d'être au courant de l'existance des autres noeuds.
+Pour gérer la décentralisation un noeud d'être au courant de l'existance des autres noeuds. Implémentons ce méchanisme.
 
 #+BEGIN_SRC python  -i
 # Contains the host addresses of other participating members of the network
@@ -410,7 +409,7 @@ def register_with_existing_node():
 def create_chain_from_dump(chain_dump):
     blockchain = Blockchain()
     for idx, block_data in enumerate(chain_dump):
-        block = Block(block_data["index"],
+        bloc = Block(block_data["index"],
                       block_data["transactions"],
                       block_data["timestamp"],
                       block_data["prec_hachage"])
@@ -419,21 +418,21 @@ def create_chain_from_dump(chain_dump):
             added = blockchain.add_block(block, proof)
             if not added:
                 raise Exception("The chain dump is tampered!!")
-        else:  # the block is a genesis block, no verification needed
+        else:  # the bloc is a genesis block, no verification needed
             blockchain.chain.append(block)
     return blockchain
 #+END_SRC
 
-Ensuite nous devons avoir un mécanisme pour dire à tout le monde que nous avons miner un bloc afin que chacun puisse mettre à jour sa chaine et miner le reste des transactions.  Les autres noeuds pourront vérifier que la preuve du travail (le nonce) est corect et ajouter le bloc à leur chain.
+Créons ensuite le mécanisme pour informer les autres noeud (ordinateur) que nous avons miné un bloc. Ainsi chaque noeud peut mettre à jour sa chaine et miner les autres transactions.  Les autres noeuds vérifient aussi, que la preuve du travail (le nonce) est correct avant d'ajouter le bloc à leur chaine.
 
 #+BEGIN_SRC python  -i
-# endpoint to add a block mined by someone else to
+# endpoint to add a bloc mined by someone else to
 # the node's chain. The node first verifies the block
 # and then adds it to the chain.
 @app.route('/add_block', methods=['POST'])
 def verify_and_add_block():
     block_data = request.get_json()
-    block = Block(block_data["index"],
+    bloc = Block(block_data["index"],
                   block_data["transactions"],
                   block_data["timestamp"],
                   block_data["prec_hachage"])
@@ -442,7 +441,7 @@ def verify_and_add_block():
     added = blockchain.add_block(block, proof)
 
     if not added:
-        return "The block was discarded by the node", 400
+        return "The bloc was discarded by the node", 400
 
     return "Block added to the chain", 201
 
@@ -453,7 +452,7 @@ def announce_new_block(block):
         requests.post(url, data=json.dumps(block.__dict__, sort_keys=True))
 #+END_SRC
 
-Nous devrons appeler "annouce_new_block" à chaque nouveau bloc miné pour que les autres mettent à jour leur chaine
+Nous appelons "announce_new_block" à chaque nouveau bloc miné pour que les autres noeud mettent à jour leur chaine.
 
 #+BEGIN_SRC python  -i
 @app.route('/mine', methods=['GET'])
@@ -466,18 +465,18 @@ def mine_unconfirmed_transactions():
         chain_length = len(blockchain.chain)
         consensus()
         if chain_length == len(blockchain.chain):
-            # announce the recently mined block to the network
+            # announce the recently mined bloc to the network
             announce_new_block(blockchain.last_block)
         return "Block #{} is mined.".format(blockchain.last_block.index
 #+END_SRC
 
 *** Monter l'application
- le serveur de blockchain est prêt.  Il reste à finir l'interface de l'application.
+ Le serveur de blockchain est prêt.  Il reste à finir l'interface de l'application.
 
- Nous avons besoni de connecter le noeud au réseau des blockchain pour récupérer les données et soumettre les données.  
+Nous avons besoin de connecter le noeud au réseau des blockchains pour récupérer et soumettre les données.  
 
- la fonction 'fetch_posts' va récupérer les données du point d'entrée '/chain' l'analyser et le stocker localement.
-On met ça dans app/views.py
+La fonction 'fetch_posts' va récupérer les données du point d'entrée '/chain', l'analyser et le stocker localement.
+Nous écrivons cela dans app/views.py
 
  #+BEGIN_SRC python  -i
 import datetime
@@ -503,7 +502,7 @@ def fetch_posts():
     if response.status_code == 200:
         content = []
         chain = json.loads(response.content)
-        for block in chain["chain"]:
+        for bloc in chain["chain"]:
             for tx in block["transactions"]:
                 tx["index"] = block["index"]
                 tx["hash"] = block["prec_hachage"]
@@ -515,7 +514,7 @@ def fetch_posts():
                        reverse=True)
  #+END_SRC
 
- Notre application à un formulaire html pour effectuer des request POST vers un noeud connecté et ajouter des transactions dans la memepool.  Les transaction sont ensutie miné par le réseau et on les récupère en rafraichissant la page
+Notre application a un formulaire html pour effectuer des requêt POST vers un noeud connecté et ajouter des transactions dans la /memepool/.  Les transactions sont ensuite minées par le réseau et nous les récupérons en rafraichissant la page
 
  #+BEGIN_SRC python  -i
 @app.route('/submit', methods=['POST'])
@@ -543,8 +542,6 @@ def submit_textarea():
  #+END_SRC
 
 *** Lancer l'application
-Reste plus qu'à lancer le programme.
-
 Démarrer le serveur
 #+BEGIN_SRC bash  -i
 $ export FLASK_APP=node_server.py
@@ -558,8 +555,7 @@ $ python run_app.py
 
 Le programme devrait tourner sur http:://localhost:5000
 **** Plusieurs noeuds
-
-     On peut enregsitrer plusieurs noeud en faisant
+Nous pouvons enregsitrer plusieurs noeud en faisant sur une même machine 
 #+BEGIN_SRC bash  -i
 # already running
 $ flask run --port 8000 &
@@ -581,7 +577,7 @@ $ curl -X POST \
   -d '{"node_address": "http://127.0.0.1:8000"}'
 #+END_SRC
 
-les nouveaux noeuds sur les port 8001 et 8002 vont se synchroniser
+Les nouveaux noeuds sur les port 8001 et 8002 se synchroniseront.
 
 Pour mettre à jour le noeud avec lequel l'application se synchronise (localhost port 8000) il faut changer CONNECTED_NODE_ADDRESS dans views.py
 
@@ -589,7 +585,8 @@ Une fois tout ça fait, nous pouvons lancer l'application avec
 #+BEGIN_SRC bash  -i
 python run_app.py
 #+END_SRC
-et créer de nouvelles transaction (publier des messages via l'interface web) et quand on mine les transaction tous les noeuds du réseau vont se mettre à jour leur chaine.  Nous pouvons vérifier les chaine en regardant /chain avec cUrl
+Créer de nouvelles transactions (publier des messages via l'interface web)
+quand nous minons des transaction,  tous les noeuds du réseau mettent à jour leur chaine.  Nous pouvons vérifier les chaines en regardant /chain avec curl
 #+BEGIN_SRC bash  -i
 $ curl -X GET http://localhost:8001/chain
 $ curl -X GET http://localhost:8002/chain
